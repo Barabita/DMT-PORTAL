@@ -12,7 +12,7 @@
         <module>DMT-API</module>
         <module>DMT-CORE</module>
     </modules>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
     <dependencies>
 
