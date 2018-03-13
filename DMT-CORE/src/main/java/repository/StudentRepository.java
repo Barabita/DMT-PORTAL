@@ -1,5 +1,8 @@
 package repository;
 
+import domain.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -7,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * @date 13-Mar-18
  */
 @Repository
-public interface StudentRepository {
+public interface StudentRepository extends JpaRepository<Student, String>, JpaSpecificationExecutor {
 }
