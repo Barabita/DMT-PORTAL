@@ -11,7 +11,9 @@
 
     <artifactId>dmt-web</artifactId>
 
+
     <packaging>war</packaging>
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.faces/jsf-api -->

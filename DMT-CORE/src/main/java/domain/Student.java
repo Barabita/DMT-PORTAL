@@ -1,4 +1,4 @@
-package entity;
+package domain;
 
 /**
  * @author mali.sahin
