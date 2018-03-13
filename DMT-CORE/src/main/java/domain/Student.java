@@ -11,11 +11,11 @@ import java.util.List;
  * @author mali.sahin
  * @date 13-Mar-18
  */
-
+/*
 @Entity
-@Table(name = "STUDENT")
+@Table(name = "STUDENT")*/
 public class Student {
-
+/*
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
     private String id;
@@ -29,7 +29,7 @@ public class Student {
     @Column(name = "BRANCH_ID")
     private String branchId;
 
-  @Column(name = "NAME")
+    @Column(name = "NAME")
     private String name;
 
     @Type(type = "tr.com.sistek.b2b.util.jsontype.FileUserType")
@@ -39,13 +39,11 @@ public class Student {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-
-    @Column(name = "IDENTIFICATION_NO", length=11)
+    @Column(name = "IDENTIFICATION_NO", length = 11)
     private String identificationNo;
 
     @Column(name = "EMAIL")
     private String email;
-
 
     @Column(name = "PHONE")
     private String phone;
@@ -91,6 +89,6 @@ public class Student {
     @Type(type = "yes_no")
     @Column(name = "VALID", nullable = false)
     private Boolean valid = true;
-
+*/
 
 }
