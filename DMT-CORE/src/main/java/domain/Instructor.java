@@ -7,6 +7,7 @@ import java.io.Serializable;
 @Entity
 public class Instructor implements Serializable {
 
+
   /*  @Column(name = "ISIM", length = 150, nullable = false)
     String isim;
 
