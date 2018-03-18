@@ -1,6 +1,6 @@
-package repository;
+package com.dmt.core.repository;
 
-import domain.Student;
+import com.dmt.core.domain.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

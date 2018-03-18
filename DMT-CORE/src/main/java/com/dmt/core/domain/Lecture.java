@@ -1,10 +1,12 @@
-package domain;
+package com.dmt.core.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 public class Lecture implements Serializable {
-/*
+
+    @Id
     @Column(name = "ID", length = 11, nullable = false)
     int id;
 
@@ -23,5 +25,5 @@ public class Lecture implements Serializable {
     @Column(name = "TERM", length = 10)
     int term;
 
-*/
+
 }

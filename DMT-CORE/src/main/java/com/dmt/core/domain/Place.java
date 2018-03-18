@@ -1,4 +1,4 @@
-package domain;
+package com.dmt.core.domain;
 
 import javax.persistence.Column;
 import java.io.Serializable;

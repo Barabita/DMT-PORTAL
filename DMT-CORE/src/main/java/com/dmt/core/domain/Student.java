@@ -1,11 +1,4 @@
-package domain;
-
-import org.hibernate.annotations.Type;
-
-import javax.persistence.*;
-import java.io.File;
-import java.util.Date;
-import java.util.List;
+package com.dmt.core.domain;
 
 /**
  * @author mali.sahin

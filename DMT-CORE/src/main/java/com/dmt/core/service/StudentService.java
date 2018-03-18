@@ -1,4 +1,4 @@
-package service;
+package com.dmt.core.service;
 
 /**
  * @author mali.sahin
