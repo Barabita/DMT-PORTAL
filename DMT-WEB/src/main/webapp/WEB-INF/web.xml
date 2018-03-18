@@ -4,6 +4,19 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <servlet>
+        <servlet-name>HelloWeb</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloWeb</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
@@ -15,6 +28,12 @@
         </listener-class>
     </listener>
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:../webapp/WEB-INF/applicationContext.xml
+        </param-value>
+    </context-param>
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
@@ -47,6 +66,11 @@
             WEB-INF/faces-config.xml
         </param-value>
     </context-param>
+    <context-param>
+        <param-name>com.sun.faces.verifyObjects</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
     <session-config>
         <session-timeout>
             30

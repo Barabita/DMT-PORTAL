@@ -17,6 +17,12 @@
     <context:property-placeholder location="classpath:application.properties"
                                   system-properties-mode="OVERRIDE"/>
     <jpa:repositories base-package="com.dmt.core.repository"/>
+
+    <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name = "prefix" value = "/WEB-INF/jsf/" />
+        <property name = "suffix" value = ".jsf" />
+    </bean>
+
     <!-- Data Source Declaration -->
     <!--bean id="dataSource" >
         <property name="driverClassName" value="${spring.datasource.driverClassName}"/>

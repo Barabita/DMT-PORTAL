@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.SpringDataWebConfiguration;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -22,10 +23,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 18-Mar-18
  */
 @Configuration
-@ComponentScan
 @EnableTransactionManagement
 @EnableJpaRepositories
-public class SpringConfiguration  {
+public class SpringConfiguration extends SpringDataWebConfiguration {
 
     @Value("${spring.datasource.url}")
     private String url;
