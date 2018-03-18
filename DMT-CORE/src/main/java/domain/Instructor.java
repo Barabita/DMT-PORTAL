@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Entity
 public class Instructor implements Serializable {
 
-    @Column(name = "ISIM", length = 150, nullable = false)
+  /*  @Column(name = "ISIM", length = 150, nullable = false)
     String isim;
 
     @Column(name = "ID" , length = 11, nullable = false)
@@ -37,7 +37,7 @@ public class Instructor implements Serializable {
     @Column(name="PLEASURE" ,length = 11)
     int pleasure;
 
-
+*/
 
 
 
