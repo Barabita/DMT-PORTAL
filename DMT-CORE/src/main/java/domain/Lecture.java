@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import java.io.Serializable;
 
 public class Lecture implements Serializable {
-
+/*
     @Column(name = "ID", length = 11, nullable = false)
     int id;
 
@@ -23,4 +23,5 @@ public class Lecture implements Serializable {
     @Column(name = "TERM", length = 10)
     int term;
 
+*/
 }

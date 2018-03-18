@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class Place implements Serializable {
 
-    @Column(name = "ID", length = 11, nullable = false)
+   /* @Column(name = "ID", length = 11, nullable = false)
     int id;
 
     @Column(name = "ISIM", length = 150, nullable = false)
@@ -13,7 +13,7 @@ public class Place implements Serializable {
 
     @Column(name = "TYPEE", length = 10)
     Enum AMP,LAB ,CLASS;
-
+*/
 
 
 }
