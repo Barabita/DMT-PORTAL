@@ -18,6 +18,7 @@ import javax.sql.DataSource;
  * @date 21-Mar-18
  */
 @Configuration
+@EnableJpaRepositories
 @EnableTransactionManagement
 @ComponentScan("com.dmt")
 @PropertySource("classpath:application.properties")
