@@ -10,12 +10,16 @@
     <h:form>
         <p:panelMenu style="width: 100%">
             <p:submenu label="Öğrenci İşleri">
-                <p:menuitem value="Yeni Kayıt" icon="ui-icon-disk"/>
-                <p:menuitem value="Grup Oluştur" icon="ui-icon-arrowrefresh-1-w"/>
+                <p:menuitem value="Yeni Kayıt" actionListener="#{router.routeContentPage('STUDENT_NEW_RECORD')}"
+                            process="@this" ajax="false" icon="ui-icon-disk"/>
+                <p:menuitem value="Grup Oluştur" actionListener="#{router.routeContentPage('CREATE_STUDENT_GROUP')}"
+                            process="@this" ajax="false" icon="ui-icon-arrowrefresh-1-w"/>
             </p:submenu>
             <p:submenu label="Akademisyen İşleri">
-                <p:menuitem value="Yeni Kayıt" ajax="false" icon="ui-icon-close"/>
-                <p:menuitem value="Derse Ata" ajax="false" icon="ui-icon-close"/>
+                <p:menuitem value="Yeni Kayıt" actionListener="#{router.routeContentPage('INSTRUCTOR_NEW_RECORD')}"
+                            process="@this" ajax="false" icon="ui-icon-close"/>
+                <p:menuitem value="Derse Ata" actionListener="#{router.routeContentPage('ASSIGN_LECTURE')}"
+                            process="@this" ajax="false" icon="ui-icon-close"/>
             </p:submenu>
             <p:separator/>
             <p:submenu label="Ders Açma/Düzenleme">

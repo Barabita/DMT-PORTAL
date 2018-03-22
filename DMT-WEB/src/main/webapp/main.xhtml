@@ -12,7 +12,7 @@
 <h:body>
     <p:layout fullPage="true">
         <p:layoutUnit position="north" size="100" header="Top" resizable="true" collapsible="true">
-            <h:outputText value="Top unit content."/>
+            <ui:include src="/faces/general/topContent.xhtml"/>
         </p:layoutUnit>
 
         <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" collapsible="true">
@@ -24,7 +24,7 @@
         </p:layoutUnit>
 
         <p:layoutUnit position="center">
-            <ui:insert name="content">Put default contenasddfasdft here, if any.</ui:insert>
+            <ui:include src="#{router.contentPage}"/>
         </p:layoutUnit>
     </p:layout>
 </h:body>
