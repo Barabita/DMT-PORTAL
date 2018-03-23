@@ -30,10 +30,6 @@ public class Router implements Serializable {
 
     @ManagedProperty("#{pageServiceImpl}")
     private PageService pageService;
-    /*
-    private PageService pageService() {
-        return (PageService) FacesUtil.getBean("pageServiceImpl");
-    }*/
 
 
     public void routeContentPage(String url) {

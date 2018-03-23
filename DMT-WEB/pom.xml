@@ -11,6 +11,18 @@
     <artifactId>dmt-web</artifactId>
     <packaging>war</packaging>
 
+
+    <repositories>
+        <!-- For 3.5 and older -->
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+
+    </repositories>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.faces/jsf-api -->
         <dependency>
@@ -38,6 +50,7 @@
             <artifactId>primefaces</artifactId>
             <version>6.1</version>
         </dependency>
+
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -147,7 +160,6 @@
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
         </dependency>
-
 
 
     </dependencies>
