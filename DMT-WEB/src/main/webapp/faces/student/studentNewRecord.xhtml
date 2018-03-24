@@ -9,10 +9,47 @@
 <ui:composition>
     <h:form>
         <p:panel>
-            <h:panelGrid columns="2" >
-                <p:outputLabel value="Adınız" />
-                <p:inputText placeholder="Adınızı Giriniz" value="Adınız" />
+            <h:panelGrid columns="2" title="Öğrenci Bilgileri">
+                <p:outputLabel value="Adı:"/>
+                <p:inputText value="#{studentView.student.name}"/>
+
+                <p:outputLabel value="Soyadı:"/>
+                <p:inputText value="#{studentView.student.surname}"/>
+
+                <p:outputLabel value="GSM"/>
+                <p:inputText value="#{studentView.student.gsmNo}"/>
+
+                <p:outputLabel value="E-Mail:"/>
+                <p:inputText value="#{studentView.student.email}"/>
+
+                <p:outputLabel value="Öğrenim Tipi:"/>
+                <p:inputText value="#{studentView.student.educationType}"/>
+
+                <p:commandButton actionListener="#{studentView.save}" ajax="false" value="Yeni Kayıt"
+                                 styleClass="ui-priority-primary" update="studentDT"/>
             </h:panelGrid>
+            <p:dataTable var="student" value="#{studentView.studentList}" paginator="true" rows="10"
+                         paginatorPosition="bottom" lazy="true" paginatorAlwaysVisible="false"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15" id="studentDT">
+                <p:column headerText="Id" filterBy="#{student.id}">
+                    <h:outputText value="#{student.id}"/>
+                </p:column>
+                <p:column headerText="Öğrenci Adı" filterBy="#{student.name}">
+                    <h:outputText value="#{student.name} - #{student.surname}"/>
+                </p:column>
+                <p:column headerText="Telefon No" filterBy="#{student.gsmNo}">
+                    <h:outputText value="#{student.gsmNo}"/>
+                </p:column>
+                <p:column headerText="E-mail" filterBy="#{student.email}">
+                    <h:outputText value="#{student.email}"/>
+                </p:column>
+
+                <p:column headerText="Öğrenim Tipi" filterBy="#{student.educationType}">
+                    <h:outputText value="#{student.educationType}"/>
+                </p:column>
+            </p:dataTable>
+
         </p:panel>
     </h:form>
 </ui:composition>

@@ -1,87 +1,53 @@
 package com.dmt.core.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * @author mali.sahin
  * @date 13-Mar-18
  */
-/*
+
 @Entity
-@Table(name = "STUDENT")*/
-public class Student {
-/*
+@Table(name = "STUDENT_DEF")
+@Getter
+@Setter
+public class Student extends BaseDomain implements Serializable {
+
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
     private String id;
 
-    @Column(name = "ROLE_ID")
-    private String roleId;
-
-    @Column(name = "DEALER_ID")
-    private String dealerId;
-
-    @Column(name = "BRANCH_ID")
-    private String branchId;
-
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Type(type = "tr.com.sistek.b2b.util.jsontype.FileUserType")
-    @Column(name = "IMAGE")
-    private File image;
+    @Column(name = "SURNAME", nullable = false)
+    private String surname;
 
-    @Column(name = "LAST_NAME")
-    private String lastName;
+    @Column(name = "GSM_NO", length = 11)
+    private Long gsmNo;
 
-    @Column(name = "IDENTIFICATION_NO", length = 11)
-    private String identificationNo;
+    @Column(name = "TERM", nullable = false)
+    private String term;
 
-    @Column(name = "EMAIL")
-    private String email;
+    @Column(name = "CREDIT_GOT")
+    private int creditGot;
 
-    @Column(name = "PHONE")
-    private String phone;
+    @Column(name = "CREDIT_WILL", nullable = false)
+    private int creditWill;
 
-    @Column(name = "PASSWORD", length = 100, nullable = true)
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "PASSWORD_HISTORY")
-    private List<String> passwordHistory;
+    @Column(name = "EMAIL", nullable = false)
+    private String email;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "PASSWORD_CHANGE_DATE")
-    private Date passwordChangeDate;
+    @Column(name = "EDUCATION_TYPE", nullable = false)
+    private EducationType educationType;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "LAST_LOGIN_DATE")
-    private Date lastLoginDate;
-
-    @Column(name = "LOGIN_ATTEMPT", nullable = false)
-    private Integer loginAttempt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "LOCK_DATE")
-    private Date lockDate;
-
-    @Type(type = "yes_no")
-    @Column(name = "ACTIVATED", nullable = false, columnDefinition = "VARCHAR(1) default 'N'")
-    private Boolean activated;
-
-
-    @Column(name = "ACTIVATION_KEY")
-    private String activationKey;
-
-    @Column(name = "RESET_PASSWORD_KEY")
-    private String resetPasswordKey;
-
-    @Column(name = "LANGUAGE", nullable = false)
-    private String language;
-
-    @Column(name = "TIME_ZONE", nullable = false)
-    private String timeZone;
-
-    @Type(type = "yes_no")
-    @Column(name = "VALID", nullable = false)
-    private Boolean valid = true;
-*/
 
 }
