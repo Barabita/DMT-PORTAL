@@ -39,4 +39,9 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getStudentList(Student filter, Pageable pageable) {
         return studentRepository.findAll(StudentSpec.findByCriteria(filter), pageable).getContent();
     }
+
+    @Override
+    public void delete(Student student) {
+        studentRepository.delete(student);
+    }
 }

@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
@@ -25,7 +26,7 @@ import java.util.Map;
  * @author mali.sahin
  * @date 13-Mar-18
  */
-@ViewScoped
+@RequestScoped
 @ManagedBean(name = "studentView")
 @Getter
 @Setter
@@ -61,7 +62,15 @@ public class StudentView implements Serializable {
 
     public void save(ActionEvent actionEvent) {
         studentService.save(student);
+        student = new Student();
     }
 
+    public void update(Student std) {
+        student = std;
+    }
+
+    public void delete(Student std) {
+        studentService.delete(std);
+    }
 
 }

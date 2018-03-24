@@ -9,7 +9,7 @@
 <ui:composition>
     <h:form>
         <p:panel>
-            <h:panelGrid columns="2" title="Öğrenci Bilgileri">
+            <h:panelGrid columns="2" title="Öğrenci Bilgileri" id="ogrenciKayitForm">
                 <p:outputLabel value="Adı:"/>
                 <p:inputText value="#{studentView.student.name}"/>
 
@@ -25,32 +25,43 @@
                 <p:outputLabel value="Öğrenim Tipi:"/>
                 <p:inputText value="#{studentView.student.educationType}"/>
 
-                <p:commandButton actionListener="#{studentView.save}" ajax="false" value="Yeni Kayıt"
+                <p:commandButton actionListener="#{studentView.save}" ajax="false" value="Kaydet"
                                  styleClass="ui-priority-primary" update="studentDT"/>
             </h:panelGrid>
-            <p:dataTable var="student" value="#{studentView.studentList}" paginator="true" rows="10"
-                         paginatorPosition="bottom" lazy="true" paginatorAlwaysVisible="false"
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                         rowsPerPageTemplate="5,10,15" id="studentDT">
-                <p:column headerText="Id" filterBy="#{student.id}">
-                    <h:outputText value="#{student.id}"/>
-                </p:column>
-                <p:column headerText="Öğrenci Adı" filterBy="#{student.name}">
-                    <h:outputText value="#{student.name} - #{student.surname}"/>
-                </p:column>
-                <p:column headerText="Telefon No" filterBy="#{student.gsmNo}">
-                    <h:outputText value="#{student.gsmNo}"/>
-                </p:column>
-                <p:column headerText="E-mail" filterBy="#{student.email}">
-                    <h:outputText value="#{student.email}"/>
-                </p:column>
-
-                <p:column headerText="Öğrenim Tipi" filterBy="#{student.educationType}">
-                    <h:outputText value="#{student.educationType}"/>
-                </p:column>
-            </p:dataTable>
-
         </p:panel>
+        <p:dataTable var="student" value="#{studentView.studentList}" paginator="true" rows="10"
+                     paginatorPosition="bottom" lazy="true" paginatorAlwaysVisible="false"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5,10,15" id="studentDT">
+            <p:column headerText="Id" filterBy="#{student.id}">
+                <h:outputText value="#{student.id}"/>
+            </p:column>
+            <p:column headerText="Öğrenci Adı" filterBy="#{student.name}">
+                <h:outputText value="#{student.name} - #{student.surname}"/>
+            </p:column>
+            <p:column headerText="Telefon No" filterBy="#{student.gsmNo}">
+                <h:outputText value="#{student.gsmNo}"/>
+            </p:column>
+            <p:column headerText="E-mail" filterBy="#{student.email}">
+                <h:outputText value="#{student.email}"/>
+            </p:column>
+
+            <p:column headerText="Öğrenim Tipi" filterBy="#{student.educationType}">
+                <h:outputText value="#{student.educationType}"/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton actionListener="#{studentView.update(student)}"
+                                 title="Düzenle" ajax="false"
+                                 update="ogrenciKayitForm" icon="ui-icon-pencil"/>
+
+                <p:commandButton title="Sil"
+                                 actionListener="#{studentView.delete(studentView)}" update="studentDT"
+                                 icon="ui-icon-trash" process="@this" ajax="false"/>
+            </p:column>
+        </p:dataTable>
+
+
     </h:form>
 </ui:composition>
 </html>

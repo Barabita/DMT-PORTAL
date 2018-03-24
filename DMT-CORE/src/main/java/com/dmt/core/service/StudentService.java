@@ -17,5 +17,6 @@ public interface StudentService {
     public Student save(Student student);
 
     public List<Student> getStudentList(Student filter, Pageable pageable);
-    //  return budgetCodeRepository.findAll(Example.of(filter, ExampleMatcher.matching().withIgnoreNullValues()), pageable);
+
+    public void delete(Student student);
 }
