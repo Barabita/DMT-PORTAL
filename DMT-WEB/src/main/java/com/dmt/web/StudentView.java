@@ -40,6 +40,7 @@ public class StudentView implements Serializable {
 
     @ManagedProperty("#{studentServiceImpl}")
     private StudentService studentService;
+    //
 
     @PostConstruct
     public void init() {
@@ -51,10 +52,8 @@ public class StudentView implements Serializable {
             @Override
             public List<Student> load(int first, int pageSize, String sortField, SortOrder
                     sortOrder, Map<String, Object> filters) {
-                PageRequest pageable = new PageRequest(0, 10);
-                searchStudent.setName((String) filters.get("name"));
-                students = studentService.getStudentList(searchStudent, pageable);
-                return students;
+                PageRequest pageable = new PageRequest(first, pageSize);
+                return studentService.getStudentList(searchStudent, pageable);
             }
         };
         studentList.setRowCount(1);
