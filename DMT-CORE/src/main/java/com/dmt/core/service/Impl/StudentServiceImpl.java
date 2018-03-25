@@ -24,6 +24,7 @@ import java.util.List;
  */
 @Service
 public class StudentServiceImpl implements StudentService {
+
     @Autowired
     @Qualifier("studentRepository")
     private StudentRepository studentRepository;

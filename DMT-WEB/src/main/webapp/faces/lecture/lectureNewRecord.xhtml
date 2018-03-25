@@ -29,10 +29,8 @@
                                  styleClass="ui-priority-primary" update="studentDT"/>
             </h:panelGrid>
         </p:panel>
-        <p:dataTable var="student" value="#{studentView.studentList}"
-                     paginator="true" rows="10"
-                     paginatorPosition="bottom" lazy="true"
-                     paginatorAlwaysVisible="false"
+        <p:dataTable var="student" value="#{studentView.studentList}" paginator="true" rows="10"
+                     paginatorPosition="bottom" lazy="true" paginatorAlwaysVisible="false"
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rowsPerPageTemplate="5,10,15" id="studentDT">
             <p:column headerText="Id" filterBy="#{student.id}">

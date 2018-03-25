@@ -9,11 +9,28 @@
 <ui:composition>
     <h:form>
         <p:panel>
-            <h:panelGrid columns="2" >
-                <p:outputLabel value="Adınız" />
-                <p:inputText placeholder="Adınızı Giriniz" value="Adınız" />
+            <h:panelGrid columns="2" title="Öğretim Görevlisi Bilgileri" id="ogretimGorevlisiKayitForm">
+                <p:outputLabel value="Adı:"/>
+                <p:inputText value="#{instructorView.instructor.name}" />
+
+                <p:commandButton actionListener="#{instructorView.save}" ajax="false" value="SAVE"
+                               process="@this"  styleClass="ui-priority-primary" update="instructorDT"/>
+
             </h:panelGrid>
         </p:panel>
+
+        <p:dataTable var="instructor" value="#{instructorView.instructorList}"
+                     paginator="true" rows="10"
+                     paginatorPosition="bottom" lazy="true"
+                     paginatorAlwaysVisible="false"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5,10,15" id="instructorDT">
+        <p:column headerText="Öğretim Görevlisi Adı" filterBy="#{instructor.name}">
+            <h:outputText value="#{instructor.name} - #{instructor.surname}"/>
+        </p:column>
+        </p:dataTable>
+
+
     </h:form>
 </ui:composition>
 </html>
