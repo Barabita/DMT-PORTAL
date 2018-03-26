@@ -4,10 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
 <ui:composition>
     <h:form>
+        <p:growl id="growl" showDetail="true" sticky="true" />
         <p:panel>
             <h:panelGrid columns="2" title="Öğrenci Bilgileri" id="ogrenciKayitForm">
                 <p:outputLabel value="Adı:"/>
@@ -23,16 +24,20 @@
                 <p:inputText value="#{studentView.student.email}"/>
 
                 <p:outputLabel value="Öğrenim Tipi:"/>
-                <p:inputText value="#{studentView.student.educationType}"/>
+                <p:selectOneMenu id="eduType" value="#{studentView.student.educationType}" >
+                    <f:selectItems value="#{studentView.educationTypeList}" />
+                </p:selectOneMenu>
 
                 <p:commandButton actionListener="#{studentView.save}" ajax="false" value="Kaydet"
-                                 styleClass="ui-priority-primary" update="studentDT"/>
+                                 styleClass="ui-priority-primary" update="studentDT growl"/>
             </h:panelGrid>
         </p:panel>
+
+        <p:separator/>
+
         <p:dataTable var="student" value="#{studentView.studentList}"
                      paginator="true" rows="10"
                      paginatorPosition="bottom" lazy="true"
-                     paginatorAlwaysVisible="false"
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rowsPerPageTemplate="5,10,15" id="studentDT">
             <p:column headerText="Id" filterBy="#{student.id}">

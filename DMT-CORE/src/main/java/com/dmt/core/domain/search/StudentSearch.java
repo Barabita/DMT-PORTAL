@@ -4,10 +4,6 @@ import com.dmt.core.domain.EducationType;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.util.Date;
-
 /**
  * @author mali.sahin
  * @date 24-Mar-18

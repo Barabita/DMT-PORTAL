@@ -1,12 +1,10 @@
 package com.dmt.web;
 
 import com.dmt.core.domain.Student;
-import com.dmt.core.domain.search.StudentSearch;
 import com.dmt.core.service.StudentService;
+import com.dmt.web.util.FacesUtil;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.component.datatable.DataTable;
-import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.springframework.data.domain.PageRequest;
@@ -15,9 +13,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.view.ViewScoped;
+import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +34,7 @@ public class StudentView implements Serializable {
     String pageStatus = "LIST";
     LazyDataModel<Student> studentList;
     List<Student> students;
+    List<SelectItem> educationTypeList;
 
     @ManagedProperty("#{studentServiceImpl}")
     private StudentService studentService;
@@ -45,6 +43,7 @@ public class StudentView implements Serializable {
     @PostConstruct
     public void init() {
         fetchStudentList();
+        fetchEducationTypeList();
     }
 
     private void fetchStudentList() {
@@ -59,9 +58,34 @@ public class StudentView implements Serializable {
         studentList.setRowCount(1);
     }
 
+    public void fetchEducationTypeList() {
+        educationTypeList = studentService.getEducationTypeList();
+    }
+
     public void save(ActionEvent actionEvent) {
-        studentService.save(student);
+        if (saveKontrol())
+            studentService.save(student);
         student = new Student();
+    }
+
+    public boolean saveKontrol() {
+        if (student.getName() == null) {
+            FacesUtil.giveError("Ad bilgisi zorunlu alandır.");
+            return false;
+        }
+        if (student.getSurname() == null) {
+            FacesUtil.giveError("Soyad bilgisi zorunlu alandır.");
+            return false;
+        }
+        if (student.getGsmNo() == null) {
+            FacesUtil.giveError("Telefon bilgisi zorunlu alandır.");
+            return false;
+        }
+        if (student.getEmail() == null) {
+            FacesUtil.giveError("E-mail bilgisi zorunlu alandır.");
+            return false;
+        } else
+            return true;
     }
 
     public void update(Student std) {
@@ -71,5 +95,6 @@ public class StudentView implements Serializable {
     public void delete(Student std) {
         studentService.delete(std);
     }
+
 
 }

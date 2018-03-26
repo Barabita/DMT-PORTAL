@@ -1,11 +1,9 @@
 package com.dmt.core.service;
 
 import com.dmt.core.domain.Student;
-import com.dmt.core.domain.search.StudentSearch;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.faces.model.SelectItem;
 import java.util.List;
 
 /**
@@ -19,4 +17,6 @@ public interface StudentService {
     public List<Student> getStudentList(Student filter, Pageable pageable);
 
     public void delete(Student student);
+
+    public List<SelectItem> getEducationTypeList();
 }

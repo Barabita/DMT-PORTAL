@@ -53,4 +53,7 @@ public class Student extends BaseDomain implements Serializable {
     private EducationType educationType;
 
 
+    public void setId(String id) {
+        this.id = id;
+    }
 }
