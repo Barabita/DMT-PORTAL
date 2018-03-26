@@ -1,6 +1,6 @@
 package com.dmt.core.service.spec;
 
-import com.dmt.core.domain.Student;
+import com.dmt.core.domain.Lecture;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -15,15 +15,15 @@ import java.util.List;
  * @author mali.sahin
  * @date 24-Mar-18
  */
-public class StudentSpec {
+public class LectureSpec {
 
 
-    public static Specification<Student> findByCriteria(final Student searchCriteria) {
+    public static Specification<Lecture> findByCriteria(final Lecture searchCriteria) {
 
-        return new Specification<Student>() {
+        return new Specification<Lecture>() {
 
             @Override
-            public Predicate toPredicate(Root<Student> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+            public Predicate toPredicate(Root<Lecture> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
                 List<Predicate> predicates = new ArrayList<Predicate>();
 
@@ -35,20 +35,16 @@ public class StudentSpec {
                     predicates.add(cb.like(root.get("name"), searchCriteria.getName()));
                 }
 
-                if (StringUtils.isNotEmpty(searchCriteria.getSurname())) {
-                    predicates.add(cb.like(root.get("surname"), searchCriteria.getSurname()));
+                if (StringUtils.isNotEmpty(searchCriteria.getLanguage())) {
+                    predicates.add(cb.like(root.get("language"), searchCriteria.getLanguage()));
                 }
 
-                if (StringUtils.isNotEmpty(searchCriteria.getEmail())) {
-                    predicates.add(cb.like(root.get("email"), searchCriteria.getEmail()));
+
+                if (StringUtils.isNotEmpty(searchCriteria.getLanguage())) {
+                    predicates.add(cb.like(root.get("language"), searchCriteria.getLanguage()));
                 }
 
-/*
 
-                if (StringUtils.isNotEmpty(searchCriteria.getEducationType().name())) {
-                    predicates.add(cb.like(root.get("educationType"), searchCriteria.getEducationType().name()));
-                }
-*/
 
                 return cb.and(predicates.toArray(new Predicate[]{}));
             }
