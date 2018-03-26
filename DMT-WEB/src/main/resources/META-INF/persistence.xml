@@ -7,6 +7,8 @@
         <class>com.dmt.core.domain.Student</class>
         <class>com.dmt.core.domain.Instructor</class>
         <class>com.dmt.core.domain.Lecture</class>
+        <class>com.dmt.core.domain.StudentGroup</class>
+        <class>com.dmt.core.domain.Place</class>
         <!-- <exclude-unlisted-classes>false</exclude-unlisted-classes>-->
         <properties>
             <property name="javax.persistence.jdbc.url"
