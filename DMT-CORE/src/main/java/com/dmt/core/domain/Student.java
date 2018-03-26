@@ -2,6 +2,7 @@ package com.dmt.core.domain;
 
 
 
+import com.dmt.core.domain.enums.EducationType;
 import lombok.*;
 
 import javax.persistence.Column;

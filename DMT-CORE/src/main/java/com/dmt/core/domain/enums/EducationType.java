@@ -1,4 +1,4 @@
-package com.dmt.core.domain;
+package com.dmt.core.domain.enums;
 
 /**
  * @author mali.sahin

@@ -1,6 +1,6 @@
 package com.dmt.core.service.Impl;
 
-import com.dmt.core.domain.EducationType;
+import com.dmt.core.domain.enums.EducationType;
 import com.dmt.core.domain.Student;
 import com.dmt.core.repository.StudentRepository;
 import com.dmt.core.service.StudentService;
