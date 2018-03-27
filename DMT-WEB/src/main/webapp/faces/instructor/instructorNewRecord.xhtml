@@ -13,6 +13,28 @@
                 <p:outputLabel value="Adı:"/>
                 <p:inputText value="#{instructorView.instructor.name}" />
 
+                <p:outputLabel value="Soyad:"/>
+                <p:inputText value="#{instructorView.instructor.surname}" />
+
+                <p:outputLabel value="TC Kimlik No:"/>
+                <p:inputText value="#{instructorView.instructor.nationalId}" />
+
+                <p:outputLabel value="Oda Numarası:"/>
+                <p:inputText value="#{instructorView.instructor.roomNo}" />
+
+                <p:outputLabel value="İletişim Numarası:"/>
+                <p:inputText value="#{instructorView.instructor.gsmNo}" />
+
+                <p:outputLabel value="Dahili Numara:"/>
+                <p:inputText value="#{instructorView.instructor.internalNo}" />
+
+                <p:outputLabel value="E-mail:"/>
+                <p:inputText value="#{instructorView.instructor.email}" />
+
+                <p:outputLabel value="Haftalık Ders Yükü:"/>
+                <p:inputText value="#{instructorView.instructor.weeklyLectureRes}" />
+
+
                 <p:commandButton actionListener="#{instructorView.save}" ajax="false" value="SAVE"
                                process="@this"  styleClass="ui-priority-primary" update="instructorDT"/>
 
@@ -20,14 +42,46 @@
         </p:panel>
 
         <p:dataTable var="instructor" value="#{instructorView.instructorList}"
-                     paginator="true" rows="10"
+                     paginator="true" rows="30"
                      paginatorPosition="bottom" lazy="true"
                      paginatorAlwaysVisible="false"
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rowsPerPageTemplate="5,10,15" id="instructorDT">
+
+            <p:column headerText="Id" filterBy="#{instructor.id}">
+                <h:outputText value="#{instructor.id}"/>
+            </p:column>
+
         <p:column headerText="Öğretim Görevlisi Adı" filterBy="#{instructor.name}">
             <h:outputText value="#{instructor.name} - #{instructor.surname}"/>
         </p:column>
+
+            <p:column headerText="TC Kimlik No" filterBy="#{instructor.nationalId}">
+                <h:outputText value="#{instructor.nationalId}"/>
+            </p:column>
+
+            <p:column headerText="Oda Numarası" filterBy="#{instructor.roomNo}">
+                <h:outputText value="#{instructor.roomNo}"/>
+            </p:column>
+
+
+            <p:column headerText="Telefon No" filterBy="#{instructor.gsmNo}">
+                <h:outputText value="#{instructor.gsmNo}"/>
+            </p:column>
+
+            <p:column headerText="Dahili Numara" filterBy="#{instructor.internalNo}">
+                <h:outputText value="#{instructor.internalNo}"/>
+            </p:column>
+
+            <p:column headerText="E-mail" filterBy="#{instructor.email}">
+            <h:outputText value="#{instructor.email}"/>
+            </p:column>
+
+            <p:column headerText="Ders Yükü" filterBy="#{instructor.weeklyLectureRes}">
+                <h:outputText value="#{instructor.weeklyLectureRes}"/>
+            </p:column>
+
+
         </p:dataTable>
 
 
