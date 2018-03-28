@@ -28,55 +28,19 @@
                 <f:selectItems value="#{studentView.educationTypeList}"/>
             </p:selectOneMenu>
 
-
         </h:panelGrid>
-        <p:dialog header="Ara" widgetVar="searchDialog"  width="500" height="400">
-            <h:panelGrid columns="3">
-                <p:outputLabel value="Adı:"/>
-                <p:inputText value="#{studentView.searchStudent.name}"/>
-                <p:outputLabel value=""/>
 
-                <p:outputLabel value="Soyadı:"/>
-                <p:inputText value="#{studentView.searchStudent.surname}"/>
-                <p:outputLabel value=""/>
+        <p:separator/>
+        <h:panelGrid columns="10">
+            <p:commandButton value="Kaydet" ajax="false" actionListener="#{studentView.save}"
+                             update="studentDT growl" icon="ui-icon-disk" type="button"
+                             style="width: 100px"/>
 
-                <p:outputLabel value="GSM"/>
-                <p:inputText value="#{studentView.searchStudent.gsmNo}"/>
-                <p:outputLabel value=""/>
+            <p:commandButton value="Ara" onclick="PF('searchDialog').show();" type="button"
+                             icon="ui-icon-search" style="width: 80px"/>
+        </h:panelGrid>
 
-                <p:outputLabel value="E-Mail:"/>
-                <p:inputText value="#{studentView.searchStudent.email}"/>
-                <p:outputLabel value=""/>
 
-                <p:outputLabel value="Aldığı Kredi"/>
-                <p:inputText value="#{studentView.searchStudent.creditGotFirst}"/>
-                <p:inputText value="#{studentView.searchStudent.creditGotLast}"/>
-
-                <p:outputLabel value="Alması Gereken Kredi:"/>
-                <p:inputText value="#{studentView.searchStudent.creditWillFirst}"/>
-                <p:inputText value="#{studentView.searchStudent.creditWillLast}"/>
-
-                <p:outputLabel value="Öğrenim Tipi:"/>
-                <p:selectOneMenu value="#{studentView.searchStudent.educationType}">
-                    <f:selectItems value="#{studentView.educationTypeList}"/>
-                </p:selectOneMenu>
-                <p:outputLabel value=""/>
-
-                <p:commandButton actionListener="#{studentView.fetchStudentList}" value="Ara" type="button"
-                                 styleClass="ui-priority-primary" oncomplete="PF('searchDialog').close();"/>
-
-                <p:commandButton value="Iptal" onclick="PF('searchDialog').hide();" type="button"
-                                 styleClass="ui-priority-primary"/>
-
-            </h:panelGrid>
-        </p:dialog>
-        <p:menubar>
-            <p:menuitem value="Kaydet" ajax="false" actionListener="#{studentView.save}"
-                        update="studentDT growl" styleClass="ui-priority-primary" icon="ui-icon-disk"/>
-
-            <p:menuitem value="Ara" onclick="PF('searchDialog').show();"
-                        styleClass="ui-priority-primary" icon="ui-icon-search"/>
-        </p:menubar>
         <p:separator/>
 
         <p:dataTable var="student" value="#{studentView.studentList}"
@@ -84,11 +48,9 @@
                      paginatorPosition="bottom" lazy="true"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                      rowsPerPageTemplate="10,20,25" id="studentDT">
-            <p:column headerText="Id" filterBy="#{student.id}">
-                <h:outputText value="#{student.id}"/>
-            </p:column>
+
             <p:column headerText="Öğrenci Adı">
-                <h:outputText value="#{student.name} - #{student.surname}"/>
+                <h:outputText value="#{student.name}  #{student.surname}"/>
             </p:column>
             <p:column headerText="Telefon No">
                 <h:outputText value="#{student.gsmNo}"/>
@@ -111,7 +73,50 @@
             </p:column>
         </p:dataTable>
 
+        <p:dialog header="Ara" widgetVar="searchDialog" width="500" height="400">
+            <h:panelGrid columns="3">
+                <p:outputLabel value="Adı:"/>
+                <p:inputText value="#{studentView.searchStudent.name}"/>
+                <p:outputLabel value=""/>
 
+                <p:outputLabel value="Soyadı:"/>
+                <p:inputText value="#{studentView.searchStudent.surname}"/>
+                <p:outputLabel value=""/>
+
+                <p:outputLabel value="GSM"/>
+                <p:inputText value="#{studentView.searchStudent.gsmNo}"/>
+                <p:outputLabel value=""/>
+
+                <p:outputLabel value="E-Mail:"/>
+                <p:inputText value="#{studentView.searchStudent.email}"/>
+                <p:outputLabel value=""/>
+
+                <p:outputLabel value="Aldığı Kredi"/>
+                <p:inputText value="#{studentView.searchStudent.creditGotFirst}"
+                             onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;"/>
+                <p:inputText value="#{studentView.searchStudent.creditGotLast}"
+                             onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;"/>
+
+                <p:outputLabel value="Alması Gereken Kredi:"/>
+                <p:inputText value="#{studentView.searchStudent.creditWillFirst}"
+                             onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;"/>
+                <p:inputText value="#{studentView.searchStudent.creditWillLast}"
+                             onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;"/>
+
+                <p:outputLabel value="Öğrenim Tipi:"/>
+                <p:selectOneMenu value="#{studentView.searchStudent.educationType}">
+                    <f:selectItems value="#{studentView.educationTypeList}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value=""/>
+
+                <p:commandButton actionListener="#{studentView.fetchStudentList}" value="Ara" type="button"
+                                 styleClass="ui-priority-primary" oncomplete="PF('searchDialog').close();"/>
+
+                <p:commandButton value="Iptal" onclick="PF('searchDialog').hide();" type="button"
+                                 styleClass="ui-priority-primary"/>
+
+            </h:panelGrid>
+        </p:dialog>
     </h:form>
 </ui:composition>
 </html>
