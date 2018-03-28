@@ -3,13 +3,15 @@ package com.dmt.core.service.Search;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 /**
  * @author mali.sahin
  * @date 29-Mar-18
  */
 @Getter
 @Setter
-public class SearchLecture {
+public class SearchLecture implements Serializable {
 
     private String code;
     private String name;

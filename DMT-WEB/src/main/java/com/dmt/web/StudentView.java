@@ -1,6 +1,7 @@
 package com.dmt.web;
 
 import com.dmt.core.domain.Student;
+import com.dmt.core.service.Search.SearchStudent;
 import com.dmt.core.service.StudentService;
 import com.dmt.web.util.FacesUtil;
 import lombok.Getter;
@@ -32,7 +33,7 @@ import java.util.Map;
 public class StudentView implements Serializable {
 
     Student student = new Student();
-    Student searchStudent = new Student();
+    SearchStudent searchStudent = new SearchStudent();
     String pageStatus = "LIST";
     LazyDataModel<Student> studentList;
     List<Student> students;

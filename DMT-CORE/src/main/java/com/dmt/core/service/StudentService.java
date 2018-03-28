@@ -1,6 +1,7 @@
 package com.dmt.core.service;
 
 import com.dmt.core.domain.Student;
+import com.dmt.core.service.Search.SearchStudent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,7 +16,7 @@ public interface StudentService {
 
     public Student save(Student student);
 
-    public Page<Student> getStudentList(Student filter, Pageable pageable);
+    public Page<Student> getStudentList(SearchStudent filter, Pageable pageable);
 
     public void delete(Student student);
 

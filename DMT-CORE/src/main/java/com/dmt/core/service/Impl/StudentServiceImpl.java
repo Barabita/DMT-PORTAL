@@ -3,6 +3,7 @@ package com.dmt.core.service.Impl;
 import com.dmt.core.domain.enums.EducationType;
 import com.dmt.core.domain.Student;
 import com.dmt.core.repository.StudentRepository;
+import com.dmt.core.service.Search.SearchStudent;
 import com.dmt.core.service.StudentService;
 import com.dmt.core.service.spec.StudentSpec;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
-    public Page<Student> getStudentList(Student filter, Pageable pageable) {
+    public Page<Student> getStudentList(SearchStudent filter, Pageable pageable) {
         return studentRepository.findAll(StudentSpec.findByCriteria(filter), pageable);
     }
 
