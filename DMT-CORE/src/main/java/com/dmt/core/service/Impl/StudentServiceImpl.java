@@ -32,8 +32,12 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional
     public Student save(Student student) {
-        student.setCreDate(new Date());
-        student.setId(String.valueOf(new Date().getTime()));
+        if (student.getId() == null) {
+            student.setCreDate(new Date());
+            student.setId(String.valueOf(new Date().getTime()));
+        } else {
+            student.setUpdDate(new Date());
+        }
         return studentRepository.save(student);
     }
 
@@ -54,6 +58,6 @@ public class StudentServiceImpl implements StudentService {
         typeList.add(new SelectItem(EducationType.ENG1, "Örgün Ingilizce"));
         typeList.add(new SelectItem(EducationType.ENG2, "2. Öğretim Ingilizce"));
 
-        return  typeList;
+        return typeList;
     }
 }

@@ -67,10 +67,11 @@ public class StudentView implements Serializable {
     }
 
     public void save() {
-        if (saveKontrol())
+        if (saveKontrol()) {
             studentService.save(student);
-        FacesUtil.giveInfo("Öğrenci başarılı bir şekilde kayıt edildi");
-        student = new Student();
+            FacesUtil.giveInfo("Ogrenci basarili bir sekilde kayit edildi.");
+            student = new Student();
+        }
     }
 
     private boolean saveKontrol() {

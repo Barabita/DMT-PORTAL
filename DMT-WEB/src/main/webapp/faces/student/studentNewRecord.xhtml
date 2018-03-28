@@ -8,7 +8,7 @@
 >
 <ui:composition>
     <h:form>
-        <p:growl id="growl" showDetail="true" sticky="true"/>
+        <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
 
         <h:panelGrid columns="2" title="Öğrenci Bilgileri" id="ogrenciKayitForm">
             <p:outputLabel value="Adı:"/>
@@ -33,7 +33,7 @@
         <p:separator/>
         <h:panelGrid columns="10">
             <p:commandButton value="Kaydet" ajax="false" actionListener="#{studentView.save}"
-                             update="studentDT growl" icon="ui-icon-disk" type="button"
+                             update="studentDT growl" icon="ui-icon-disk" process="@this"
                              style="width: 100px"/>
 
             <p:commandButton value="Ara" onclick="PF('searchDialog').show();" type="button"
