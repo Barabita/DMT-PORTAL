@@ -13,11 +13,14 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "LECTURE_DEF")
-public class Lecture extends BaseDomain implements Serializable  {
+public class Lecture extends BaseDomain implements Serializable {
 
     @Id
-    @Column(name = "ID", length = 11, nullable = false)
+    @Column(name = "ID", length = 20, nullable = false)
     private String id;
+
+    @Column(name = "CODE", length = 10, nullable = false)
+    private String code;
 
     @Column(name = "NAME", length = 150, nullable = false)
     private String name;

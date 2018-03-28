@@ -8,7 +8,7 @@
 >
 <ui:composition>
     <h:form>
-        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:growl id="growl" showDetail="true" sticky="true"/>
         <p:panel>
             <h:panelGrid columns="2" title="Öğrenci Bilgileri" id="ogrenciKayitForm">
                 <p:outputLabel value="Adı:"/>
@@ -24,8 +24,8 @@
                 <p:inputText value="#{studentView.student.email}"/>
 
                 <p:outputLabel value="Öğrenim Tipi:"/>
-                <p:selectOneMenu id="eduType" value="#{studentView.student.educationType}" >
-                    <f:selectItems value="#{studentView.educationTypeList}" />
+                <p:selectOneMenu id="eduType" value="#{studentView.student.educationType}">
+                    <f:selectItems value="#{studentView.educationTypeList}"/>
                 </p:selectOneMenu>
 
                 <p:commandButton actionListener="#{studentView.save}" ajax="false" value="Kaydet"
@@ -34,37 +34,41 @@
         </p:panel>
 
         <p:separator/>
+        <!--
+                <p:dataTable var="car" value="#{dtPaginatorView.cars}" rows="10"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">-->
 
         <p:dataTable var="student" value="#{studentView.studentList}"
                      paginator="true" rows="10"
                      paginatorPosition="bottom" lazy="true"
-                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="5,10,15" id="studentDT">
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="10,20,25" id="studentDT">
             <p:column headerText="Id" filterBy="#{student.id}">
                 <h:outputText value="#{student.id}"/>
             </p:column>
-            <p:column headerText="Öğrenci Adı" filterBy="#{student.name}">
+            <p:column headerText="Öğrenci Adı">
                 <h:outputText value="#{student.name} - #{student.surname}"/>
             </p:column>
-            <p:column headerText="Telefon No" filterBy="#{student.gsmNo}">
+            <p:column headerText="Telefon No">
                 <h:outputText value="#{student.gsmNo}"/>
             </p:column>
-            <p:column headerText="E-mail" filterBy="#{student.email}">
+            <p:column headerText="E-mail">
                 <h:outputText value="#{student.email}"/>
             </p:column>
 
-            <p:column headerText="Öğrenim Tipi" filterBy="#{student.educationType}">
+            <p:column headerText="Öğrenim Tipi">
                 <h:outputText value="#{student.educationType}"/>
             </p:column>
 
             <p:column>
-                <p:commandButton actionListener="#{studentView.update(student)}"
-                                 title="Düzenle" ajax="false"
-                                 update="ogrenciKayitForm" icon="ui-icon-pencil"/>
+                <p:commandButton actionListener="#{studentView.update(student)}" update="ogrenciKayitForm"
+                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
 
-                <p:commandButton title="Sil"
-                                 actionListener="#{studentView.delete(studentView)}" update="studentDT"
+                <p:commandButton title="Sil" actionListener="#{studentView.delete(student)}"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
+
             </p:column>
         </p:dataTable>
 

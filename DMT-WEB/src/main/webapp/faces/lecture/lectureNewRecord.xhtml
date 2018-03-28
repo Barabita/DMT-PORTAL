@@ -8,60 +8,63 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition>
     <h:form>
-        <p:panel>
-            <h:panelGrid columns="2" title="Öğrenci Bilgileri" id="ogrenciKayitForm">
-                <p:outputLabel value="Adı:"/>
-                <p:inputText value="#{studentView.student.name}"/>
+        <h:panelGrid columns="2" title="Ders Adı" id="dersKayitForm">
+            <p:outputLabel value="Adı:"/>
+            <p:inputText value="#{lectureView.lecture.name}"/>
 
-                <p:outputLabel value="Soyadı:"/>
-                <p:inputText value="#{studentView.student.surname}"/>
+            <p:outputLabel value="Kodu:"/>
+            <p:inputText value="#{lectureView.lecture.code}"/>
 
-                <p:outputLabel value="GSM"/>
-                <p:inputText value="#{studentView.student.gsmNo}"/>
+            <p:outputLabel value="Haftalık Ders  Yükü"/>
+            <p:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"
+                         value="#{lectureView.lecture.weeklyLectureCount}"/>
 
-                <p:outputLabel value="E-Mail:"/>
-                <p:inputText value="#{studentView.student.email}"/>
+            <p:outputLabel value="Verildiği Dil"/>
+            <p:inputText value="#{lectureView.lecture.language}"/>
 
-                <p:outputLabel value="Öğrenim Tipi:"/>
-                <p:inputText value="#{studentView.student.educationType}"/>
+            <p:outputLabel value="Kredi Sayısı"/>
+            <p:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"
+                         value="#{lectureView.lecture.credit}"/>
 
-                <p:commandButton actionListener="#{studentView.save}" ajax="false" value="Kaydet"
-                                 styleClass="ui-priority-primary" update="studentDT"/>
-            </h:panelGrid>
-        </p:panel>
-        <p:dataTable var="student" value="#{studentView.studentList}" paginator="true" rows="10"
-                     paginatorPosition="bottom" lazy="true" paginatorAlwaysVisible="false"
-                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="5,10,15" id="studentDT">
-            <p:column headerText="Id" filterBy="#{student.id}">
-                <h:outputText value="#{student.id}"/>
+            <p:outputLabel value="Verildiği Dönem"/>
+            <p:inputText onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="1"
+                         value="#{lectureView.lecture.term}"/>
+        </h:panelGrid>
+        <p:menubar>
+            <p:menuitem value="Kaydet" ajax="false" actionListener="#{lectureView.save}"
+                        styleClass="ui-priority-primary" icon="ui-icon-close"/>
+        </p:menubar>
+        <p:dataTable var="lecture" value="#{lectureView.lectureList}"
+                     paginator="true" rows="10"
+                     paginatorPosition="bottom" lazy="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="10,20,25" id="lectureDT">
+            <p:column headerText="Ders Kodu">
+                <h:outputText value="#{lecture.code}"/>
             </p:column>
-            <p:column headerText="Öğrenci Adı" filterBy="#{student.name}">
-                <h:outputText value="#{student.name} - #{student.surname}"/>
+            <p:column headerText="Ders Adı">
+                <h:outputText value="#{lecture.name} "/>
             </p:column>
-            <p:column headerText="Telefon No" filterBy="#{student.gsmNo}">
-                <h:outputText value="#{student.gsmNo}"/>
+            <p:column headerText="Haftalık Ders Yükü">
+                <h:outputText value="#{lecture.weeklyLectureCount}"/>
             </p:column>
-            <p:column headerText="E-mail" filterBy="#{student.email}">
-                <h:outputText value="#{student.email}"/>
+            <p:column headerText="Verildiği Dil">
+                <h:outputText value="#{lecture.language}"/>
             </p:column>
 
-            <p:column headerText="Öğrenim Tipi" filterBy="#{student.educationType}">
-                <h:outputText value="#{student.educationType}"/>
+            <p:column headerText="Kredi Sayısı">
+                <h:outputText value="#{lecture.credit}"/>
             </p:column>
 
             <p:column>
-                <p:commandButton actionListener="#{studentView.update(student)}"
-                                 title="Düzenle" ajax="false"
-                                 update="ogrenciKayitForm" icon="ui-icon-pencil"/>
+                <p:commandButton actionListener="#{lectureView.update(lecture)}" update="dersKayitForm"
+                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
 
-                <p:commandButton title="Sil"
-                                 actionListener="#{studentView.delete(studentView)}" update="studentDT"
+                <p:commandButton title="Sil" actionListener="#{lectureView.delete(lecture)}"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
+
             </p:column>
         </p:dataTable>
-
-
     </h:form>
 </ui:composition>
 </html>
