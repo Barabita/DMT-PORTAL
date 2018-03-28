@@ -9,36 +9,75 @@
 <ui:composition>
     <h:form>
         <p:growl id="growl" showDetail="true" sticky="true"/>
-        <p:panel>
-            <h:panelGrid columns="2" title="Öğrenci Bilgileri" id="ogrenciKayitForm">
+
+        <h:panelGrid columns="2" title="Öğrenci Bilgileri" id="ogrenciKayitForm">
+            <p:outputLabel value="Adı:"/>
+            <p:inputText value="#{studentView.student.name}"/>
+
+            <p:outputLabel value="Soyadı:"/>
+            <p:inputText value="#{studentView.student.surname}"/>
+
+            <p:outputLabel value="GSM"/>
+            <p:inputText value="#{studentView.student.gsmNo}"/>
+
+            <p:outputLabel value="E-Mail:"/>
+            <p:inputText value="#{studentView.student.email}"/>
+
+            <p:outputLabel value="Öğrenim Tipi:"/>
+            <p:selectOneMenu id="eduType" value="#{studentView.student.educationType}">
+                <f:selectItems value="#{studentView.educationTypeList}"/>
+            </p:selectOneMenu>
+
+
+        </h:panelGrid>
+        <p:dialog header="Ara" widgetVar="searchDialog"  width="500" height="400">
+            <h:panelGrid columns="3">
                 <p:outputLabel value="Adı:"/>
-                <p:inputText value="#{studentView.student.name}"/>
+                <p:inputText value="#{studentView.searchStudent.name}"/>
+                <p:outputLabel value=""/>
 
                 <p:outputLabel value="Soyadı:"/>
-                <p:inputText value="#{studentView.student.surname}"/>
+                <p:inputText value="#{studentView.searchStudent.surname}"/>
+                <p:outputLabel value=""/>
 
                 <p:outputLabel value="GSM"/>
-                <p:inputText value="#{studentView.student.gsmNo}"/>
+                <p:inputText value="#{studentView.searchStudent.gsmNo}"/>
+                <p:outputLabel value=""/>
 
                 <p:outputLabel value="E-Mail:"/>
-                <p:inputText value="#{studentView.student.email}"/>
+                <p:inputText value="#{studentView.searchStudent.email}"/>
+                <p:outputLabel value=""/>
+
+                <p:outputLabel value="Aldığı Kredi"/>
+                <p:inputText value="#{studentView.searchStudent.creditGotFirst}"/>
+                <p:inputText value="#{studentView.searchStudent.creditGotLast}"/>
+
+                <p:outputLabel value="Alması Gereken Kredi:"/>
+                <p:inputText value="#{studentView.searchStudent.creditWillFirst}"/>
+                <p:inputText value="#{studentView.searchStudent.creditWillLast}"/>
 
                 <p:outputLabel value="Öğrenim Tipi:"/>
-                <p:selectOneMenu id="eduType" value="#{studentView.student.educationType}">
+                <p:selectOneMenu value="#{studentView.searchStudent.educationType}">
                     <f:selectItems value="#{studentView.educationTypeList}"/>
                 </p:selectOneMenu>
+                <p:outputLabel value=""/>
 
-                <p:commandButton actionListener="#{studentView.save}" ajax="false" value="Kaydet"
-                                 styleClass="ui-priority-primary" update="studentDT growl"/>
+                <p:commandButton actionListener="#{studentView.fetchStudentList}" value="Ara" type="button"
+                                 styleClass="ui-priority-primary" oncomplete="PF('searchDialog').close();"/>
+
+                <p:commandButton value="Iptal" onclick="PF('searchDialog').hide();" type="button"
+                                 styleClass="ui-priority-primary"/>
+
             </h:panelGrid>
-        </p:panel>
+        </p:dialog>
+        <p:menubar>
+            <p:menuitem value="Kaydet" ajax="false" actionListener="#{studentView.save}"
+                        update="studentDT growl" styleClass="ui-priority-primary" icon="ui-icon-disk"/>
 
+            <p:menuitem value="Ara" onclick="PF('searchDialog').show();"
+                        styleClass="ui-priority-primary" icon="ui-icon-search"/>
+        </p:menubar>
         <p:separator/>
-        <!--
-                <p:dataTable var="car" value="#{dtPaginatorView.cars}" rows="10"
-                             paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15">-->
 
         <p:dataTable var="student" value="#{studentView.studentList}"
                      paginator="true" rows="10"

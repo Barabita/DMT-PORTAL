@@ -49,7 +49,7 @@ public class StudentView implements Serializable {
         fetchEducationTypeList();
     }
 
-    private void fetchStudentList() {
+    public void fetchStudentList() {
         studentList = new LazyDataModel<Student>() {
             @Override
             public List<Student> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
@@ -62,18 +62,18 @@ public class StudentView implements Serializable {
         studentList.setRowCount(1);
     }
 
-    public void fetchEducationTypeList() {
+    private void fetchEducationTypeList() {
         educationTypeList = studentService.getEducationTypeList();
     }
 
-    public void save(ActionEvent actionEvent) {
+    public void save() {
         if (saveKontrol())
             studentService.save(student);
         FacesUtil.giveInfo("Öğrenci başarılı bir şekilde kayıt edildi");
         student = new Student();
     }
 
-    public boolean saveKontrol() {
+    private boolean saveKontrol() {
         if (student.getName() == null || student.getName().isEmpty()) {
             FacesUtil.giveError("Ad bilgisi zorunlu alandır.");
             return false;
