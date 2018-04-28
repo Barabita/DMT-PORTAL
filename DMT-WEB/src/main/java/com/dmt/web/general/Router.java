@@ -15,10 +15,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author mali.sahin
- * @date 21-Mar-18
- */
+
 
 @SessionScoped
 @ManagedBean(name = "router")

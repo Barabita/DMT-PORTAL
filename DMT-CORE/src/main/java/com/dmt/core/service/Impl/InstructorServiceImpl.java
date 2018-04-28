@@ -31,6 +31,10 @@ public class InstructorServiceImpl implements InstructorService {
 
     }
 
+    @Override
+    public void delete(Instructor instructor) {
+        instructorRepository.delete(instructor);
+    }
 
     @Override
     public List<Instructor> getInstructorList(Instructor filter, Pageable pageable) {

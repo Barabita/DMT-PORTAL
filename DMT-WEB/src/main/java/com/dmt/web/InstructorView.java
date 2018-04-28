@@ -59,6 +59,10 @@ public class InstructorView implements Serializable{
         instructor =new Instructor();
     }
 
+    public void delete(Instructor ins) {
+        instructorService.delete(ins);
+    }
+
 
 
 

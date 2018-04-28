@@ -48,39 +48,48 @@
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rowsPerPageTemplate="5,10,15" id="instructorDT">
 
-            <p:column headerText="Id" filterBy="#{instructor.id}">
+            <p:column headerText="Id"  >
                 <h:outputText value="#{instructor.id}"/>
             </p:column>
 
-        <p:column headerText="Öğretim Görevlisi Adı" filterBy="#{instructor.name}">
+        <p:column headerText="Öğretim Görevlisi Adı">
             <h:outputText value="#{instructor.name} - #{instructor.surname}"/>
         </p:column>
 
-            <p:column headerText="TC Kimlik No" filterBy="#{instructor.nationalId}">
+            <p:column headerText="TC Kimlik No" >
                 <h:outputText value="#{instructor.nationalId}"/>
             </p:column>
 
-            <p:column headerText="Oda Numarası" filterBy="#{instructor.roomNo}">
+            <p:column headerText="Oda Numarası" >
                 <h:outputText value="#{instructor.roomNo}"/>
             </p:column>
 
 
-            <p:column headerText="Telefon No" filterBy="#{instructor.gsmNo}">
+            <p:column headerText="Telefon No" >
                 <h:outputText value="#{instructor.gsmNo}"/>
             </p:column>
 
-            <p:column headerText="Dahili Numara" filterBy="#{instructor.internalNo}">
+            <p:column headerText="Dahili Numara" >
                 <h:outputText value="#{instructor.internalNo}"/>
             </p:column>
 
-            <p:column headerText="E-mail" filterBy="#{instructor.email}">
+            <p:column headerText="E-mail" >
             <h:outputText value="#{instructor.email}"/>
             </p:column>
 
-            <p:column headerText="Ders Yükü" filterBy="#{instructor.weeklyLectureRes}">
+            <p:column headerText="Ders Yükü">
                 <h:outputText value="#{instructor.weeklyLectureRes}"/>
             </p:column>
 
+            <p:column>
+                <p:commandButton actionListener="#{instructorView.update(instructor)}" update="ogretimGorevlisiKayitForm"
+                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
+
+                <p:commandButton title="Sil" actionListener="#{instructorView.delete(instructor)}"
+                                 onclick="return confirm('Silmek İsediğinize Emin misiniz?')"
+                                 icon="ui-icon-trash" process="@this" ajax="false"/>
+
+            </p:column>
 
         </p:dataTable>
 

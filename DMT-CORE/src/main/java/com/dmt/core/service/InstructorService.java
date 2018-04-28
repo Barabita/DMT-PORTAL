@@ -10,4 +10,5 @@ public interface InstructorService {
 
     public List<Instructor> getInstructorList(Instructor filter, Pageable pageable);
 
+    public void delete(Instructor instructor);
 }
