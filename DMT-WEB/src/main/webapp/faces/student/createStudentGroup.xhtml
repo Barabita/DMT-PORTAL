@@ -39,20 +39,20 @@
                      paginatorPosition="bottom" lazy="true"
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rowsPerPageTemplate="5,10,15" id="studentDT">
-            <p:column headerText="Id" filterBy="#{student.id}">
+            <p:column headerText="Id" >
                 <h:outputText value="#{student.id}"/>
             </p:column>
-            <p:column headerText="Öğrenci Adı" filterBy="#{student.name}">
+            <p:column headerText="Öğrenci Adı" >
                 <h:outputText value="#{student.name} - #{student.surname}"/>
             </p:column>
-            <p:column headerText="Telefon No" filterBy="#{student.gsmNo}">
+            <p:column headerText="Telefon No" >
                 <h:outputText value="#{student.gsmNo}"/>
             </p:column>
-            <p:column headerText="E-mail" filterBy="#{student.email}">
+            <p:column headerText="E-mail" >
                 <h:outputText value="#{student.email}"/>
             </p:column>
 
-            <p:column headerText="Öğrenim Tipi" filterBy="#{student.educationType}">
+            <p:column headerText="Öğrenim Tipi" >
                 <h:outputText value="#{student.educationType}"/>
             </p:column>
 

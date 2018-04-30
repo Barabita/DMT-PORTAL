@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition>
+    <h:form>
+        <p:panel>
+            <h:panelGrid columns="2" title="Sınıf Bilgileri" id="ogrenciKayitForm">
+                <p:outputLabel value="Sınıf Adı:"/>
+                <p:inputText />
+                <p:outputLabel value="Sınıf Tipi:"/>
+                <p:selectOneMenu id="placeType"  >
+                    <f:selectItems />
+                </p:selectOneMenu>
+
+                <p:commandButton  ajax="false" value="OLUŞTUR"
+                                 styleClass="ui-priority-primary" update="placeDT"/>
+            </h:panelGrid>
+        </p:panel>
+        <p:dataTable var="place"  paginator="true" rows="10"
+                     paginatorPosition="bottom" lazy="true" paginatorAlwaysVisible="false"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5,10,15" id="placeDT">
+            <p:column headerText="Id" >
+                <h:outputText />
+            </p:column>
+            <p:column headerText="Sınıf Adı" >
+                <h:outputText />
+            </p:column>
+            <p:column headerText="Sınıf Tipi" >
+                <h:outputText />
+            </p:column>
+
+        </p:dataTable>
+
+
+    </h:form>
+</ui:composition>
+</html>
+

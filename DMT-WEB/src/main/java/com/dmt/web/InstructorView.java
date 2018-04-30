@@ -2,6 +2,7 @@ package com.dmt.web;
 
 import com.dmt.core.domain.Instructor;
 import com.dmt.core.service.InstructorService;
+import com.dmt.web.util.FacesUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.model.LazyDataModel;
@@ -54,20 +55,18 @@ public class InstructorView implements Serializable{
         instructorList.setRowCount(1);
     }
 
-    public void save(){
-        instructorService.save(instructor);
-        instructor =new Instructor();
+
+
+
+    public void save() {
+            instructorService.save(instructor);
+           instructor = new Instructor();
     }
 
-    public void delete(Instructor ins) {
-        instructorService.delete(ins);
+
+    public void delete(Instructor instructor){
+        instructorService.delete(instructor);
     }
-
-
-
-
-
-
 
 
 

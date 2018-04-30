@@ -22,7 +22,7 @@ public class Place implements Serializable {
     private String id;
 
     @Column(name = "NAME", length = 20, nullable = false)
-    private String isim;
+    private String name;
 
     @Column(name = "TYPE", length = 5, nullable = false)
     private PlaceType type;
