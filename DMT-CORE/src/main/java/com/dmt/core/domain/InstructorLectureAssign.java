@@ -10,17 +10,15 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * @author : mali.sahin
- * @since : 26.03.2018.
+ * @author mali.sahin
+ * @since 3.05.2018.
  */
-
 
 @Getter
 @Setter
 @Entity
 @Table(name = "INSTRUCTOR_LECTURE_ASSIGN")
-public class StudentGroup extends  BaseDomain implements Serializable {
-
+class InstructorLectureAssign extends BaseDomain implements Serializable {
 
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
