@@ -9,19 +9,20 @@
 <ui:composition>
     <h:form>
 
-        <!--<p:growl id="growl" showDetail="true" sticky="true"/>-->
 
         <h:panelGrid columns="2" title="Ders Atama" id="dersAtamaForm">
-            <p:outputLabel value="Dersin Adı:"/>
-            <p:inputText/>
 
-            <p:outputLabel value="Ders Kredisi:"/>
-            <p:inputNumber/>
+            <p:outputLabel value="Ders:"/>
+            <p:selectOneMenu id="ders" value="#{lectureView.lecture}">
+                <f:selectItems value="#{lectureView.lectureList}"/>
+            </p:selectOneMenu>
 
-            <p:outputLabel value="Dersi Verecek Öğretim Görevlisi:"/>
-            <p:inputText/>
+            <p:outputLabel value="Dersi Verecek Öğretim Görevlisi:" />
+            <p:selectOneMenu id="dersiveren" value="#{instructorView.instructor}">
+                <f:selectItems value="#{instructorView.instructorList}"/>
+            </p:selectOneMenu>
 
-        </h:panelGrid>
+               </h:panelGrid>
 
             <h:panelGrid columns="10">
                 <p:commandButton value="Dersi Ata" ajax="false"

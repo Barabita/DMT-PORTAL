@@ -10,6 +10,8 @@
     <h:form>
         <p:panel>
             <h:panelGrid columns="2" title="Sınıf Bilgileri" id="ogrenciKayitForm">
+                <p:outputLabel value="Sınıf Kodu:"/>
+                <p:inputText />
                 <p:outputLabel value="Sınıf Adı:"/>
                 <p:inputText />
                 <p:outputLabel value="Sınıf Tipi:"/>
@@ -26,6 +28,9 @@
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rowsPerPageTemplate="5,10,15" id="placeDT">
             <p:column headerText="Id" >
+                <h:outputText />
+            </p:column>
+            <p:column headerText="Sınıf Kodu" >
                 <h:outputText />
             </p:column>
             <p:column headerText="Sınıf Adı" >
