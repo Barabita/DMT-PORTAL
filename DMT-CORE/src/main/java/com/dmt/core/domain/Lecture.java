@@ -1,7 +1,7 @@
 package com.dmt.core.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.dmt.core.util.Excelable;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,20 +9,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-@Getter
-@Setter
+
 @Entity
+@Data
 @Table(name = "LECTURE_DEF")
 public class Lecture extends BaseDomain implements Serializable {
 
     @Id
     @Column(name = "ID", length = 20, nullable = false)
+    @Excelable(enabled = true)
     private String id;
 
     @Column(name = "CODE", length = 10, nullable = false)
     private String code;
 
-    @Column(name = "NAME", length = 150, nullable = false)
+    @Column(name = "NAME", length = 100, nullable = false)
     private String name;
 
     @Column(name = "WEEKLY_LECTURE_COUNT", length = 2, nullable = false)
