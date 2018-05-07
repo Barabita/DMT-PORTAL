@@ -2,7 +2,6 @@ package com.dmt.web;
 
 import com.dmt.core.domain.Instructor;
 import com.dmt.core.service.InstructorService;
-import com.dmt.web.util.FacesUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.model.LazyDataModel;
@@ -14,13 +13,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author: yagmur.avsar
+ * @author yagmur.avsar
  **/
 @RequestScoped
 @ManagedBean(name = "instructorView")

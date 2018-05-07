@@ -3,7 +3,6 @@ package com.dmt.web;
 import com.dmt.core.domain.Lecture;
 import com.dmt.core.service.LectureService;
 import com.dmt.core.service.Search.SearchLecture;
-import com.dmt.core.service.StudentService;
 import com.dmt.web.util.FacesUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +22,7 @@ import java.util.Map;
 
 /**
  * @author mali.sahin
- * @date 28-Mar-18
+ * @since 28-Mar-18
  */
 @ViewScoped
 @Getter
@@ -35,7 +34,7 @@ public class LectureView implements Serializable {
     private LectureService lectureService;
     private SearchLecture searchLecture;
     public LazyDataModel<Lecture> lectureList;
-    Lecture lecture = new Lecture();
+    private Lecture lecture = new Lecture();
 
     @PostConstruct
     private void init() {
