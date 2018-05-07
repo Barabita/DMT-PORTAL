@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition>
+    <h:form>
+
+
+        <h:panelGrid columns="2" title="Öğrenciye Ders Atama" id="ogrDersAtamaForm">
+
+            <p:outputLabel value="Ders:"/>
+            <p:selectOneMenu id="dersAndVeren">
+                <f:selectItems/>
+            </p:selectOneMenu>
+
+            <p:outputLabel value="Dersi Alacak Öğrenciler:"/>
+            <p:multiSelectListbox id="dersiAlacaklar">
+                <f:selectItems/>
+
+            </p:multiSelectListbox>
+
+
+        </h:panelGrid>
+    </h:form>
+</ui:composition>
+</html>
