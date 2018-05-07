@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author: yagmur.avsar
+ * @author: mali.sahin
  **/
 public class InstructorSpec  {
 

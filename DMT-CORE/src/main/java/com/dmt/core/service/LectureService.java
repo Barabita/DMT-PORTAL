@@ -11,11 +11,14 @@ import java.util.List;
  * @author: mali.sahin on 26.03.2018.
  */
 
+
 public interface LectureService {
 
     public Lecture save(Lecture lecture);
 
     public Page<Lecture> getList(SearchLecture filter, Pageable pageable);
+
+    public List<Lecture> getList(SearchLecture filter);
 
     public void delete(Lecture lecture);
 }

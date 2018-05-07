@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * @author mali.sahin
- * @date 13-Mar-18
+ * @since 13-Mar-18
  */
 @ViewScoped
 @ManagedBean(name = "studentView")

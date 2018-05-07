@@ -1,7 +1,6 @@
 package com.dmt.core.domain;
 
 import com.dmt.core.util.Excelable;
-import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

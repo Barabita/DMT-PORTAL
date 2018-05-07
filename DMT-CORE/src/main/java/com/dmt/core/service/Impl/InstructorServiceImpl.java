@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author: yagmur.avsar
+ * @author: mali.sahin
  **/
 @Service
 public class InstructorServiceImpl implements InstructorService {
@@ -41,5 +41,8 @@ public class InstructorServiceImpl implements InstructorService {
         return instructorRepository.findAll(InstructorSpec.findByCriteria(filter) ,pageable).getContent();
     }
 
-
+    @Override
+    public List<Instructor> getInstructorList(Instructor filter) {
+        return instructorRepository.findAll(InstructorSpec.findByCriteria(filter));
+    }
 }
