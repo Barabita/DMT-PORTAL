@@ -16,22 +16,22 @@
                             process="@this" ajax="false" icon="ui-icon-arrowrefresh-1-w"/>
                 <p:menuitem value="Öğrenciye Ders Atama"  process="@this" ajax="false"
                             actionListener="#{router.routeContentPage('STUDENT_LECTURE_ASSIGN')}"
-                            icon="ui-icon-arrowrefresh-1-w"/>
+                            icon="ui-icon-pencil"/>
             </p:submenu>
             <p:submenu label="Akademisyen İşleri">
                 <p:menuitem value="Yeni Kayıt" actionListener="#{router.routeContentPage('INSTRUCTOR_NEW_RECORD')}"
-                            process="@this" ajax="false" icon="ui-icon-close"/>
+                            process="@this" ajax="false" icon="ui-icon-disk"/>
                 <p:menuitem value="Derse Ata" actionListener="#{router.routeContentPage('ASSIGN_LECTURE')}"
-                            process="@this" ajax="false" icon="ui-icon-close"/>
+                            process="@this" ajax="false" icon="ui-icon-pencil"/>
             </p:submenu>
             <p:separator/>
             <p:submenu label="Ders Açma/Düzenleme">
                 <p:menuitem value="Yeni Kayıt" actionListener="#{router.routeContentPage('LECTURE_NEW_RECORD')}"
-                            process="@this" ajax="false" icon="ui-icon-close"/>
+                            process="@this" ajax="false" icon="ui-icon-disk"/>
                 <p:menuitem value="Düzenleme" actionListener="#{router.routeContentPage('ASSIGN_LECTURE')}"
-                            process="@this" ajax="false" icon="ui-icon-close"/>
+                            process="@this" ajax="false" icon="ui-icon-pencil"/>
                 <p:menuitem value="Event" actionListener="#{router.routeContentPage('EVENT')}"
-                            process="@this" ajax="false" icon="ui-icon-close"/>
+                            process="@this" ajax="false" icon="ui-icon-person"/>
             </p:submenu>
 
             <p:separator/>
