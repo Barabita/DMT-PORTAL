@@ -10,5 +10,7 @@ public interface InstructorService {
 
     public List<Instructor> getInstructorList(Instructor filter, Pageable pageable);
 
+    public List<Instructor> getInstructorList(Instructor filter);
+
     public void delete(Instructor instructor);
 }

@@ -7,7 +7,6 @@ import com.dmt.core.service.Search.SearchLecture;
 import com.dmt.core.service.spec.LectureSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author: mali.sahin on 26.03.2018.
+ * @author mali.sahin
+ * @since 26.03.2018.
  */
 
 @Service
@@ -38,6 +38,11 @@ public class LectureServiceImpl implements LectureService {
     public Page<Lecture> getList(SearchLecture filter, Pageable pageable) {
         return lectureRepository.findAll(LectureSpec.findByCriteria(filter), pageable);
 
+    }
+
+    @Override
+    public List<Lecture> getList(SearchLecture filter) {
+        return lectureRepository.findAll(LectureSpec.findByCriteria(filter));
     }
 
     @Override

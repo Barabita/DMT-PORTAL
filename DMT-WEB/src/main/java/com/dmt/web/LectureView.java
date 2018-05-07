@@ -32,6 +32,7 @@ public class LectureView implements Serializable {
 
     @ManagedProperty("#{lectureServiceImpl}")
     private LectureService lectureService;
+
     private SearchLecture searchLecture;
     public LazyDataModel<Lecture> lectureList;
     private Lecture lecture = new Lecture();
