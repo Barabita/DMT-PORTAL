@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "PLACE_DEF")
-
 public class Place implements Serializable {
 
     @Id
