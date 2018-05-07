@@ -1,8 +1,5 @@
 package com.dmt.core.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,8 +10,7 @@ import java.util.Date;
  * @author mali.sahin
  * @since 3.05.2018.
  */
-@Getter
-@Setter
+
 @Entity
 @Table(name = "EVENT_DEF")
 public class Event {
@@ -37,4 +33,52 @@ public class Event {
 
     @Column(name = "SESSION")
     private int session;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPlaceID() {
+        return placeID;
+    }
+
+    public void setPlaceID(String placeID) {
+        this.placeID = placeID;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getStudentLectureId() {
+        return studentLectureId;
+    }
+
+    public void setStudentLectureId(String studentLectureId) {
+        this.studentLectureId = studentLectureId;
+    }
+
+    public int getSession() {
+        return session;
+    }
+
+    public void setSession(int session) {
+        this.session = session;
+    }
 }

@@ -1,7 +1,5 @@
 package com.dmt.core.util;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -15,8 +13,7 @@ import java.util.List;
  * @author mali.sahin
  * @since 3.05.2018.
  */
-@Getter
-@Setter
+
 class Excel {
 
 
@@ -58,5 +55,27 @@ class Excel {
         return headerList;
     }
 
+    public String getFILE_NAME() {
+        return FILE_NAME;
+    }
 
+    public void setFILE_NAME(String FILE_NAME) {
+        this.FILE_NAME = FILE_NAME;
+    }
+
+    public XSSFWorkbook getWorkBook() {
+        return workBook;
+    }
+
+    public void setWorkBook(XSSFWorkbook workBook) {
+        this.workBook = workBook;
+    }
+
+    public XSSFSheet getSheet() {
+        return sheet;
+    }
+
+    public void setSheet(XSSFSheet sheet) {
+        this.sheet = sheet;
+    }
 }

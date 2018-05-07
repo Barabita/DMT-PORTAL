@@ -14,7 +14,6 @@ import java.util.List;
  * @since 3.05.2018.
  */
 
-@Getter
 @Entity
 @Table(name = "INSTRUCTOR_LECTURE_ASSIGN")
 public class InstructorLectureAssign extends BaseDomain implements Serializable {
@@ -43,4 +42,51 @@ public class InstructorLectureAssign extends BaseDomain implements Serializable 
     @Fetch(FetchMode.JOIN)
     private Lecture lecture;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLectureId() {
+        return lectureId;
+    }
+
+    public void setLectureId(String lectureId) {
+        this.lectureId = lectureId;
+    }
+
+    public String getInstructorId() {
+        return instructorId;
+    }
+
+    public void setInstructorId(String instructorId) {
+        this.instructorId = instructorId;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    public Lecture getLecture() {
+        return lecture;
+    }
+
+    public void setLecture(Lecture lecture) {
+        this.lecture = lecture;
+    }
 }

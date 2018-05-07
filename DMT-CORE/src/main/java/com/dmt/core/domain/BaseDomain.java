@@ -1,8 +1,5 @@
 package com.dmt.core.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -11,10 +8,8 @@ import java.util.Date;
 
 /**
  * @author mali.sahin
- * @date 24-Mar-18
+ * @since 24-Mar-18
  */
-@Setter
-@Getter
 public class BaseDomain implements Serializable {
     @Column(name = "CRE_USER", nullable = false, length = 36)
     private String creUser;
@@ -30,4 +25,36 @@ public class BaseDomain implements Serializable {
     @Column(name = "UPD_DATE", nullable = true)
     private Date updDate;
 
+
+    public String getCreUser() {
+        return creUser;
+    }
+
+    public void setCreUser(String creUser) {
+        this.creUser = creUser;
+    }
+
+    public Date getCreDate() {
+        return creDate;
+    }
+
+    public void setCreDate(Date creDate) {
+        this.creDate = creDate;
+    }
+
+    public String getUpdUser() {
+        return updUser;
+    }
+
+    public void setUpdUser(String updUser) {
+        this.updUser = updUser;
+    }
+
+    public Date getUpdDate() {
+        return updDate;
+    }
+
+    public void setUpdDate(Date updDate) {
+        this.updDate = updDate;
+    }
 }

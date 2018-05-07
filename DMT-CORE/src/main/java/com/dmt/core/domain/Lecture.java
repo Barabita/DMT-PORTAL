@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 
 @Entity
-@Data
 @Table(name = "LECTURE_DEF")
 public class Lecture extends BaseDomain implements Serializable {
 
@@ -37,5 +36,59 @@ public class Lecture extends BaseDomain implements Serializable {
     @Column(name = "TERM", length = 1)
     private int term;
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWeeklyLectureCount() {
+        return weeklyLectureCount;
+    }
+
+    public void setWeeklyLectureCount(int weeklyLectureCount) {
+        this.weeklyLectureCount = weeklyLectureCount;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
+    public int getTerm() {
+        return term;
+    }
+
+    public void setTerm(int term) {
+        this.term = term;
+    }
 }
