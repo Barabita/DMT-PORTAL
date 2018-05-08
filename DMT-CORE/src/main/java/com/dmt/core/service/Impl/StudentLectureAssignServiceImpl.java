@@ -35,12 +35,12 @@ public class StudentLectureAssignServiceImpl implements StudentLectureAssignServ
     }
 
     @Override
-    public StudentLectureAssign updateStudentLectureAssign(StudentLectureAssign lectureAssign) throws Exception {
-        if (!studentLectureAssignRepository.existsById(lectureAssign.getId())) {
+    public StudentLectureAssign updateStudentLectureAssign(StudentLectureAssign studentLectureAssign) throws Exception {
+        if (!studentLectureAssignRepository.existsById(studentLectureAssign.getId())) {
             throw new Exception("updateStudentLectureAssign");
         }
-        lectureAssign.setUpdDate(new Date());
-        return studentLectureAssignRepository.save(lectureAssign);
+        studentLectureAssign.setUpdDate(new Date());
+        return studentLectureAssignRepository.save(studentLectureAssign);
     }
 
     @Override

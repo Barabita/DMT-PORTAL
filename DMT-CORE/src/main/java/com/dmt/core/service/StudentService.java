@@ -10,13 +10,15 @@ import java.util.List;
 
 /**
  * @author mali.sahin
- * @date 13-Mar-18
+ * @since 13-Mar-18
  */
 public interface StudentService {
 
     public Student save(Student student);
 
     public Page<Student> getStudentList(SearchStudent filter, Pageable pageable);
+
+    public List<Student> getStudentList(SearchStudent filter);
 
     public void delete(Student student);
 

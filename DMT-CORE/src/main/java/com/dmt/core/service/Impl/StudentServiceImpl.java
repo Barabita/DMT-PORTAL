@@ -46,6 +46,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<Student> getStudentList(SearchStudent filter) {
+        return studentRepository.findAll(StudentSpec.findByCriteria(filter));
+    }
+
+    @Override
     public void delete(Student student) {
         studentRepository.delete(student);
     }
