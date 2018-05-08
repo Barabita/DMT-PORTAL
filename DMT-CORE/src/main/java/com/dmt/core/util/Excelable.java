@@ -15,4 +15,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public  @interface Excelable {
     public boolean enabled() default true;
+
+    public String value() default "";
 }

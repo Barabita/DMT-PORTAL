@@ -3,9 +3,8 @@ package com.dmt.web;
 import com.dmt.core.domain.InstructorLectureAssign;
 import com.dmt.core.domain.Student;
 import com.dmt.core.domain.StudentLectureAssign;
-import com.dmt.core.service.InstructorLectureAssignService;
-import com.dmt.core.service.Search.SearchInstuctorLectureAssign;
 import com.dmt.core.service.Search.SearchStudent;
+import com.dmt.core.service.StudentLectureAssignService;
 import com.dmt.core.service.StudentService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -31,20 +30,26 @@ public class StudentLectureAssignView implements Serializable {
     private StudentService studentService;
 
     @ManagedProperty("#{studentLectureAssignServiceImpl}")
-    private InstructorLectureAssignService instructorLectureAssignService;
+    private StudentLectureAssignService studentLectureAssignService;
 
     private SelectItem selectedLecture;
+    private List<Student> selectedStudents = new ArrayList<>();
+    private List<StudentLectureAssign> assignedList = new ArrayList<>();
 
-    List<SelectItem> lectureList = new ArrayList<>();
+    private List<SelectItem> lectureList = new ArrayList<>();
     private List<Student> studentList = new ArrayList<>();
-    List<InstructorLectureAssign> assignList = new ArrayList<>();
-    String code = "";
+    private List<InstructorLectureAssign> assignList = new ArrayList<>();
+    private Boolean isPageAssignedList;
+    private Boolean isPageNewAssign;
+    private String code = "";
 
     @PostConstruct
     private void init() {
+        isPageAssignedList = true;
+        isPageNewAssign = false;
 
         prepareStudentList();
-        prepareAssignList();
+        prepareAssignedList();
     }
 
     private void prepareStudentList() {
@@ -52,12 +57,9 @@ public class StudentLectureAssignView implements Serializable {
         studentList = this.studentService.getStudentList(new SearchStudent(), pageRequest).getContent();
     }
 
-    private void prepareAssignList() {
+    private void prepareAssignedList() {
         PageRequest pageRequest = new PageRequest(0, 20, Sort.unsorted());
-        assignList = this.instructorLectureAssignService
-                .findInstructorLectureAssigns(new SearchInstuctorLectureAssign(), pageRequest).getContent();
-
-
+        assignedList = this.studentLectureAssignService.findStudentLectureAssigns(new StudentLectureAssign());
     }
 
     public void update(StudentLectureAssign assign) {
@@ -68,12 +70,13 @@ public class StudentLectureAssignView implements Serializable {
 
     }
 
-    public InstructorLectureAssignService getInstructorLectureAssignService() {
-        return instructorLectureAssignService;
+    public void newAssign() {
+        isPageAssignedList = false;
+        isPageNewAssign = true;
     }
 
-    public void setInstructorLectureAssignService(InstructorLectureAssignService instructorLectureAssignService) {
-        this.instructorLectureAssignService = instructorLectureAssignService;
+    public void  assignSelectedList() {
+        init();
     }
 
 
@@ -124,4 +127,46 @@ public class StudentLectureAssignView implements Serializable {
     public void setStudentList(List<Student> studentList) {
         this.studentList = studentList;
     }
+
+    public StudentLectureAssignService getStudentLectureAssignService() {
+        return studentLectureAssignService;
+    }
+
+    public void setStudentLectureAssignService(StudentLectureAssignService studentLectureAssignService) {
+        this.studentLectureAssignService = studentLectureAssignService;
+    }
+
+    public List<Student> getSelectedStudents() {
+        return selectedStudents;
+    }
+
+    public void setSelectedStudents(List<Student> selectedStudents) {
+        this.selectedStudents = selectedStudents;
+    }
+
+    public List<StudentLectureAssign> getAssignedList() {
+        return assignedList;
+    }
+
+    public void setAssignedList(List<StudentLectureAssign> assignedList) {
+        this.assignedList = assignedList;
+    }
+
+    public Boolean getIsPageAssignedList() {
+        return isPageAssignedList;
+    }
+
+    public void setIsPageAssignedList(Boolean pageAssignedList) {
+        isPageAssignedList = pageAssignedList;
+    }
+
+    public Boolean getIsPageNewAssign() {
+        return isPageNewAssign;
+    }
+
+    public void setIsPageNewAssign(Boolean pageNewAssign) {
+        isPageNewAssign = pageNewAssign;
+    }
+
+
 }

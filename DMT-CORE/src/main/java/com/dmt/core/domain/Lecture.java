@@ -19,6 +19,7 @@ public class Lecture extends BaseDomain implements Serializable {
     private String id;
 
     @Column(name = "CODE", length = 10, nullable = false)
+    @Excelable(enabled = true, value = "DERS KODU")
     private String code;
 
     @Column(name = "NAME", length = 100, nullable = false)
