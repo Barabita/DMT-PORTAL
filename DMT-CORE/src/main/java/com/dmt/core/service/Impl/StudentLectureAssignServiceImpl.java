@@ -24,45 +24,45 @@ import java.util.List;
 public class StudentLectureAssignServiceImpl implements StudentLectureAssignService {
 
     @Autowired
-    private StudentLectureAssignRepository lectureAssignRepository;
+    private StudentLectureAssignRepository studentLectureAssignRepository;
 
 
     @Override
     public StudentLectureAssign createStudentLectureAssign(StudentLectureAssign lectureAssign) {
         lectureAssign.setId(String.valueOf(new Date().getTime()));
         lectureAssign.setCreDate(new Date());
-        return lectureAssignRepository.save(lectureAssign);
+        return studentLectureAssignRepository.save(lectureAssign);
     }
 
     @Override
     public StudentLectureAssign updateStudentLectureAssign(StudentLectureAssign lectureAssign) throws Exception {
-        if (!lectureAssignRepository.existsById(lectureAssign.getId())) {
+        if (!studentLectureAssignRepository.existsById(lectureAssign.getId())) {
             throw new Exception("updateStudentLectureAssign");
         }
         lectureAssign.setUpdDate(new Date());
-        return lectureAssignRepository.save(lectureAssign);
+        return studentLectureAssignRepository.save(lectureAssign);
     }
 
     @Override
     public void deleteStudentLectureAssign(String lectureAssignId) throws Exception {
-        if (!lectureAssignRepository.existsById(lectureAssignId)) {
+        if (!studentLectureAssignRepository.existsById(lectureAssignId)) {
             throw new Exception("deleteStudentLectureAssign");
         }
-        lectureAssignRepository.deleteById(lectureAssignId);
+        studentLectureAssignRepository.deleteById(lectureAssignId);
     }
 
     @Override
     public StudentLectureAssign findStudentLectureAssign(String lectureAssignId) {
-        return lectureAssignRepository.getOne(lectureAssignId);
+        return studentLectureAssignRepository.getOne(lectureAssignId);
     }
 
     @Override
     public List<StudentLectureAssign> findStudentLectureAssigns(StudentLectureAssign filter) {
-        return lectureAssignRepository.findAll(Example.of(filter, ExampleMatcher.matching().withIgnoreNullValues()));
+        return studentLectureAssignRepository.findAll(Example.of(filter, ExampleMatcher.matching().withIgnoreNullValues()));
     }
 
     @Override
     public Page<StudentLectureAssign> findStudentLectureAssigns(SearchStudentLectureAssign filter, Pageable pageable) {
-        return lectureAssignRepository.findAll(StudentLectureAssignSpec.findByCriteria(filter), pageable);
+        return studentLectureAssignRepository.findAll(StudentLectureAssignSpec.findByCriteria(filter), pageable);
     }
 }

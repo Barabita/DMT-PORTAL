@@ -11,14 +11,15 @@
 
         <p:growl id="growl" showDetail="true" sticky="true"/>
 
-        <h:panelGrid columns="2" title="Ders Atama" id="dersAtamaForm">
+        <h:panelGrid columns="2" title="Ders Atama" id="dersAtamaForm"
+                     rendered="#{studentLectureAssign.isPageNewAssign}">
             <p:outputLabel value="Dersin Adı:"/>
             <p:selectOneMenu value="#{studentLectureAssign.selectedLecture}" style="width: 190px;">
                 <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
                 <f:selectItems value="#{instructorLectureAssign.lectureList}"/>
             </p:selectOneMenu>
 
-            <p:outputLabel value="Ders Kredisi:"/>
+            <p:outputLabel value="Akademisyen:"/>
             <p:selectOneMenu value="#{instructorLectureAssign.selectedInstructor}" style="width: 190px;">
                 <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
                 <f:selectItems value="#{instructorLectureAssign.instructorList}"/>
@@ -27,33 +28,46 @@
             <p:outputLabel value="Ders Kodu:"/>
             <p:inputText value="#{instructorLectureAssign.code}"/>
 
-            <p:commandButton value="Dersi Ata" ajax="false" icon="ui-icon-disk" process="@this"/>
+            <p:commandButton value="Dersi Ata" ajax="false" icon="ui-icon-disk" process="@this" actionListener="#{studentLectureAssign.assignSelectedList}"/>
 
         </h:panelGrid>
+
+        <h:panelGrid columns="2" rendered="#{studentLectureAssign.isPageAssignedList}">
+            <p:commandButton value="Yeni Kayıt" ajax="false" icon="ui-icon-disk" process="@this" update="@form"
+                             actionListener="#{studentLectureAssign.newAssign}"/>
+        </h:panelGrid>
         <p:dataTable var="item" value="#{studentLectureAssign.studentList}"
-                     paginator="true" rows="10"
-                     paginatorPosition="bottom" lazy="true"
-                     selectionMode="multiple"
-                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="10,20,25" id="studentDT">
+                     paginator="false" lazy="true" rendered="#{studentLectureAssign.isPageNewAssign}"
+                     selectionMode="multiple" rowKey="#{item.id}"
+                     selection="#{studentLectureAssign.selectedStudents}"
+                     id="studentDT">
 
             <p:column headerText="Name">
                 <h:outputText value="#{item.name} - #{item.surname}"/>
             </p:column>
+
             <p:column headerText="Kredi Hakkı">
                 <h:outputText value="#{item.creditWill}"/>
             </p:column>
             <p:column headerText="Dönem">
                 <h:outputText value="#{item.term}"/>
             </p:column>
+        </p:dataTable>
 
-            <p:column>
-                <p:commandButton actionListener="#{instructorLectureAssign.update(item)}" update="ogrenciKayitForm"
-                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
+        <p:dataTable var="item" value="#{studentLectureAssign.assignedList}"
+                     rendered="#{studentLectureAssign.isPageAssignedList}"
+                     paginator="false" lazy="true"
+                     selectionMode="multiple" rowKey="#{item.id}">
 
-                <p:commandButton title="Sil" actionListener="#{instructorLectureAssign.delete(item)}"
-                                 icon="ui-icon-trash" process="@this" ajax="false"/>
+            <p:column headerText="Name">
+                <h:outputText value="#{item.name} - #{item.surname}"/>
+            </p:column>
 
+            <p:column headerText="Kredi Hakkı">
+                <h:outputText value="#{item.creditWill}"/>
+            </p:column>
+            <p:column headerText="Dönem">
+                <h:outputText value="#{item.term}"/>
             </p:column>
         </p:dataTable>
 
