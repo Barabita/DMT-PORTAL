@@ -1,16 +1,12 @@
 package com.dmt.core.service.Search;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 
 /**
  * @author mali.sahin
- * @date 29-Mar-18
+ * @since 29-Mar-18
  */
-@Getter
-@Setter
+
 public class SearchLecture implements Serializable {
 
     private String code;
@@ -23,4 +19,75 @@ public class SearchLecture implements Serializable {
     private int termFirst;
     private int termLast;
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWeeklyLectureCountFirst() {
+        return weeklyLectureCountFirst;
+    }
+
+    public void setWeeklyLectureCountFirst(int weeklyLectureCountFirst) {
+        this.weeklyLectureCountFirst = weeklyLectureCountFirst;
+    }
+
+    public int getWeeklyLectureCountLast() {
+        return weeklyLectureCountLast;
+    }
+
+    public void setWeeklyLectureCountLast(int weeklyLectureCountLast) {
+        this.weeklyLectureCountLast = weeklyLectureCountLast;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public int getCreditFirst() {
+        return creditFirst;
+    }
+
+    public void setCreditFirst(int creditFirst) {
+        this.creditFirst = creditFirst;
+    }
+
+    public int getCreditLast() {
+        return creditLast;
+    }
+
+    public void setCreditLast(int creditLast) {
+        this.creditLast = creditLast;
+    }
+
+    public int getTermFirst() {
+        return termFirst;
+    }
+
+    public void setTermFirst(int termFirst) {
+        this.termFirst = termFirst;
+    }
+
+    public int getTermLast() {
+        return termLast;
+    }
+
+    public void setTermLast(int termLast) {
+        this.termLast = termLast;
+    }
 }

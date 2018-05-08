@@ -2,25 +2,17 @@ package com.dmt.web.general;
 
 
 import com.dmt.core.domain.general.Page;
-import com.dmt.core.service.Impl.PageServiceImpl;
 import com.dmt.core.service.PageService;
-import com.dmt.web.util.FacesUtil;
-import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 
 
 @SessionScoped
 @ManagedBean(name = "router")
-@Getter
-@Setter
 public class Router implements Serializable {
     private String contentPage = "";
     private String title = "";
@@ -35,4 +27,27 @@ public class Router implements Serializable {
         title = activePage.getTitle();
     }
 
+    public String getContentPage() {
+        return contentPage;
+    }
+
+    public void setContentPage(String contentPage) {
+        this.contentPage = contentPage;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public PageService getPageService() {
+        return pageService;
+    }
+
+    public void setPageService(PageService pageService) {
+        this.pageService = pageService;
+    }
 }

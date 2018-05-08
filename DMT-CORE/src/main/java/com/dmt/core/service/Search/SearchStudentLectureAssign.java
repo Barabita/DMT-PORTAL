@@ -5,7 +5,7 @@ package com.dmt.core.service.Search;
  * @since 07-May-18
  */
 
-public class SearchInstuctorLectureAssign {
+public class SearchStudentLectureAssign {
     private String id;
     private String instructorId;
     private String lectureId;

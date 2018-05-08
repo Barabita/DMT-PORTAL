@@ -4,8 +4,6 @@ import com.dmt.core.domain.Student;
 import com.dmt.core.service.Search.SearchStudent;
 import com.dmt.core.service.StudentService;
 import com.dmt.web.util.FacesUtil;
-import lombok.Getter;
-import lombok.Setter;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.springframework.data.domain.Page;
@@ -14,9 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.List;
@@ -28,8 +24,6 @@ import java.util.Map;
  */
 @ViewScoped
 @ManagedBean(name = "studentView")
-@Getter
-@Setter
 public class StudentView implements Serializable {
 
     Student student = new Student();
@@ -103,4 +97,60 @@ public class StudentView implements Serializable {
     }
 
 
+    /*----------------------------------------------------------------------------------------------------------------------*/
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public SearchStudent getSearchStudent() {
+        return searchStudent;
+    }
+
+    public void setSearchStudent(SearchStudent searchStudent) {
+        this.searchStudent = searchStudent;
+    }
+
+    public String getPageStatus() {
+        return pageStatus;
+    }
+
+    public void setPageStatus(String pageStatus) {
+        this.pageStatus = pageStatus;
+    }
+
+    public LazyDataModel<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(LazyDataModel<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public List<SelectItem> getEducationTypeList() {
+        return educationTypeList;
+    }
+
+    public void setEducationTypeList(List<SelectItem> educationTypeList) {
+        this.educationTypeList = educationTypeList;
+    }
+
+    public StudentService getStudentService() {
+        return studentService;
+    }
+
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
 }

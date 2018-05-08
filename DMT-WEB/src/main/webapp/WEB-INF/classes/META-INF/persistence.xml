@@ -7,8 +7,9 @@
         <class>com.dmt.core.domain.Student</class>
         <class>com.dmt.core.domain.Instructor</class>
         <class>com.dmt.core.domain.Lecture</class>
-        <class>com.dmt.core.domain.StudentGroup</class>
         <class>com.dmt.core.domain.Place</class>
+        <class>com.dmt.core.domain.InstructorLectureAssign</class>
+        <class>com.dmt.core.domain.StudentLectureAssign</class>
 
         <!-- <exclude-unlisted-classes>false</exclude-unlisted-classes>-->
         <properties>

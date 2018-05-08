@@ -9,22 +9,55 @@
 <ui:composition>
     <h:form>
 
+        <p:growl id="growl" showDetail="true" sticky="true"/>
 
-        <h:panelGrid columns="2" title="Öğrenciye Ders Atama" id="ogrDersAtamaForm">
-
-            <p:outputLabel value="Ders:"/>
-            <p:selectOneMenu id="dersAndVeren">
-                <f:selectItems/>
+        <h:panelGrid columns="2" title="Ders Atama" id="dersAtamaForm">
+            <p:outputLabel value="Dersin Adı:"/>
+            <p:selectOneMenu value="#{studentLectureAssign.selectedLecture}" style="width: 190px;">
+                <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
+                <f:selectItems value="#{instructorLectureAssign.lectureList}"/>
             </p:selectOneMenu>
 
-            <p:outputLabel value="Dersi Alacak Öğrenciler:"/>
-            <p:multiSelectListbox id="dersiAlacaklar">
-                <f:selectItems/>
+            <p:outputLabel value="Ders Kredisi:"/>
+            <p:selectOneMenu value="#{instructorLectureAssign.selectedInstructor}" style="width: 190px;">
+                <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
+                <f:selectItems value="#{instructorLectureAssign.instructorList}"/>
+            </p:selectOneMenu>
 
-            </p:multiSelectListbox>
+            <p:outputLabel value="Ders Kodu:"/>
+            <p:inputText value="#{instructorLectureAssign.code}"/>
 
+            <p:commandButton value="Dersi Ata" ajax="false" icon="ui-icon-disk" process="@this"/>
 
         </h:panelGrid>
+        <p:dataTable var="item" value="#{studentLectureAssign.studentList}"
+                     paginator="true" rows="10"
+                     paginatorPosition="bottom" lazy="true"
+                     selectionMode="multiple"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="10,20,25" id="studentDT">
+
+            <p:column headerText="Name">
+                <h:outputText value="#{item.name} - #{item.surname}"/>
+            </p:column>
+            <p:column headerText="Kredi Hakkı">
+                <h:outputText value="#{item.creditWill}"/>
+            </p:column>
+            <p:column headerText="Dönem">
+                <h:outputText value="#{item.term}"/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton actionListener="#{instructorLectureAssign.update(item)}" update="ogrenciKayitForm"
+                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
+
+                <p:commandButton title="Sil" actionListener="#{instructorLectureAssign.delete(item)}"
+                                 icon="ui-icon-trash" process="@this" ajax="false"/>
+
+            </p:column>
+        </p:dataTable>
+
+
     </h:form>
 </ui:composition>
 </html>

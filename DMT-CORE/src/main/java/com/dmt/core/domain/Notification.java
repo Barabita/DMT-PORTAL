@@ -1,7 +1,5 @@
 package com.dmt.core.domain;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +12,6 @@ import java.util.Date;
  * @author mali.sahin
  * @since 3.05.2018.
  */
-@Getter
-@Setter
 @Entity
 @Table(name = "NOTIFICATION_DEF")
 class Notification extends BaseDomain implements Serializable {
@@ -49,5 +45,75 @@ class Notification extends BaseDomain implements Serializable {
     @Column(name = "TRS_DATE")
     private Date trsDate;
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getTrsFlag() {
+        return trsFlag;
+    }
+
+    public void setTrsFlag(String trsFlag) {
+        this.trsFlag = trsFlag;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public String getReceiverType() {
+        return receiverType;
+    }
+
+    public void setReceiverType(String receiverType) {
+        this.receiverType = receiverType;
+    }
+
+    public Date getTrsDate() {
+        return trsDate;
+    }
+
+    public void setTrsDate(Date trsDate) {
+        this.trsDate = trsDate;
+    }
 }

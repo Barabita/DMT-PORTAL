@@ -2,8 +2,6 @@ package com.dmt.web;
 
 import com.dmt.core.domain.Instructor;
 import com.dmt.core.service.InstructorService;
-import lombok.Getter;
-import lombok.Setter;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.springframework.data.domain.PageRequest;
@@ -22,8 +20,6 @@ import java.util.Map;
  **/
 @RequestScoped
 @ManagedBean(name = "instructorView")
-@Getter
-@Setter
 public class InstructorView implements Serializable{
     Instructor instructor = new Instructor();
     Instructor searchInstructor = new Instructor();
@@ -67,10 +63,53 @@ public class InstructorView implements Serializable{
     }
 
 
+    public Instructor getInstructor() {
+        return instructor;
+    }
 
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
 
+    public Instructor getSearchInstructor() {
+        return searchInstructor;
+    }
 
+    public void setSearchInstructor(Instructor searchInstructor) {
+        this.searchInstructor = searchInstructor;
+    }
 
+    public String getPageStatus() {
+        return pageStatus;
+    }
+
+    public void setPageStatus(String pageStatus) {
+        this.pageStatus = pageStatus;
+    }
+
+    public LazyDataModel<Instructor> getInstructorList() {
+        return instructorList;
+    }
+
+    public void setInstructorList(LazyDataModel<Instructor> instructorList) {
+        this.instructorList = instructorList;
+    }
+
+    public Lazy<Instructor> getInstructors() {
+        return instructors;
+    }
+
+    public void setInstructors(Lazy<Instructor> instructors) {
+        this.instructors = instructors;
+    }
+
+    public InstructorService getInstructorService() {
+        return instructorService;
+    }
+
+    public void setInstructorService(InstructorService instructorService) {
+        this.instructorService = instructorService;
+    }
 }
 
 

@@ -4,8 +4,6 @@ import com.dmt.core.domain.Lecture;
 import com.dmt.core.service.LectureService;
 import com.dmt.core.service.Search.SearchLecture;
 import com.dmt.web.util.FacesUtil;
-import lombok.Getter;
-import lombok.Setter;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.springframework.data.domain.Page;
@@ -25,8 +23,6 @@ import java.util.Map;
  * @since 28-Mar-18
  */
 @ViewScoped
-@Getter
-@Setter
 @ManagedBean(name = "lectureView")
 public class LectureView implements Serializable {
 
@@ -84,6 +80,39 @@ public class LectureView implements Serializable {
     }
 
     public void update(Lecture lecture) {
+        this.lecture = lecture;
+    }
+
+
+    public LectureService getLectureService() {
+        return lectureService;
+    }
+
+    public void setLectureService(LectureService lectureService) {
+        this.lectureService = lectureService;
+    }
+
+    public SearchLecture getSearchLecture() {
+        return searchLecture;
+    }
+
+    public void setSearchLecture(SearchLecture searchLecture) {
+        this.searchLecture = searchLecture;
+    }
+
+    public LazyDataModel<Lecture> getLectureList() {
+        return lectureList;
+    }
+
+    public void setLectureList(LazyDataModel<Lecture> lectureList) {
+        this.lectureList = lectureList;
+    }
+
+    public Lecture getLecture() {
+        return lecture;
+    }
+
+    public void setLecture(Lecture lecture) {
         this.lecture = lecture;
     }
 }

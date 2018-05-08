@@ -1,8 +1,6 @@
 package com.dmt.core.domain;
 
 import com.dmt.core.domain.enums.PlaceType;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +11,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "PLACE_DEF")
-@Getter
-@Setter
 public class Place implements Serializable {
 
     @Id
@@ -27,5 +23,27 @@ public class Place implements Serializable {
     @Column(name = "TYPE", length = 5, nullable = false)
     private PlaceType type;
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public PlaceType getType() {
+        return type;
+    }
+
+    public void setType(PlaceType type) {
+        this.type = type;
+    }
 }
