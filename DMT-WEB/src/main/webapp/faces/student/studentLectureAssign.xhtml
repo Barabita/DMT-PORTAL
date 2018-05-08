@@ -17,12 +17,13 @@
             <p:selectOneMenu value="#{studentLectureAssign.selectedLecture}" style="width: 190px;">
                 <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
                 <f:selectItems value="#{instructorLectureAssign.lectureList}"/>
+                <p:ajax update="instructor" />
             </p:selectOneMenu>
 
             <p:outputLabel value="Akademisyen:"/>
-            <p:selectOneMenu value="#{instructorLectureAssign.selectedInstructor}" style="width: 190px;">
+            <p:selectOneMenu id="instructor" value="#{studentLectureAssign.selectedLecture}" style="width: 190px;">
                 <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
-                <f:selectItems value="#{instructorLectureAssign.instructorList}"/>
+                <f:selectItems value="#{studentLectureAssign.instructorLectureAssignList}"/>
             </p:selectOneMenu>
 
             <p:outputLabel value="Ders Kodu:"/>
@@ -56,17 +57,16 @@
 
         <p:dataTable var="item" value="#{studentLectureAssign.assignedList}"
                      rendered="#{studentLectureAssign.isPageAssignedList}"
-                     paginator="false" lazy="true"
-                     selectionMode="multiple" rowKey="#{item.id}">
+                     paginator="false" lazy="true">
 
-            <p:column headerText="Name">
+            <p:column headerText="Ders Adı">
                 <h:outputText value="#{item.name} - #{item.surname}"/>
             </p:column>
 
-            <p:column headerText="Kredi Hakkı">
+            <p:column headerText="Hocası">
                 <h:outputText value="#{item.creditWill}"/>
             </p:column>
-            <p:column headerText="Dönem">
+            <p:column headerText="Öğrenci Sayısı">
                 <h:outputText value="#{item.term}"/>
             </p:column>
         </p:dataTable>

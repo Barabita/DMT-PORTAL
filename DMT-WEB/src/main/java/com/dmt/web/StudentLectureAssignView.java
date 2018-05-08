@@ -3,11 +3,10 @@ package com.dmt.web;
 import com.dmt.core.domain.InstructorLectureAssign;
 import com.dmt.core.domain.Student;
 import com.dmt.core.domain.StudentLectureAssign;
+import com.dmt.core.service.InstructorLectureAssignService;
 import com.dmt.core.service.Search.SearchStudent;
 import com.dmt.core.service.StudentLectureAssignService;
 import com.dmt.core.service.StudentService;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -32,13 +31,17 @@ public class StudentLectureAssignView implements Serializable {
     @ManagedProperty("#{studentLectureAssignServiceImpl}")
     private StudentLectureAssignService studentLectureAssignService;
 
+
+    @ManagedProperty("#{instructorLectureAssignServiceImpl}")
+    private InstructorLectureAssignService instructorLectureAssignService;
+
     private SelectItem selectedLecture;
     private List<Student> selectedStudents = new ArrayList<>();
     private List<StudentLectureAssign> assignedList = new ArrayList<>();
 
     private List<SelectItem> lectureList = new ArrayList<>();
     private List<Student> studentList = new ArrayList<>();
-    private List<InstructorLectureAssign> assignList = new ArrayList<>();
+    private List<InstructorLectureAssign> instructorLectureAssignList = new ArrayList<>();
     private Boolean isPageAssignedList;
     private Boolean isPageNewAssign;
     private String code = "";
@@ -53,13 +56,19 @@ public class StudentLectureAssignView implements Serializable {
     }
 
     private void prepareStudentList() {
-        PageRequest pageRequest = new PageRequest(0, 20);
-        studentList = this.studentService.getStudentList(new SearchStudent(), pageRequest).getContent();
+        studentList = this.studentService.getStudentList(new SearchStudent());
     }
 
     private void prepareAssignedList() {
-        PageRequest pageRequest = new PageRequest(0, 20, Sort.unsorted());
+        StudentLectureAssign assign = new StudentLectureAssign();
+
         assignedList = this.studentLectureAssignService.findStudentLectureAssigns(new StudentLectureAssign());
+    }
+
+    private void prepareInstructorLectureAssignList() {
+        InstructorLectureAssign instructorLectureAssign = new InstructorLectureAssign();
+        instructorLectureAssign.setLectureId(selectedLecture.getValue());
+        instructorLectureAssignList = this.instructorLectureAssignService.findInstructorLectureAssigns(instructorLectureAssign);
     }
 
     public void update(StudentLectureAssign assign) {
@@ -75,7 +84,7 @@ public class StudentLectureAssignView implements Serializable {
         isPageNewAssign = true;
     }
 
-    public void  assignSelectedList() {
+    public void assignSelectedList() {
         init();
     }
 
@@ -88,12 +97,28 @@ public class StudentLectureAssignView implements Serializable {
         this.lectureList = lectureList;
     }
 
-    public List<InstructorLectureAssign> getAssignList() {
-        return assignList;
+    public List<InstructorLectureAssign> getInstructorLectureAssignList() {
+        return instructorLectureAssignList;
     }
 
-    public void setAssignList(List<InstructorLectureAssign> assignList) {
-        this.assignList = assignList;
+    public void setInstructorLectureAssignList(List<InstructorLectureAssign> instructorLectureAssignList) {
+        this.instructorLectureAssignList = instructorLectureAssignList;
+    }
+
+    public Boolean getPageAssignedList() {
+        return isPageAssignedList;
+    }
+
+    public void setPageAssignedList(Boolean pageAssignedList) {
+        isPageAssignedList = pageAssignedList;
+    }
+
+    public Boolean getPageNewAssign() {
+        return isPageNewAssign;
+    }
+
+    public void setPageNewAssign(Boolean pageNewAssign) {
+        isPageNewAssign = pageNewAssign;
     }
 
     public String getCode() {
