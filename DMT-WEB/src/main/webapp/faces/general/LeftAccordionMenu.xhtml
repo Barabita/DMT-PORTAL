@@ -40,6 +40,12 @@
                             process="@this" ajax="false" icon="ui-icon-close"/>
             </p:submenu>
 
+            <p:separator/>
+            <p:submenu label="Sınıf Açma/Düzenleme">
+                <p:menuitem value="Sınıf Tanımlama" actionListener="#{router.routeContentPage('PLACE_FOR_LECTURE')}"
+                            process="@this" ajax="false" icon="ui-icon-close"/>
+            </p:submenu>
+
         </p:panelMenu>
     </h:form>
 </ui:composition>
