@@ -28,6 +28,11 @@ public class InstructorLectureAssignServiceImpl implements InstructorLectureAssi
 
 
     @Override
+    public void save(InstructorLectureAssign assign) {
+        lectureAssignRepository.save(assign);
+    }
+
+    @Override
     public InstructorLectureAssign createInstructorLectureAssign(InstructorLectureAssign lectureAssign) {
         lectureAssign.setId(String.valueOf(new Date().getTime()));
         lectureAssign.setCreDate(new Date());

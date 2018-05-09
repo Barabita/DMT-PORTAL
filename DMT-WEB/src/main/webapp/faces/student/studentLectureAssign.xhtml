@@ -15,14 +15,12 @@
                      rendered="#{studentLectureAssign.isPageNewAssign}">
             <p:outputLabel value="Dersin Adı:"/>
             <p:selectOneMenu value="#{studentLectureAssign.selectedLecture}" style="width: 190px;">
-                <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
                 <f:selectItems value="#{studentLectureAssign.prepareLectureList()}"/>
                 <p:ajax update="instructor"  />
             </p:selectOneMenu>
 
             <p:outputLabel value="Akademisyen:"/>
             <p:selectOneMenu id="instructor" value="#{studentLectureAssign.selectedInstructor}" style="width: 190px;">
-                <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
                 <f:selectItems value="#{studentLectureAssign.prepareInstructorList()}"/>
             </p:selectOneMenu>
 

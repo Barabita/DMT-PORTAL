@@ -6,10 +6,8 @@ import com.dmt.core.domain.Lecture;
 import com.dmt.core.service.InstructorLectureAssignService;
 import com.dmt.core.service.InstructorService;
 import com.dmt.core.service.LectureService;
-import com.dmt.core.service.Search.SearchInstuctorLectureAssign;
 import com.dmt.core.service.Search.SearchLecture;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import com.dmt.web.util.FacesUtil;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -37,12 +35,12 @@ public class InstructorLectureAssignView implements Serializable {
     @ManagedProperty("#{instructorLectureAssignServiceImpl}")
     private InstructorLectureAssignService instructorLectureAssignService;
 
-    SelectItem selectedLecture = new SelectItem();
-    SelectItem selectedInstructor = new SelectItem();
-    List<SelectItem> lectureList = new ArrayList<>();
-    List<SelectItem> instructorList = new ArrayList<>();
-    List<InstructorLectureAssign> assignList = new ArrayList<>();
-    String code = "";
+    private SelectItem selectedLecture = new SelectItem();
+    private SelectItem selectedInstructor = new SelectItem();
+    private List<SelectItem> lectureList = new ArrayList<>();
+    private List<SelectItem> instructorList = new ArrayList<>();
+    private List<InstructorLectureAssign> assignList = new ArrayList<>();
+    private String code = "";
 
     @PostConstruct
     private void init() {
@@ -53,20 +51,49 @@ public class InstructorLectureAssignView implements Serializable {
 
     private void prepareLectureSelectItemList() {
         List<Lecture> lectures = lectureService.getList(new SearchLecture());
-        lectures.forEach(item -> lectureList.add(new SelectItem(item.getId(), item.getName())));
+        for (Lecture item : lectures) {
+            lectureList.add(new SelectItem(item.getId(), item.getName()));
+        }
     }
 
     private void prepareInstructorSelectItemList() {
+        instructorList.clear();
         List<Instructor> instructors = this.instructorService.getInstructorList(new Instructor());
-        instructors.forEach(item -> instructorList.add(new SelectItem(item.getId(), item.getName())));
+        for (Instructor item : instructors) {
+            instructorList.add(new SelectItem(item.getId(), item.getName()));
+        }
     }
 
     private void prepareAssignList() {
-        PageRequest pageRequest = new PageRequest(0, 20, Sort.unsorted());
-        assignList = this.instructorLectureAssignService
-                .findInstructorLectureAssigns(new SearchInstuctorLectureAssign(), pageRequest).getContent();
+        assignList = this.instructorLectureAssignService.findInstructorLectureAssigns(new InstructorLectureAssign());
+    }
 
+    public void save() {
+        if (saveKontrol()) {
+            InstructorLectureAssign assign = new InstructorLectureAssign();
+            assign.setLectureId((String) selectedLecture.getValue());
+            assign.setInstructorId((String) selectedInstructor.getValue());
+            assign.setName(code);
+            this.instructorLectureAssignService.save(assign);
+        }
+    }
 
+    private boolean saveKontrol() {
+        if (selectedLecture.getValue() == null || selectedLecture.getValue().equals("")) {
+            FacesUtil.giveError("Dersin adı zorunlu alandır.");
+            return false;
+        }
+        if (selectedInstructor.getValue() == null || selectedInstructor.getValue().equals("")) {
+            FacesUtil.giveError("Eğitmen seçimi zorunlu alandır.");
+            return false;
+        }
+
+        if (code == null || code.equals("") || code.length() < 6) {
+            FacesUtil.giveError("Lütfen geçerli bir ders kodu giriniz.");
+            return false;
+        }
+
+        return true;
     }
 
     public void update(InstructorLectureAssign assign) {
@@ -149,4 +176,6 @@ public class InstructorLectureAssignView implements Serializable {
     public void setCode(String code) {
         this.code = code;
     }
+
+
 }
