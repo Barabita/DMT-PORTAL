@@ -19,14 +19,17 @@ import java.util.List;
 public class PlaceServiceImpl  implements PlaceService{
 
     @Autowired
+    @Qualifier("placeRepository")
     private PlaceRepository placeRepository;
-//
-//    @Override
-//    public List<SelectItem> getPlaceTypeList() {
-//        List<SelectItem> typeList = new ArrayList<>();
-//        typeList.add(new SelectItem(PlaceType.AMFI,"AMFİ"));
-//        typeList.add(new SelectItem(PlaceType.SINIF,"SINIF"));
-//        typeList.add(new SelectItem(PlaceType.LAB,"LABORATUVAR"));
-//        return typeList;
-    //}
+
+    @Override
+    public List<SelectItem> getPlaceTypeList() {
+        List<SelectItem> typeList = new ArrayList<>();
+        typeList.add(new SelectItem(PlaceType.AMFI,"AMFİ"));
+        typeList.add(new SelectItem(PlaceType.SINIF,"SINIF"));
+        typeList.add(new SelectItem(PlaceType.LAB,"LABORATUVAR"));
+        return typeList;
+    }
+
+
 }
