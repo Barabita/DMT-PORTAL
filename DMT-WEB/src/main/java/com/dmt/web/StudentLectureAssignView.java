@@ -36,11 +36,15 @@ public class StudentLectureAssignView implements Serializable {
     private InstructorLectureAssignService instructorLectureAssignService;
 
     private SelectItem selectedLecture;
+    private SelectItem selectedInstructor;
+
+    private List<Student> studentList = new ArrayList<>();
     private List<Student> selectedStudents = new ArrayList<>();
     private List<StudentLectureAssign> assignedList = new ArrayList<>();
 
+
     private List<SelectItem> lectureList = new ArrayList<>();
-    private List<Student> studentList = new ArrayList<>();
+    private List<SelectItem> instructorList = new ArrayList<>();
     private List<InstructorLectureAssign> instructorLectureAssignList = new ArrayList<>();
     private Boolean isPageAssignedList;
     private Boolean isPageNewAssign;
@@ -53,6 +57,7 @@ public class StudentLectureAssignView implements Serializable {
 
         prepareStudentList();
         prepareAssignedList();
+        prepareInstructorLectureAssignList();
     }
 
     private void prepareStudentList() {
@@ -66,9 +71,27 @@ public class StudentLectureAssignView implements Serializable {
     }
 
     private void prepareInstructorLectureAssignList() {
-        InstructorLectureAssign instructorLectureAssign = new InstructorLectureAssign();
-        instructorLectureAssign.setLectureId(selectedLecture.getValue());
-        instructorLectureAssignList = this.instructorLectureAssignService.findInstructorLectureAssigns(instructorLectureAssign);
+        instructorLectureAssignList = this.instructorLectureAssignService.findInstructorLectureAssigns(new InstructorLectureAssign());
+    }
+
+    public List<SelectItem> prepareLectureList() {
+        lectureList.clear();
+        for (InstructorLectureAssign assign : instructorLectureAssignList) {
+            if (assign.getInstructorId().equals("") || assign.getInstructorId() == selectedInstructor.getValue()) {
+                lectureList.add(new SelectItem(assign.getLectureId(), assign.getLecture().getName()));
+            }
+        }
+        return lectureList;
+    }
+
+    public List<SelectItem> prepareInstructorList() {
+        instructorList.clear();
+        for (InstructorLectureAssign assign : instructorLectureAssignList) {
+            if (assign.getLectureId().equals("") || assign.getLectureId() == selectedLecture.getValue()) {
+                instructorList.add(new SelectItem(assign.getInstructorId(), assign.getInstructor().getName()));
+            }
+        }
+        return instructorList;
     }
 
     public void update(StudentLectureAssign assign) {
@@ -193,5 +216,27 @@ public class StudentLectureAssignView implements Serializable {
         isPageNewAssign = pageNewAssign;
     }
 
+    public InstructorLectureAssignService getInstructorLectureAssignService() {
+        return instructorLectureAssignService;
+    }
 
+    public void setInstructorLectureAssignService(InstructorLectureAssignService instructorLectureAssignService) {
+        this.instructorLectureAssignService = instructorLectureAssignService;
+    }
+
+    public List<SelectItem> getInstructorList() {
+        return instructorList;
+    }
+
+    public void setInstructorList(List<SelectItem> instructorList) {
+        this.instructorList = instructorList;
+    }
+
+    public SelectItem getSelectedInstructor() {
+        return selectedInstructor;
+    }
+
+    public void setSelectedInstructor(SelectItem selectedInstructor) {
+        this.selectedInstructor = selectedInstructor;
+    }
 }

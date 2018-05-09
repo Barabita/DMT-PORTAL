@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author: mali.sahin
+ * @author mali.sahin
  **/
 @Service
 public class InstructorServiceImpl implements InstructorService {
@@ -28,10 +28,16 @@ public class InstructorServiceImpl implements InstructorService {
         instructor.setCreDate(new Date());
         instructor.setId(String.valueOf(new Date().getTime()));
         return instructorRepository.save(instructor);
+    }
 
+    public void saveKontrol(Instructor instructor) {
+        if(instructor.getName() == null ||instructor.getName().equals("")){
+
+        }
     }
 
     @Override
+    @Transactional
     public void delete(Instructor instructor) {
         instructorRepository.delete(instructor);
     }
@@ -44,5 +50,12 @@ public class InstructorServiceImpl implements InstructorService {
     @Override
     public List<Instructor> getInstructorList(Instructor filter) {
         return instructorRepository.findAll(InstructorSpec.findByCriteria(filter));
+    }
+
+    @Override
+    @Transactional
+    public void update(Instructor instructor) {
+        instructor.setUpdDate(new Date());
+        instructorRepository.save(instructor);
     }
 }

@@ -20,25 +20,25 @@ public class Instructor extends BaseDomain implements Serializable {
     private String surname;
 
     @Column(name = "NATIONAL_ID", length = 11, nullable = false)
-    private int nationalId;
+    private String nationalId;
 
     @Column(name = "ROOM_NO", length = 11)
-    private  int roomNo;
+    private String roomNo;
 
     @Column(name = "GSM_NO", length = 11)
-    private int gsmNo;
+    private String gsmNo;
 
     @Column(name = "INTERNAL_NO", length = 11)
-    private int internalNo;
+    private String internalNo;
 
     @Column(name = "EMAIL", length = 200)
     private String email;
 
     @Column(name = "WEEKLY_LECTURE_RES", length = 11)
-    private int weeklyLectureRes;
+    private String weeklyLectureRes;
 
     @Column(name = "PLEASURE", length = 11)
-    private  int pleasure;
+    private String pleasure;
 
 
     public String getName() {
@@ -65,35 +65,35 @@ public class Instructor extends BaseDomain implements Serializable {
         this.surname = surname;
     }
 
-    public int getNationalId() {
+    public String getNationalId() {
         return nationalId;
     }
 
-    public void setNationalId(int nationalId) {
+    public void setNationalId(String nationalId) {
         this.nationalId = nationalId;
     }
 
-    public int getRoomNo() {
+    public String getRoomNo() {
         return roomNo;
     }
 
-    public void setRoomNo(int roomNo) {
+    public void setRoomNo(String roomNo) {
         this.roomNo = roomNo;
     }
 
-    public int getGsmNo() {
+    public String getGsmNo() {
         return gsmNo;
     }
 
-    public void setGsmNo(int gsmNo) {
+    public void setGsmNo(String gsmNo) {
         this.gsmNo = gsmNo;
     }
 
-    public int getInternalNo() {
+    public String getInternalNo() {
         return internalNo;
     }
 
-    public void setInternalNo(int internalNo) {
+    public void setInternalNo(String internalNo) {
         this.internalNo = internalNo;
     }
 
@@ -105,19 +105,19 @@ public class Instructor extends BaseDomain implements Serializable {
         this.email = email;
     }
 
-    public int getWeeklyLectureRes() {
+    public String getWeeklyLectureRes() {
         return weeklyLectureRes;
     }
 
-    public void setWeeklyLectureRes(int weeklyLectureRes) {
+    public void setWeeklyLectureRes(String weeklyLectureRes) {
         this.weeklyLectureRes = weeklyLectureRes;
     }
 
-    public int getPleasure() {
+    public String getPleasure() {
         return pleasure;
     }
 
-    public void setPleasure(int pleasure) {
+    public void setPleasure(String pleasure) {
         this.pleasure = pleasure;
     }
 }
