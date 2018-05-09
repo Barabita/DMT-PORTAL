@@ -2,34 +2,30 @@ package com.dmt.web;
 
 import com.dmt.core.domain.Instructor;
 import com.dmt.core.service.InstructorService;
-import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
-import org.springframework.data.domain.PageRequest;
+import com.dmt.web.util.FacesUtil;
 import org.springframework.data.util.Lazy;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author yagmur.avsar
  **/
-@RequestScoped
+@ViewScoped
 @ManagedBean(name = "instructorView")
-public class InstructorView implements Serializable{
-    Instructor instructor = new Instructor();
-    Instructor searchInstructor = new Instructor();
-    String pageStatus = "LIST" ;
-    LazyDataModel<Instructor> instructorList ;
-    Lazy<Instructor> instructors;
+public class InstructorView implements Serializable {
+    private Instructor instructor = new Instructor();
+    private Instructor searchInstructor = new Instructor();
+    private List<Instructor> instructorList;
+    private Lazy<Instructor> instructors;
 
 
     @ManagedProperty("#{instructorServiceImpl}")
-    private InstructorService instructorService ;
+    private InstructorService instructorService;
 
     @PostConstruct
     public void init() {
@@ -37,29 +33,55 @@ public class InstructorView implements Serializable{
     }
 
 
-    private void fetchInstructorList(){
-        instructorList = new LazyDataModel<Instructor>() {
-            @Override
-            public List<Instructor> load(int first, int pageSize, String sortField, SortOrder
-                    sortOrder, Map<String, Object> filters){
-                PageRequest pageable = new PageRequest(first, pageSize);
-                return instructorService.getInstructorList(searchInstructor, pageable);
-            }
-        };
-        instructorList.setRowCount(1);
+    private void fetchInstructorList() {
+        instructorList = instructorService.getInstructorList(searchInstructor);
     }
-
-
 
 
     public void save() {
-            instructorService.save(instructor);
-           instructor = new Instructor();
+        if (saveKontrol()) {
+            if (instructor.getId() == null || instructor.getId().equals("")) {
+                instructorService.save(instructor);
+            } else {
+                instructorService.update(instructor);
+            }
+            fetchInstructorList();
+            instructor = new Instructor();
+        }
+    }
+
+    private boolean saveKontrol() {
+        if (instructor.getName() == null || instructor.getName().isEmpty()) {
+            FacesUtil.giveError("Ad bilgisi zorunlu alandır.");
+            return false;
+        }
+        if (instructor.getSurname() == null || instructor.getSurname().isEmpty()) {
+            FacesUtil.giveError("Soyad bilgisi zorunlu alandır.");
+            return false;
+        }
+        if (String.valueOf(instructor.getGsmNo()).length() != 10) {
+            FacesUtil.giveError("Lütfen doğru telefon formatı giriniz.");
+            return false;
+        }
+        if (String.valueOf(instructor.getNationalId()).length() != 11) {
+            FacesUtil.giveError("Girdiğiniz Kimlik numarası geçerli değildir.");
+            return false;
+        }
+        if (instructor.getEmail() == null || instructor.getEmail().isEmpty()) {
+            FacesUtil.giveError("E-mail bilgisi zorunlu alandır.");
+            return false;
+        } else
+            return true;
     }
 
 
-    public void delete(Instructor instructor){
+    public void delete(Instructor instructor) {
         instructorService.delete(instructor);
+        fetchInstructorList();
+    }
+
+    public void update(Instructor inst) {
+        this.instructor = inst;
     }
 
 
@@ -79,21 +101,6 @@ public class InstructorView implements Serializable{
         this.searchInstructor = searchInstructor;
     }
 
-    public String getPageStatus() {
-        return pageStatus;
-    }
-
-    public void setPageStatus(String pageStatus) {
-        this.pageStatus = pageStatus;
-    }
-
-    public LazyDataModel<Instructor> getInstructorList() {
-        return instructorList;
-    }
-
-    public void setInstructorList(LazyDataModel<Instructor> instructorList) {
-        this.instructorList = instructorList;
-    }
 
     public Lazy<Instructor> getInstructors() {
         return instructors;
@@ -109,6 +116,14 @@ public class InstructorView implements Serializable{
 
     public void setInstructorService(InstructorService instructorService) {
         this.instructorService = instructorService;
+    }
+
+    public List<Instructor> getInstructorList() {
+        return instructorList;
+    }
+
+    public void setInstructorList(List<Instructor> instructorList) {
+        this.instructorList = instructorList;
     }
 }
 

@@ -8,92 +8,94 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition>
     <h:form>
-        <p:panel>
-            <h:panelGrid columns="2" title="Öğretim Görevlisi Bilgileri" id="ogretimGorevlisiKayitForm">
-                <p:outputLabel value="Adı:"/>
-                <p:inputText value="#{instructorView.instructor.name}" />
+        <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
 
-                <p:outputLabel value="Soyad:"/>
-                <p:inputText value="#{instructorView.instructor.surname}" />
+        <h:panelGrid columns="2" title="Öğretim Görevlisi Bilgileri" id="ogretimGorevlisiKayitForm">
+            <p:outputLabel value="Adı:"/>
+            <p:inputText value="#{instructorView.instructor.name}"/>
 
-                <p:outputLabel value="TC Kimlik No:"/>
-                <p:inputText value="#{instructorView.instructor.nationalId}" />
+            <p:outputLabel value="Soyad:"/>
+            <p:inputText value="#{instructorView.instructor.surname}"/>
 
-
-                <p:outputLabel value="Verdiği Dersler:"/>
-                <p:selectOneMenu id="verdigiDers" >
-                    <f:selectItems />
-                </p:selectOneMenu>
+            <p:outputLabel value="TC Kimlik No:"/>
+            <p:inputText onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="11"
+                         value="#{instructorView.instructor.nationalId}"/>
 
 
-                <p:outputLabel value="Oda Numarası:"/>
-                <p:inputText value="#{instructorView.instructor.roomNo}" />
-
-                <p:outputLabel value="İletişim Numarası:"/>
-                <p:inputText value="#{instructorView.instructor.gsmNo}" />
-
-                <p:outputLabel value="Dahili Numara:"/>
-                <p:inputText value="#{instructorView.instructor.internalNo}" />
-
-                <p:outputLabel value="E-mail:"/>
-                <p:inputText value="#{instructorView.instructor.email}" />
-
-                <p:outputLabel value="Haftalık Ders Yükü:"/>
-                <p:inputText value="#{instructorView.instructor.weeklyLectureRes}" />
+            <p:outputLabel value="Verdiği Dersler:"/>
+            <p:selectOneMenu id="verdigiDers">
+                <f:selectItems/>
+            </p:selectOneMenu>
 
 
-                <p:commandButton actionListener="#{instructorView.save}" ajax="false" value="SAVE"
-                               process="@this"  styleClass="ui-priority-primary" update="instructorDT"/>
+            <p:outputLabel value="Oda Numarası:"/>
+            <p:inputText onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="4"
+                         value="#{instructorView.instructor.roomNo}"/>
 
-            </h:panelGrid>
-        </p:panel>
+            <p:outputLabel value="İletişim Numarası:"/>
+            <p:inputText value="#{instructorView.instructor.gsmNo}"
+                         onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="10"/>
 
-        <p:dataTable var="instructor" value="#{instructorView.instructorList}"
-                     paginator="true" rows="30"
-                     paginatorPosition="bottom" lazy="true"
-                     paginatorAlwaysVisible="false"
-                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="5,10,15" id="instructorDT">
+            <p:outputLabel value="Dahili Numara:"/>
+            <p:inputText value="#{instructorView.instructor.internalNo}"
+                         onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="4"/>
 
-            <p:column headerText="Id"  >
-                <h:outputText value="#{instructor.id}"/>
+            <p:outputLabel value="E-mail:"/>
+            <p:inputText value="#{instructorView.instructor.email}"/>
+
+            <p:outputLabel value="Haftalık Ders Yükü:"/>
+            <p:inputText value="#{instructorView.instructor.weeklyLectureRes}"
+                         onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="2"/>
+
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+            <p:commandButton actionListener="#{instructorView.save}" ajax="false" value="SAVE"
+                             process="@this" update="instructorDT growl"/>
+        </h:panelGrid>
+
+        <p:dataTable var="item" value="#{instructorView.instructorList}"
+                     lazy="true" id="instructorDT">
+
+            <p:column headerText="Id">
+                <h:outputText value="#{item.id}"/>
             </p:column>
 
-        <p:column headerText="Öğretim Görevlisi Adı">
-            <h:outputText value="#{instructor.name} - #{instructor.surname}"/>
-        </p:column>
-
-            <p:column headerText="TC Kimlik No" >
-                <h:outputText value="#{instructor.nationalId}"/>
+            <p:column headerText="Öğretim Görevlisi Adı">
+                <h:outputText value="#{item.name} - #{item.surname}"/>
             </p:column>
 
-            <p:column headerText="Oda Numarası" >
-                <h:outputText value="#{instructor.roomNo}"/>
+            <p:column headerText="TC Kimlik No">
+                <h:outputText value="#{item.nationalId}"/>
+            </p:column>
+
+            <p:column headerText="Oda Numarası">
+                <h:outputText value="#{item.roomNo}"/>
             </p:column>
 
 
-            <p:column headerText="Telefon No" >
-                <h:outputText value="#{instructor.gsmNo}"/>
+            <p:column headerText="Telefon No">
+                <h:outputText value="#{item.gsmNo}"/>
             </p:column>
 
-            <p:column headerText="Dahili Numara" >
-                <h:outputText value="#{instructor.internalNo}"/>
+            <p:column headerText="Dahili Numara">
+                <h:outputText value="#{item.internalNo}"/>
             </p:column>
 
-            <p:column headerText="E-mail" >
-            <h:outputText value="#{instructor.email}"/>
+            <p:column headerText="E-mail">
+                <h:outputText value="#{item.email}"/>
             </p:column>
 
             <p:column headerText="Ders Yükü">
-                <h:outputText value="#{instructor.weeklyLectureRes}"/>
+                <h:outputText value="#{item.weeklyLectureRes}"/>
             </p:column>
 
             <p:column>
-                <p:commandButton actionListener="#{instructorView.update(instructor)}" update="ogretimGorevlisiKayitForm"
+                <p:commandButton actionListener="#{instructorView.update(item)}"
+                                 update="ogretimGorevlisiKayitForm"
                                  title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
 
-                <p:commandButton title="Sil" actionListener="#{instructorView.delete(instructor)}"
-                                 onclick="return confirm('Silmek İstediğinize Emin misiniz?')"
+                <p:commandButton title="Sil" actionListener="#{instructorView.delete(item)}" update="instructorDT growl"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
 
             </p:column>

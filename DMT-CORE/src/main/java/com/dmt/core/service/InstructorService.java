@@ -13,4 +13,6 @@ public interface InstructorService {
     public List<Instructor> getInstructorList(Instructor filter);
 
     public void delete(Instructor instructor);
+
+    void update(Instructor instructor);
 }
