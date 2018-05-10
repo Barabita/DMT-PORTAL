@@ -27,7 +27,13 @@ public class PlaceView implements Serializable{
     List<Place> places;
     List<SelectItem> placeTypeList;
 
-
+    /**
+     * TODO
+     *  Bean adını küçük harfle başlat --placeServiceImpl
+     *  Place tipleri için generic bir obje_def tablosu yaratılacak. BOS_OBJ_DEF tablosu var. Ordan alabilirsin.
+     *  Class içinde Get ve Set yaptın ise o attr'i private yapmalısın.
+     *  List<Place> places; değil ==> private List<Place> places; gibi.
+     */
     @PostConstruct
     public void init() {
         fetchPlaceTypeList();
