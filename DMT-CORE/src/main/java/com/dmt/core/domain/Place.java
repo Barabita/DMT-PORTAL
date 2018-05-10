@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "PLACE_DEF")
-public class Place implements Serializable {
+public class Place extends BaseDomain implements Serializable {
 
     @Id
     @Column(name = "ID", length = 11, nullable = false)

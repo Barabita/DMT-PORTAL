@@ -3,7 +3,12 @@ package com.dmt.web;
 import com.dmt.core.domain.Place;
 import com.dmt.core.service.PlaceService;
 import com.dmt.core.service.Search.SearchPlace;
+import com.dmt.web.util.FacesUtil;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -12,6 +17,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : yagmur.avsar
@@ -45,6 +51,46 @@ public class PlaceView implements Serializable {
     private void fetchPlaceTypeList() {
         placeTypeList = placeService.getPlaceTypeList();
     }
+
+
+    public void fetchPlaceList() {
+        placeList = new LazyDataModel<Place>() {
+
+            @Override
+            public List<Place> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+                PageRequest pageRequest = new PageRequest(first, pageSize, Sort.unsorted());
+                Page<Place> placePage = placeService.getList(searchPlace, pageRequest);
+                placeList.setRowCount((int) placePage.getTotalElements());
+                return placePage.getContent();
+            }
+        };
+        placeList.setRowCount(1);
+
+    }
+
+    private Boolean SaveKontrol(){
+        if (place.getId().isEmpty()){
+            FacesUtil.giveError("sınıf Kodu zorunludur");
+            return false;
+        }
+        if (place.getName().isEmpty()){
+            FacesUtil.giveError("sınıf Adı zorunludur");
+            return false;
+
+        }
+
+        return true;
+    }
+
+
+    public void save() {
+        if (SaveKontrol())
+            placeService.save(place);
+        FacesUtil.giveInfo("sınıf kaydı başarılı bir şekilde oluşturuldu.");
+        place = new Place();
+    }
+
+
 
 
     /*----------------------------------------------------------------------------------------------------------------------*/

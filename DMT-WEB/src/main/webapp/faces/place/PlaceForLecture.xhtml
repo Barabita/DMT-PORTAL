@@ -20,8 +20,40 @@
 
         </p:panelGrid>
         <p:panelGrid>
-            <p:commandButton ajax="false" value="TANIMLA" icon="ui-icon-disk" process="@this"/>
+            <p:commandButton ajax="false" value="TANIMLA"
+                             actionListener="#{placeView.save}"
+                             icon="ui-icon-disk" process="@this"/>
         </p:panelGrid>
+
+        <p:dataTable var="place" value="#{placeView.placeList}"
+                     paginator="true" rows="10"
+                     paginatorPosition="bottom" lazy="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="10,20,25" id="placeDT" >
+           <p:column headerText="Sınıf Kodu">
+               <h:outputText value="#{place.id}"/>
+           </p:column>
+
+            <p:column headerText="Sınıf Adı">
+                <h:outputText value="#{place.name}"/>
+            </p:column>
+
+            <p:column headerText="Sınıf Tipi">
+                <h:outputText value="#{place.type}"/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton
+                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
+
+                <p:commandButton title="Sil"
+                                 icon="ui-icon-trash" process="@this" ajax="false"/>
+
+            </p:column>
+
+
+
+        </p:dataTable>
     </h:form>
 </ui:composition>
 </html>
