@@ -14,35 +14,35 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author: yagmur.avsar
+ * @author : yagmur.avsar
  **/
 @ViewScoped
 @ManagedBean(name = "placeView")
-public class PlaceView implements Serializable{
+public class PlaceView implements Serializable {
 
-    Place place = new Place();
-    SearchPlace searchPlace = new SearchPlace();
-    String pageStatus = "LIST";
-    LazyDataModel<Place> placeList;
-    List<Place> places;
-    List<SelectItem> placeTypeList;
+    private Place place = new Place();
+    private SearchPlace searchPlace = new SearchPlace();
+    private String pageStatus = "LIST";
+    private LazyDataModel<Place> placeList;
+    private List<Place> places;
+    private List<SelectItem> placeTypeList;
+    private  SelectItem selectedPlaceType;
 
     /**
      * TODO
-     *  Bean adını küçük harfle başlat --placeServiceImpl
-     *  Place tipleri için generic bir obje_def tablosu yaratılacak. BOS_OBJ_DEF tablosu var. Ordan alabilirsin.
-     *  Class içinde Get ve Set yaptın ise o attr'i private yapmalısın.
-     *  List<Place> places; değil ==> private List<Place> places; gibi.
+     * Bean adını küçük harfle başlat --placeServiceImpl
+     * Place tipleri için generic bir obje_def tablosu yaratılacak. BOS_OBJ_DEF tablosu var. Ordan alabilirsin.
+     * Class içinde Get ve Set yaptın ise o attr'i private yapmalısın. List<Place> places; değil ==> private List<Place> places; gibi.
      */
     @PostConstruct
     public void init() {
         fetchPlaceTypeList();
     }
 
-    @ManagedProperty("#{PlaceServiceImpl}")
+    @ManagedProperty("#{placeServiceImpl}")
     private PlaceService placeService;
 
-    private void fetchPlaceTypeList(){
+    private void fetchPlaceTypeList() {
         placeTypeList = placeService.getPlaceTypeList();
     }
 
@@ -102,5 +102,13 @@ public class PlaceView implements Serializable{
 
     public void setPlaceService(PlaceService placeService) {
         this.placeService = placeService;
+    }
+
+    public SelectItem getSelectedPlaceType() {
+        return selectedPlaceType;
+    }
+
+    public void setSelectedPlaceType(SelectItem selectedPlaceType) {
+        this.selectedPlaceType = selectedPlaceType;
     }
 }
