@@ -11,21 +11,21 @@
 
         <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
 
-        <h:panelGrid columns="2" title="Ders Atama" id="dersAtamaForm">
+        <h:panelGrid columns="2" title="Ders Atama" id="assignLectureForm">
             <p:outputLabel value="Dersin Adı:"/>
-            <p:selectOneMenu value="#{instructorLectureAssign.selectedLecture}" style="width: 190px;"
+            <p:selectOneMenu value="#{instructorLectureAssign.assign.lecture}" style="width: 190px;"
                              converter="entityConverter">
                 <f:selectItems value="#{instructorLectureAssign.prepareLectureSelectItemList()}"/>
             </p:selectOneMenu>
 
             <p:outputLabel value="Eğitmen:"/>
-            <p:selectOneMenu value="#{instructorLectureAssign.selectedInstructor}" style="width: 190px;"
+            <p:selectOneMenu value="#{instructorLectureAssign.assign.instructor}" style="width: 190px;"
                              converter="entityConverter">
                 <f:selectItems value="#{instructorLectureAssign.prepareInstructorSelectItemList()}"/>
             </p:selectOneMenu>
 
             <p:outputLabel value="Ders Kodu:"/>
-            <p:inputText value="#{instructorLectureAssign.code}"/>
+            <p:inputText value="#{instructorLectureAssign.assign.name}"/>
 
         </h:panelGrid>
 
@@ -41,17 +41,17 @@
                 <h:outputText value="#{item.name}"/>
             </p:column>
             <p:column headerText="Lecture">
-                <h:outputText value="#{item.lectureId} - #{item.lecture.name}"/>
+                <h:outputText value="#{item.lecture.name}"/>
             </p:column>
             <p:column headerText="Instructor">
-                <h:outputText value="#{item.instructor.id} - #{item.instructor.name}"/>
+                <h:outputText value="#{item.instructor.name} - #{item.instructor.surname}"/>
             </p:column>
 
             <p:column>
-                <p:commandButton actionListener="#{instructorLectureAssign.update(item)}" update="growl"
+                <p:commandButton actionListener="#{instructorLectureAssign.update(item)}" update="assignLectureForm"
                                  title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
 
-                <p:commandButton title="Sil" actionListener="#{instructorLectureAssign.delete(item)}" update="growl"
+                <p:commandButton title="Sil" actionListener="#{instructorLectureAssign.delete(item)}" update="assignLectureForm"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
 
             </p:column>

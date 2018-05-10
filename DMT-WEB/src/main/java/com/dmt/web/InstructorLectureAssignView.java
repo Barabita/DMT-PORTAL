@@ -6,7 +6,9 @@ import com.dmt.core.domain.Lecture;
 import com.dmt.core.service.InstructorLectureAssignService;
 import com.dmt.core.service.InstructorService;
 import com.dmt.core.service.LectureService;
+import com.dmt.core.service.Search.SearchInstuctorLectureAssign;
 import com.dmt.core.service.Search.SearchLecture;
+import com.dmt.web.util.FacesUtil;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -34,12 +36,10 @@ public class InstructorLectureAssignView implements Serializable {
     @ManagedProperty("#{instructorLectureAssignServiceImpl}")
     private InstructorLectureAssignService instructorLectureAssignService;
 
-    private Lecture selectedLecture = new Lecture();
-    private Instructor selectedInstructor = new Instructor();
     private List<SelectItem> lectureList = new ArrayList<SelectItem>();
     private List<SelectItem> instructorList = new ArrayList<SelectItem>();
     private List<InstructorLectureAssign> assignList = new ArrayList<>();
-    private String code = "";
+    private InstructorLectureAssign assign = new InstructorLectureAssign();
 
     @PostConstruct
     private void init() {
@@ -65,43 +65,49 @@ public class InstructorLectureAssignView implements Serializable {
     }
 
     private void prepareAssignList() {
-        assignList = this.instructorLectureAssignService.findInstructorLectureAssigns(new InstructorLectureAssign());
+        assignList = this.instructorLectureAssignService.findInstructorLectureAssigns(new SearchInstuctorLectureAssign());
     }
 
-    public void save() {
+    public void save() throws Exception {
         if (saveKontrol()) {
-            InstructorLectureAssign assign = new InstructorLectureAssign();
-
-            assign.setName(code);
-            this.instructorLectureAssignService.save(assign);
+            if (assign.getId() == null || assign.getId().equals("")) {
+                assign.setInstructorId(assign.getInstructor().getId());
+                assign.setLectureId(assign.getLecture().getId());
+                this.instructorLectureAssignService.save(assign);
+            } else {
+                this.instructorLectureAssignService.updateInstructorLectureAssign(assign);
+            }
+            assign = new InstructorLectureAssign();
+            prepareAssignList();
         }
     }
 
     private boolean saveKontrol() {
-       /* if (selectedLecture.getValue() == null || selectedLecture.getValue().equals("")) {
+        if (assign.getLecture().getId() == null || assign.getLecture().getId().equals("")) {
             FacesUtil.giveError("Dersin adı zorunlu alandır.");
             return false;
         }
-        if (selectedInstructor.getValue() == null || selectedInstructor.getValue().equals("")) {
+        if (assign.getInstructor().getId() == null || assign.getInstructor().getId().equals("")) {
             FacesUtil.giveError("Eğitmen seçimi zorunlu alandır.");
             return false;
         }
 
-        if (code == null || code.equals("") || code.length() < 6) {
+        if (assign.getName() == null || assign.getName().equals("") || assign.getName().length() < 6) {
             FacesUtil.giveError("Lütfen geçerli bir ders kodu giriniz.");
             return false;
-        }*/
+        }
 
         return true;
     }
 
-    public void update(InstructorLectureAssign assign) {
-
+    public void update(InstructorLectureAssign lectureAssign) {
+        this.assign = lectureAssign;
     }
 
 
-    public void delete(InstructorLectureAssign assign) {
-
+    public void delete(InstructorLectureAssign assign) throws Exception {
+        this.getInstructorLectureAssignService().deleteInstructorLectureAssign(assign.getId());
+        prepareAssignList();
     }
 
     public LectureService getLectureService() {
@@ -128,21 +134,7 @@ public class InstructorLectureAssignView implements Serializable {
         this.instructorLectureAssignService = instructorLectureAssignService;
     }
 
-    public Lecture getSelectedLecture() {
-        return selectedLecture;
-    }
 
-    public void setSelectedLecture(Lecture selectedLecture) {
-        this.selectedLecture = selectedLecture;
-    }
-
-    public Instructor getSelectedInstructor() {
-        return selectedInstructor;
-    }
-
-    public void setSelectedInstructor(Instructor selectedInstructor) {
-        this.selectedInstructor = selectedInstructor;
-    }
 
     public List<SelectItem> getLectureList() {
         return lectureList;
@@ -168,13 +160,11 @@ public class InstructorLectureAssignView implements Serializable {
         this.assignList = assignList;
     }
 
-    public String getCode() {
-        return code;
+    public InstructorLectureAssign getAssign() {
+        return assign;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setAssign(InstructorLectureAssign assign) {
+        this.assign = assign;
     }
-
-
 }

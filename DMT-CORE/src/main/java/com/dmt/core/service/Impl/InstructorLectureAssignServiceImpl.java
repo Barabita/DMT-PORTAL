@@ -6,8 +6,6 @@ import com.dmt.core.service.InstructorLectureAssignService;
 import com.dmt.core.service.Search.SearchInstuctorLectureAssign;
 import com.dmt.core.service.spec.InstructorLectureAssignSpec;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,6 +27,8 @@ public class InstructorLectureAssignServiceImpl implements InstructorLectureAssi
 
     @Override
     public void save(InstructorLectureAssign assign) {
+        assign.setCreDate(new Date());
+        assign.setId(String.valueOf(new Date().getTime()));
         lectureAssignRepository.save(assign);
     }
 
@@ -62,8 +62,8 @@ public class InstructorLectureAssignServiceImpl implements InstructorLectureAssi
     }
 
     @Override
-    public List<InstructorLectureAssign> findInstructorLectureAssigns(InstructorLectureAssign filter) {
-        return lectureAssignRepository.findAll(Example.of(filter, ExampleMatcher.matching().withIgnoreNullValues()));
+    public List<InstructorLectureAssign> findInstructorLectureAssigns(SearchInstuctorLectureAssign filter) {
+        return lectureAssignRepository.findAll(InstructorLectureAssignSpec.findByCriteria(filter));
     }
 
     @Override

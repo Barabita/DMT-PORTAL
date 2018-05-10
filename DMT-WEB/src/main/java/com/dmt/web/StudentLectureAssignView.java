@@ -4,6 +4,7 @@ import com.dmt.core.domain.InstructorLectureAssign;
 import com.dmt.core.domain.Student;
 import com.dmt.core.domain.StudentLectureAssign;
 import com.dmt.core.service.InstructorLectureAssignService;
+import com.dmt.core.service.Search.SearchInstuctorLectureAssign;
 import com.dmt.core.service.Search.SearchStudent;
 import com.dmt.core.service.StudentLectureAssignService;
 import com.dmt.core.service.StudentService;
@@ -71,7 +72,7 @@ public class StudentLectureAssignView implements Serializable {
     }
 
     private void prepareInstructorLectureAssignList() {
-        instructorLectureAssignList = this.instructorLectureAssignService.findInstructorLectureAssigns(new InstructorLectureAssign());
+        instructorLectureAssignList = this.instructorLectureAssignService.findInstructorLectureAssigns(new SearchInstuctorLectureAssign());
     }
 
     public List<SelectItem> prepareLectureList() {
