@@ -21,7 +21,7 @@ public interface StudentLectureAssignService {
 
     StudentLectureAssign findStudentLectureAssign(String lectureAssignId);
 
-    List<StudentLectureAssign> findStudentLectureAssigns(StudentLectureAssign filter);
+    List<StudentLectureAssign> findStudentLectureAssigns(SearchStudentLectureAssign filter);
 
     Page<StudentLectureAssign> findStudentLectureAssigns(SearchStudentLectureAssign filter, Pageable pageable);
 }

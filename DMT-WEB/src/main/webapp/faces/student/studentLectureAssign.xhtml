@@ -14,21 +14,24 @@
         <h:panelGrid columns="2" title="Ders Atama" id="dersAtamaForm"
                      rendered="#{studentLectureAssign.isPageNewAssign}">
             <p:outputLabel value="Dersin Adı:"/>
-            <p:selectOneMenu value="#{studentLectureAssign.selectedLecture}" style="width: 190px;">
+            <p:selectOneMenu value="#{studentLectureAssign.selectedLecture}"
+                             style="width: 190px;">
                 <f:selectItems value="#{studentLectureAssign.prepareLectureList()}"/>
-                <p:ajax update="instructor"  />
+                <p:ajax update="instructor"/>
             </p:selectOneMenu>
 
             <p:outputLabel value="Akademisyen:"/>
-            <p:selectOneMenu id="instructor" value="#{studentLectureAssign.selectedInstructor}" style="width: 190px;">
+            <p:selectOneMenu id="instructor"
+                             value="#{studentLectureAssign.selectedInstructor}"
+                             style="width: 190px;">
                 <f:selectItems value="#{studentLectureAssign.prepareInstructorList()}"/>
             </p:selectOneMenu>
 
-            <p:outputLabel value="Ders Kodu:"/>
-            <p:inputText value="#{instructorLectureAssign.code}"/>
 
-            <p:commandButton value="Dersi Ata" ajax="false" icon="ui-icon-disk" process="@this" actionListener="#{studentLectureAssign.assignSelectedList}"/>
-
+        </h:panelGrid>
+        <h:panelGrid columns="2">
+            <p:commandButton value="Dersi Ata" ajax="false" icon="ui-icon-disk" process="@this"
+                             actionListener="#{studentLectureAssign.assignSelectedList}"/>
         </h:panelGrid>
 
         <h:panelGrid columns="2" rendered="#{studentLectureAssign.isPageAssignedList}">

@@ -1,9 +1,9 @@
 package com.dmt.core.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "STUDENT_LECTURE_ASSIGN")
-public class StudentLectureAssign extends BaseDomain implements Serializable{
+public class StudentLectureAssign extends BaseDomain implements Serializable {
 
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
@@ -23,6 +23,16 @@ public class StudentLectureAssign extends BaseDomain implements Serializable{
 
     @Column(name = "INSTRUCTOR_LECTURE_ID", nullable = false)
     private String instructorLectureId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name = "STUDENT_ID")
+    @Fetch(FetchMode.JOIN)
+    private Student student;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name = "INSTRUCTOR_LECTURE_ID")
+    @Fetch(FetchMode.JOIN)
+    private InstructorLectureAssign instructorLectureAssign;
 
     public String getId() {
         return id;
@@ -48,5 +58,19 @@ public class StudentLectureAssign extends BaseDomain implements Serializable{
         this.instructorLectureId = instructorLectureId;
     }
 
+    public Student getStudent() {
+        return student;
+    }
 
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public InstructorLectureAssign getInstructorLectureAssign() {
+        return instructorLectureAssign;
+    }
+
+    public void setInstructorLectureAssign(InstructorLectureAssign instructorLectureAssign) {
+        this.instructorLectureAssign = instructorLectureAssign;
+    }
 }

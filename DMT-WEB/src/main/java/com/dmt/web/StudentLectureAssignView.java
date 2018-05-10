@@ -1,11 +1,10 @@
 package com.dmt.web;
 
-import com.dmt.core.domain.InstructorLectureAssign;
-import com.dmt.core.domain.Student;
-import com.dmt.core.domain.StudentLectureAssign;
+import com.dmt.core.domain.*;
 import com.dmt.core.service.InstructorLectureAssignService;
 import com.dmt.core.service.Search.SearchInstuctorLectureAssign;
 import com.dmt.core.service.Search.SearchStudent;
+import com.dmt.core.service.Search.SearchStudentLectureAssign;
 import com.dmt.core.service.StudentLectureAssignService;
 import com.dmt.core.service.StudentService;
 
@@ -36,20 +35,20 @@ public class StudentLectureAssignView implements Serializable {
     @ManagedProperty("#{instructorLectureAssignServiceImpl}")
     private InstructorLectureAssignService instructorLectureAssignService;
 
-    private SelectItem selectedLecture;
-    private SelectItem selectedInstructor;
+
+    private Lecture selectedLecture = new Lecture();
+    private Instructor selectedInstructor = new Instructor();
 
     private List<Student> studentList = new ArrayList<>();
     private List<Student> selectedStudents = new ArrayList<>();
     private List<StudentLectureAssign> assignedList = new ArrayList<>();
 
-
+    private StudentLectureAssign studentLectureAssign = new StudentLectureAssign();
     private List<SelectItem> lectureList = new ArrayList<>();
     private List<SelectItem> instructorList = new ArrayList<>();
     private List<InstructorLectureAssign> instructorLectureAssignList = new ArrayList<>();
     private Boolean isPageAssignedList;
     private Boolean isPageNewAssign;
-    private String code = "";
 
     @PostConstruct
     private void init() {
@@ -66,9 +65,7 @@ public class StudentLectureAssignView implements Serializable {
     }
 
     private void prepareAssignedList() {
-        StudentLectureAssign assign = new StudentLectureAssign();
-
-        assignedList = this.studentLectureAssignService.findStudentLectureAssigns(new StudentLectureAssign());
+        assignedList = this.studentLectureAssignService.findStudentLectureAssigns(new SearchStudentLectureAssign());
     }
 
     private void prepareInstructorLectureAssignList() {
@@ -78,8 +75,9 @@ public class StudentLectureAssignView implements Serializable {
     public List<SelectItem> prepareLectureList() {
         lectureList.clear();
         for (InstructorLectureAssign assign : instructorLectureAssignList) {
-            if (assign.getInstructorId().equals("") || assign.getInstructorId() == selectedInstructor.getValue()) {
-                lectureList.add(new SelectItem(assign.getLectureId(), assign.getLecture().getName()));
+            SelectItem selectItemLecture = new SelectItem(assign.getLecture(), assign.getLecture().getName());
+            if (!lectureList.contains(selectItemLecture)) {
+                lectureList.add(selectItemLecture);
             }
         }
         return lectureList;
@@ -88,8 +86,10 @@ public class StudentLectureAssignView implements Serializable {
     public List<SelectItem> prepareInstructorList() {
         instructorList.clear();
         for (InstructorLectureAssign assign : instructorLectureAssignList) {
-            if (assign.getLectureId().equals("") || assign.getLectureId() == selectedLecture.getValue()) {
-                instructorList.add(new SelectItem(assign.getInstructorId(), assign.getInstructor().getName()));
+            boolean isLectureSelected = studentLectureAssign.getInstructorLectureAssign() != null &&
+                    studentLectureAssign.getInstructorLectureAssign().getLectureId() != null;
+            if (isLectureSelected && studentLectureAssign.getInstructorLectureAssign().getLectureId().equals(assign.getLectureId())) {
+                instructorList.add(new SelectItem(assign.getInstructor(), assign.getInstructor().getName()));
             }
         }
         return instructorList;
@@ -145,14 +145,6 @@ public class StudentLectureAssignView implements Serializable {
         isPageNewAssign = pageNewAssign;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public StudentService getStudentService() {
         return studentService;
     }
@@ -161,13 +153,6 @@ public class StudentLectureAssignView implements Serializable {
         this.studentService = studentService;
     }
 
-    public SelectItem getSelectedLecture() {
-        return selectedLecture;
-    }
-
-    public void setSelectedLecture(SelectItem selectedLecture) {
-        this.selectedLecture = selectedLecture;
-    }
 
     public List<Student> getStudentList() {
         return studentList;
@@ -233,11 +218,27 @@ public class StudentLectureAssignView implements Serializable {
         this.instructorList = instructorList;
     }
 
-    public SelectItem getSelectedInstructor() {
+    public StudentLectureAssign getStudentLectureAssign() {
+        return studentLectureAssign;
+    }
+
+    public void setStudentLectureAssign(StudentLectureAssign studentLectureAssign) {
+        this.studentLectureAssign = studentLectureAssign;
+    }
+
+    public Lecture getSelectedLecture() {
+        return selectedLecture;
+    }
+
+    public void setSelectedLecture(Lecture selectedLecture) {
+        this.selectedLecture = selectedLecture;
+    }
+
+    public Instructor getSelectedInstructor() {
         return selectedInstructor;
     }
 
-    public void setSelectedInstructor(SelectItem selectedInstructor) {
+    public void setSelectedInstructor(Instructor selectedInstructor) {
         this.selectedInstructor = selectedInstructor;
     }
 }

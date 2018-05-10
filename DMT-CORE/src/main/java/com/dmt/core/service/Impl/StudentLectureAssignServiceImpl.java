@@ -57,8 +57,8 @@ public class StudentLectureAssignServiceImpl implements StudentLectureAssignServ
     }
 
     @Override
-    public List<StudentLectureAssign> findStudentLectureAssigns(StudentLectureAssign filter) {
-        return studentLectureAssignRepository.findAll(Example.of(filter, ExampleMatcher.matching().withIgnoreNullValues()));
+    public List<StudentLectureAssign> findStudentLectureAssigns(SearchStudentLectureAssign filter) {
+        return studentLectureAssignRepository.findAll(StudentLectureAssignSpec.findByCriteria(filter));
     }
 
     @Override
