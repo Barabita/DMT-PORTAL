@@ -13,14 +13,16 @@
 
         <h:panelGrid columns="2" title="Ders Atama" id="dersAtamaForm">
             <p:outputLabel value="Dersin Adı:"/>
-            <p:selectOneMenu value="#{instructorLectureAssign.selectedLecture}" style="width: 190px;">
-                <f:selectItems value="#{instructorLectureAssign.lectureList}" />
+            <p:selectOneMenu value="#{instructorLectureAssign.selectedLecture}" style="width: 190px;"
+                             converter="entityConverter">
+                <f:selectItems value="#{instructorLectureAssign.prepareLectureSelectItemList()}"/>
             </p:selectOneMenu>
 
             <p:outputLabel value="Eğitmen:"/>
-            <h:selectOneMenu value="#{instructorLectureAssign.selectedInstructor}" style="width: 190px;">
-                <f:selectItems value="#{instructorLectureAssign.instructorList}" />
-            </h:selectOneMenu>
+            <p:selectOneMenu value="#{instructorLectureAssign.selectedInstructor}" style="width: 190px;"
+                             converter="entityConverter">
+                <f:selectItems value="#{instructorLectureAssign.prepareInstructorSelectItemList()}"/>
+            </p:selectOneMenu>
 
             <p:outputLabel value="Ders Kodu:"/>
             <p:inputText value="#{instructorLectureAssign.code}"/>

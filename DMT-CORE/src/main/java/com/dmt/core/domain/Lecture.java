@@ -37,6 +37,22 @@ public class Lecture extends BaseDomain implements Serializable {
     @Column(name = "TERM", length = 1)
     private int term;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Lecture)) return false;
+
+        Lecture lecture = (Lecture) o;
+
+        return id != null ? id.equals(lecture.id) : lecture.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
     public String getId() {
         return id;
     }

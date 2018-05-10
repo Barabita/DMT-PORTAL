@@ -40,6 +40,24 @@ public class Instructor extends BaseDomain implements Serializable {
     @Column(name = "PLEASURE", length = 11)
     private String pleasure;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Instructor)) return false;
+
+        Instructor that = (Instructor) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        return nationalId != null ? nationalId.equals(that.nationalId) : that.nationalId == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (nationalId != null ? nationalId.hashCode() : 0);
+        return result;
+    }
 
     public String getName() {
         return name;

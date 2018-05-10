@@ -7,7 +7,6 @@ import com.dmt.core.service.InstructorLectureAssignService;
 import com.dmt.core.service.InstructorService;
 import com.dmt.core.service.LectureService;
 import com.dmt.core.service.Search.SearchLecture;
-import com.dmt.web.util.FacesUtil;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -35,33 +34,34 @@ public class InstructorLectureAssignView implements Serializable {
     @ManagedProperty("#{instructorLectureAssignServiceImpl}")
     private InstructorLectureAssignService instructorLectureAssignService;
 
-    private SelectItem selectedLecture = new SelectItem();
-    private SelectItem selectedInstructor = new SelectItem();
-    private List<SelectItem> lectureList = new ArrayList<>();
-    private List<SelectItem> instructorList = new ArrayList<>();
+    private Lecture selectedLecture = new Lecture();
+    private Instructor selectedInstructor = new Instructor();
+    private List<SelectItem> lectureList = new ArrayList<SelectItem>();
+    private List<SelectItem> instructorList = new ArrayList<SelectItem>();
     private List<InstructorLectureAssign> assignList = new ArrayList<>();
     private String code = "";
 
     @PostConstruct
     private void init() {
-        prepareInstructorSelectItemList();
-        prepareLectureSelectItemList();
         prepareAssignList();
     }
 
-    private void prepareLectureSelectItemList() {
+    public List<SelectItem> prepareLectureSelectItemList() {
+        lectureList.clear();
         List<Lecture> lectures = lectureService.getList(new SearchLecture());
         for (Lecture item : lectures) {
-            lectureList.add(new SelectItem(item.getId(), item.getName()));
+            lectureList.add(new SelectItem(item, item.getName()));
         }
+        return lectureList;
     }
 
-    private void prepareInstructorSelectItemList() {
+    public List<SelectItem> prepareInstructorSelectItemList() {
         instructorList.clear();
         List<Instructor> instructors = this.instructorService.getInstructorList(new Instructor());
         for (Instructor item : instructors) {
-            instructorList.add(new SelectItem(item.getId(), item.getName()));
+            instructorList.add(new SelectItem(item, item.getName()));
         }
+        return instructorList;
     }
 
     private void prepareAssignList() {
@@ -71,15 +71,14 @@ public class InstructorLectureAssignView implements Serializable {
     public void save() {
         if (saveKontrol()) {
             InstructorLectureAssign assign = new InstructorLectureAssign();
-            assign.setLectureId((String) selectedLecture.getValue());
-            assign.setInstructorId((String) selectedInstructor.getValue());
+
             assign.setName(code);
             this.instructorLectureAssignService.save(assign);
         }
     }
 
     private boolean saveKontrol() {
-        if (selectedLecture.getValue() == null || selectedLecture.getValue().equals("")) {
+       /* if (selectedLecture.getValue() == null || selectedLecture.getValue().equals("")) {
             FacesUtil.giveError("Dersin adı zorunlu alandır.");
             return false;
         }
@@ -91,7 +90,7 @@ public class InstructorLectureAssignView implements Serializable {
         if (code == null || code.equals("") || code.length() < 6) {
             FacesUtil.giveError("Lütfen geçerli bir ders kodu giriniz.");
             return false;
-        }
+        }*/
 
         return true;
     }
@@ -129,19 +128,19 @@ public class InstructorLectureAssignView implements Serializable {
         this.instructorLectureAssignService = instructorLectureAssignService;
     }
 
-    public SelectItem getSelectedLecture() {
+    public Lecture getSelectedLecture() {
         return selectedLecture;
     }
 
-    public void setSelectedLecture(SelectItem selectedLecture) {
+    public void setSelectedLecture(Lecture selectedLecture) {
         this.selectedLecture = selectedLecture;
     }
 
-    public SelectItem getSelectedInstructor() {
+    public Instructor getSelectedInstructor() {
         return selectedInstructor;
     }
 
-    public void setSelectedInstructor(SelectItem selectedInstructor) {
+    public void setSelectedInstructor(Instructor selectedInstructor) {
         this.selectedInstructor = selectedInstructor;
     }
 
