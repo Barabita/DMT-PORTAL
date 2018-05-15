@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author: yagmur.avsar
  **/
-public class placeSpec  {
+public class PlaceSpec {
     public static Specification<Place> findByCriteria(final SearchPlace searchCriteria) {
 
         return new Specification<Place>() {

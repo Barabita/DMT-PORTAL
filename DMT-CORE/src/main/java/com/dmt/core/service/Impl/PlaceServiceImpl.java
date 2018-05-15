@@ -7,6 +7,7 @@ import com.dmt.core.domain.general.Page;
 import com.dmt.core.repository.PlaceRepository;
 import com.dmt.core.service.PlaceService;
 import com.dmt.core.service.Search.SearchPlace;
+import com.dmt.core.service.spec.PlaceSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class PlaceServiceImpl extends BaseDomain implements PlaceService{
     @Override
     public List<SelectItem> getPlaceTypeList() {
         List<SelectItem> typeList = new ArrayList<>();
-        typeList.add(new SelectItem(PlaceType.AMFI,"AMFİ"));
+        typeList.add(new SelectItem(PlaceType.AMFI,"AMFI"));
         typeList.add(new SelectItem(PlaceType.SINIF,"SINIF"));
         typeList.add(new SelectItem(PlaceType.LAB,"LABORATUVAR"));
         return typeList;
@@ -40,18 +41,15 @@ public class PlaceServiceImpl extends BaseDomain implements PlaceService{
 
     @Override
     public Place save(Place place) {
-        if (place.getId()== null){
         place.setCreDate(new Date());
         place.setId(String.valueOf(new Date().getTime()));
-        }else {
-            place.setUpdDate(new Date());
-        }
-
         return placeRepository.save(place);
     }
 
 //        @Override
 //    public Page<Place> getList(SearchPlace filter, Pageable pageable) {
 //        return placeRepository.findAll(PlaceSpec);
+//
+//
 //    }
 }

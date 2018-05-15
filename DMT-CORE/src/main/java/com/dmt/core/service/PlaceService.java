@@ -19,6 +19,7 @@ public interface PlaceService {
  public List<SelectItem> getPlaceTypeList();
 
  public Place save(Place place);
+
  // public Page<Place> getList(SearchPlace filter, Pageable pageable);
 
 }

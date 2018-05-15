@@ -55,14 +55,14 @@ public class PlaceView implements Serializable {
 
     public void fetchPlaceList() {
         placeList = new LazyDataModel<Place>() {
-
-            @Override
-            public List<Place> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-                PageRequest pageRequest = new PageRequest(first, pageSize, Sort.unsorted());
-                Page<Place> placePage = placeService.getList(searchPlace, pageRequest);
-                placeList.setRowCount((int) placePage.getTotalElements());
-                return placePage.getContent();
-            }
+//
+//            @Override
+//            public List<Place> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+//                PageRequest pageRequest = new PageRequest(first, pageSize, Sort.unsorted());
+//                Page<Place> placePage = placeService.getList(searchPlace, pageRequest);
+//                placeList.setRowCount((int) placePage.getTotalElements());
+//                return placePage.getContent();
+//            }
         };
         placeList.setRowCount(1);
 
@@ -78,18 +78,21 @@ public class PlaceView implements Serializable {
             return false;
 
         }
+        if (place.getType() == null){
+            FacesUtil.giveError("sınıf tipi belirleyiniz");
+        }
 
         return true;
     }
 
 
     public void save() {
-        if (SaveKontrol())
+        if (SaveKontrol()) {
             placeService.save(place);
-        FacesUtil.giveInfo("sınıf kaydı başarılı bir şekilde oluşturuldu.");
-        place = new Place();
+            FacesUtil.giveInfo("sınıf kaydı başarılı bir şekilde oluşturuldu.");
+            place = new Place();
+        }
     }
-
 
 
 

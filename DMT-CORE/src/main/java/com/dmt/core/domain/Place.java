@@ -1,7 +1,6 @@
 package com.dmt.core.domain;
 
 import com.dmt.core.domain.enums.PlaceType;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

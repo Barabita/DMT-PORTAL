@@ -5,16 +5,18 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition>
     <h:form>
+        <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
+
         <p:panelGrid columns="2" title="Sınıf Tanımlama" id="sinifTanimlamaForm">
 
             <p:outputLabel value="Sınıf Kodu:"/>
-            <p:inputText/>
+            <p:inputText value="#{placeView.place.id}"/>
 
             <p:outputLabel value="Sınıf Adı:"/>
-            <p:inputText/>
+            <p:inputText value="#{placeView.place.name}"/>
 
             <p:outputLabel value="Sınıf Tipi:"/>
-            <p:selectOneMenu id="placeType" value="#{placeView.selectedPlaceType}">
+            <p:selectOneMenu id="placeType" value="#{placeView.selectedPlaceType}" converter="entityConverter">
                 <f:selectItems value="#{placeView.placeTypeList}"/>
             </p:selectOneMenu>
 
@@ -22,7 +24,7 @@
         <p:panelGrid>
             <p:commandButton ajax="false" value="TANIMLA"
                              actionListener="#{placeView.save}"
-                             icon="ui-icon-disk" process="@this"/>
+                             icon="ui-icon-disk"  process="@this" update="placeDT growl"/>
         </p:panelGrid>
 
         <p:dataTable var="place" value="#{placeView.placeList}"
