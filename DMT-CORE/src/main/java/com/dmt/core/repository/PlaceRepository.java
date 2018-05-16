@@ -4,6 +4,8 @@ import com.dmt.core.domain.Place;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
+import javax.faces.model.SelectItem;
+
 
 /**
  * @author: mali.sahin on 26.03.2018.

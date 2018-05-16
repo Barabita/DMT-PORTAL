@@ -10,7 +10,7 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 /**
- * @author: mali.sahin on 26.03.2018.
+ * @author: yagmur.avsar on 26.03.2018.
  */
 
 
@@ -20,6 +20,8 @@ public interface PlaceService {
 
  public Place save(Place place);
 
- // public Page<Place> getList(SearchPlace filter, Pageable pageable);
+// public org.springframework.data.domain.Page<Place> getPlaceList(SearchPlace filter, org.springframework.data.domain.Pageable pageable);
+
+ public List<Place> getPlaceList(SearchPlace filter);
 
 }

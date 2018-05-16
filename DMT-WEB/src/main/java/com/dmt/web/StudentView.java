@@ -9,6 +9,7 @@ import org.primefaces.model.SortOrder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -46,7 +47,11 @@ public class StudentView implements Serializable {
     public void fetchStudentList() {
         studentList = new LazyDataModel<Student>() {
             @Override
-            public List<Student> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+            public List<Student> load(int first,
+                                      int pageSize,
+                                      String sortField,
+                                      SortOrder sortOrder,
+                                      Map<String, Object> filters) {
                 PageRequest pageable = new PageRequest(first, pageSize);
                 Page<Student> studentPage = studentService.getStudentList(searchStudent, pageable);
                 studentList.setRowCount((int) studentPage.getTotalElements());

@@ -12,9 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.data.domain.Pageable;
 import javax.faces.model.SelectItem;
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,16 +39,23 @@ public class PlaceServiceImpl extends BaseDomain implements PlaceService{
     }
 
     @Override
+    @Transactional
     public Place save(Place place) {
         place.setCreDate(new Date());
         place.setId(String.valueOf(new Date().getTime()));
         return placeRepository.save(place);
     }
 
-//        @Override
-//    public Page<Place> getList(SearchPlace filter, Pageable pageable) {
-//        return placeRepository.findAll(PlaceSpec);
 //
+//    public Page<Place> getPlaceList (SearchPlace ,Pageable){
 //
+//        return null;
 //    }
+//
+//
+
+    @Override
+    public List<Place> getPlaceList(SearchPlace filter) {
+        return placeRepository.findAll(PlaceSpec.findByCriteria(filter));
+    }
 }

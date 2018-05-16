@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -43,6 +44,7 @@ public class PlaceView implements Serializable {
     @PostConstruct
     public void init() {
         fetchPlaceTypeList();
+        fetchPlaceList();
     }
 
     @ManagedProperty("#{placeServiceImpl}")
@@ -55,15 +57,19 @@ public class PlaceView implements Serializable {
 
     public void fetchPlaceList() {
         placeList = new LazyDataModel<Place>() {
-//
-//            @Override
-//            public List<Place> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-//                PageRequest pageRequest = new PageRequest(first, pageSize, Sort.unsorted());
-//                Page<Place> placePage = placeService.getList(searchPlace, pageRequest);
-//                placeList.setRowCount((int) placePage.getTotalElements());
-//                return placePage.getContent();
-//            }
+@Override
+            public List<Place> load(int first,
+                                      int pageSize,
+                                      String sortField,
+                                      SortOrder sortOrder,
+                                      Map<String, Object> filters) {
+                PageRequest pageable = new PageRequest(first, pageSize);
+                Page<Place> placePage = placeService.getPlaceList(searchPlace, pageable);
+                placeList.setRowCount((int) placePage.getTotalElements());
+                return placePage.getContent();
+            }
         };
+
         placeList.setRowCount(1);
 
     }
@@ -103,6 +109,8 @@ public class PlaceView implements Serializable {
 
     public void setPlace(Place place) {
         this.place = place;
+
+
     }
 
     public SearchPlace getSearchPlace() {
