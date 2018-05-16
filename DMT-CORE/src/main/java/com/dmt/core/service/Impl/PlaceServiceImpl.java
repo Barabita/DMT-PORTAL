@@ -47,7 +47,7 @@ public class PlaceServiceImpl extends BaseDomain implements PlaceService{
     }
 
 //
-//    public Page<Place> getPlaceList (SearchPlace ,Pageable){
+//    public Page<Place> getPlaceList (SearchPlace filter ,Pageable pagable){
 //
 //        return null;
 //    }

@@ -20,7 +20,7 @@ public interface PlaceService {
 
  public Place save(Place place);
 
-// public org.springframework.data.domain.Page<Place> getPlaceList(SearchPlace filter, org.springframework.data.domain.Pageable pageable);
+// public Page<Place> getPlaceList(SearchPlace filter, Pageable pageable);
 
  public List<Place> getPlaceList(SearchPlace filter);
 

@@ -27,7 +27,6 @@ public class PlaceSpec {
                 if (StringUtils.isNotEmpty(searchCriteria.getName())) {
                     predicates.add(cb.like(root.get("name"), searchCriteria.getName()));
                 }
-
                 if (StringUtils.isNotEmpty(searchCriteria.getId())) {
                     predicates.add(cb.like(root.get("id"), searchCriteria.getId()));
                 }

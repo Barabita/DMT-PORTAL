@@ -57,17 +57,17 @@ public class PlaceView implements Serializable {
 
     public void fetchPlaceList() {
         placeList = new LazyDataModel<Place>() {
-@Override
-            public List<Place> load(int first,
-                                      int pageSize,
-                                      String sortField,
-                                      SortOrder sortOrder,
-                                      Map<String, Object> filters) {
-                PageRequest pageable = new PageRequest(first, pageSize);
-                Page<Place> placePage = placeService.getPlaceList(searchPlace, pageable);
-                placeList.setRowCount((int) placePage.getTotalElements());
-                return placePage.getContent();
-            }
+//            @Override
+//            public List<Place> load(int first,
+//                                      int pageSize,
+//                                      String sortField,
+//                                      SortOrder sortOrder,
+//                                      Map<String, Object> filters) {
+//                PageRequest pageable = new PageRequest(first, pageSize);
+//                Page<Place> placePage = placeService.getPlaceList(searchPlace, pageable);
+//                placeList.setRowCount((int) placePage.getTotalElements());
+//                return placePage.getContent();
+//            }
         };
 
         placeList.setRowCount(1);
