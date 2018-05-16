@@ -6,8 +6,6 @@ import com.dmt.core.service.Search.SearchStudentLectureAssign;
 import com.dmt.core.service.StudentLectureAssignService;
 import com.dmt.core.service.spec.StudentLectureAssignSpec;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -32,6 +30,15 @@ public class StudentLectureAssignServiceImpl implements StudentLectureAssignServ
         lectureAssign.setId(String.valueOf(new Date().getTime()));
         lectureAssign.setCreDate(new Date());
         return studentLectureAssignRepository.save(lectureAssign);
+    }
+
+    @Override
+    public List<StudentLectureAssign> createStudentLectureAssignList(List<StudentLectureAssign> lectureAssignList) {
+        for (StudentLectureAssign assign : lectureAssignList) {
+            assign.setCreDate(new Date());
+            assign.setId(String.valueOf(new Date().getTime()));
+        }
+        return studentLectureAssignRepository.saveAll(lectureAssignList);
     }
 
     @Override
