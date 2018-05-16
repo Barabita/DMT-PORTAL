@@ -22,6 +22,6 @@ public interface PlaceService {
 
 // public Page<Place> getPlaceList(SearchPlace filter, Pageable pageable);
 
- public List<Place> getPlaceList(SearchPlace filter);
+ //public List<Place> getPlaceList(SearchPlace filter);
 
 }

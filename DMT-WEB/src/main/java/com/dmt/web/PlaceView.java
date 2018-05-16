@@ -44,7 +44,7 @@ public class PlaceView implements Serializable {
     @PostConstruct
     public void init() {
         fetchPlaceTypeList();
-        fetchPlaceList();
+     //   fetchPlaceList();
     }
 
     @ManagedProperty("#{placeServiceImpl}")

@@ -39,7 +39,6 @@ public class PlaceServiceImpl extends BaseDomain implements PlaceService{
     }
 
     @Override
-    @Transactional
     public Place save(Place place) {
         place.setCreDate(new Date());
         place.setId(String.valueOf(new Date().getTime()));
@@ -53,9 +52,9 @@ public class PlaceServiceImpl extends BaseDomain implements PlaceService{
 //    }
 //
 //
-
-    @Override
-    public List<Place> getPlaceList(SearchPlace filter) {
-        return placeRepository.findAll(PlaceSpec.findByCriteria(filter));
-    }
+//
+//    @Override
+//    public List<Place> getPlaceList(SearchPlace filter) {
+//        return placeRepository.findAll(PlaceSpec.findByCriteria(filter));
+//    }
 }
