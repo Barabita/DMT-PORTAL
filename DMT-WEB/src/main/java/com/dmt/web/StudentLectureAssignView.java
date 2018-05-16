@@ -38,6 +38,7 @@ public class StudentLectureAssignView implements Serializable {
 
     private Lecture selectedLecture = new Lecture();
     private Instructor selectedInstructor = new Instructor();
+    private InstructorLectureAssign selectedInstructorLecture = new InstructorLectureAssign();
 
     private List<Student> studentList = new ArrayList<>();
     private List<Student> selectedStudents = new ArrayList<>();
@@ -74,6 +75,7 @@ public class StudentLectureAssignView implements Serializable {
 
     public List<SelectItem> prepareLectureList() {
         lectureList.clear();
+        lectureList.add(new SelectItem("", ""));
         for (InstructorLectureAssign assign : instructorLectureAssignList) {
             SelectItem selectItemLecture = new SelectItem(assign.getLecture(), assign.getLecture().getName());
             if (!lectureList.contains(selectItemLecture)) {
@@ -85,10 +87,10 @@ public class StudentLectureAssignView implements Serializable {
 
     public List<SelectItem> prepareInstructorList() {
         instructorList.clear();
+        instructorList.add(new SelectItem("", ""));
         for (InstructorLectureAssign assign : instructorLectureAssignList) {
-            boolean isLectureSelected = studentLectureAssign.getInstructorLectureAssign() != null &&
-                    studentLectureAssign.getInstructorLectureAssign().getLectureId() != null;
-            if (isLectureSelected && studentLectureAssign.getInstructorLectureAssign().getLectureId().equals(assign.getLectureId())) {
+            boolean isLectureSelected = selectedLecture.getId() != null;
+            if (isLectureSelected && selectedLecture.getId().equals(assign.getLectureId())) {
                 instructorList.add(new SelectItem(assign.getInstructor(), assign.getInstructor().getName()));
             }
         }
@@ -108,9 +110,27 @@ public class StudentLectureAssignView implements Serializable {
         isPageNewAssign = true;
     }
 
-    public void assignSelectedList() {
+    public void saveStudentLectureList() {
+        for (InstructorLectureAssign assign : instructorLectureAssignList) {
+            if (assign.getLectureId().equals(selectedLecture.getId())
+                    && assign.getInstructorId().equals(selectedInstructor.getId())) {
+                selectedInstructorLecture = assign;
+            }
+        }
+
+        List<StudentLectureAssign> studentLectureList = new ArrayList<>();
+        for (Student student : studentList) {
+
+            StudentLectureAssign studentLectureAssign = new StudentLectureAssign();
+            studentLectureAssign.setInstructorLectureId(selectedInstructorLecture.getId());
+            studentLectureAssign.setStudentId(student.getId());
+            studentLectureList.add(studentLectureAssign);
+        }
+
+        this.studentLectureAssignService.createStudentLectureAssignList(studentLectureList);
         init();
     }
+
 
 
     public List<SelectItem> getLectureList() {

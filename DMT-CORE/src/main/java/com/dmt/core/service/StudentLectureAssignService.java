@@ -15,6 +15,8 @@ public interface StudentLectureAssignService {
 
     StudentLectureAssign createStudentLectureAssign(StudentLectureAssign lectureAssign);
 
+    public List<StudentLectureAssign> createStudentLectureAssignList(List<StudentLectureAssign> lectureAssignList);
+
     StudentLectureAssign updateStudentLectureAssign(StudentLectureAssign lectureAssign) throws Exception;
 
     void deleteStudentLectureAssign(String lectureAssignId) throws Exception;
