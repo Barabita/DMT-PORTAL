@@ -10,25 +10,25 @@
     <h:form>
         <p:growl id="growl" showDetail="true" sticky="true"/>
 
-        <h:panelGrid columns="2" title="Öğrenci Bilgileri" id="ogrenciKayitForm">
-            <p:outputLabel value="Adı:"/>
+        <h:panelGrid columns="2" title="Sudent Information" id="ogrenciKayitForm">
+            <p:outputLabel value="Name:"/>
             <p:inputText value="#{studentView.student.name}"/>
 
-            <p:outputLabel value="Soyadı:"/>
+            <p:outputLabel value="Surname:"/>
             <p:inputText value="#{studentView.student.surname}"/>
 
-            <p:outputLabel value="GSM"/>
+            <p:outputLabel value="Phone Number"/>
             <p:inputText value="#{studentView.student.gsmNo}"/>
 
             <p:outputLabel value="E-Mail:"/>
             <p:inputText value="#{studentView.student.email}"/>
 
-            <p:outputLabel value="Öğrenim Tipi:"/>
+            <p:outputLabel value="Educational Type:"/>
             <p:selectOneMenu id="eduType" value="#{studentView.student.educationType}">
                 <f:selectItems value="#{studentView.educationTypeList}"/>
             </p:selectOneMenu>
 
-            <p:commandButton  ajax="false" value="Kaydet"
+            <p:commandButton  ajax="false" value="SAVE"
                              styleClass="ui-priority-primary" update="studentDT growl"/>
         </h:panelGrid>
 
@@ -42,26 +42,26 @@
             <p:column headerText="Id" >
                 <h:outputText value="#{student.id}"/>
             </p:column>
-            <p:column headerText="Öğrenci Adı" >
+            <p:column headerText="Student Name" >
                 <h:outputText value="#{student.name} - #{student.surname}"/>
             </p:column>
-            <p:column headerText="Telefon No" >
+            <p:column headerText="Phone Number" >
                 <h:outputText value="#{student.gsmNo}"/>
             </p:column>
             <p:column headerText="E-mail" >
                 <h:outputText value="#{student.email}"/>
             </p:column>
 
-            <p:column headerText="Öğrenim Tipi" >
+            <p:column headerText="Educaitonal Type" >
                 <h:outputText value="#{student.educationType}"/>
             </p:column>
 
             <p:column>
                 <p:commandButton actionListener="#{studentView.update(student)}"
-                                 title="Düzenle" ajax="false"
+                                 title="Edit" ajax="false"
                                  update="ogrenciKayitForm" icon="ui-icon-pencil"/>
 
-                <p:commandButton title="Sil"
+                <p:commandButton title="Delete"
                                  actionListener="#{studentView.delete(student)}" update="studentDT"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
             </p:column>

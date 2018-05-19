@@ -8,30 +8,30 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition>
     <h:form>
-        <h:panelGrid columns="2" title="Ders Adı" id="dersKayitForm">
-            <p:outputLabel value="Adı:"/>
+        <h:panelGrid columns="2" title="Create Lecture" id="dersKayitForm">
+            <p:outputLabel value="Name:"/>
             <p:inputText value="#{lectureView.lecture.name}"/>
 
-            <p:outputLabel value="Kodu:"/>
+            <p:outputLabel value="Lecture ID:"/>
             <p:inputText value="#{lectureView.lecture.code}"/>
 
-            <p:outputLabel value="Haftalık Ders  Yükü"/>
+            <p:outputLabel value="Weekly Lecture Count"/>
             <p:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"
                          value="#{lectureView.lecture.weeklyLectureCount}"/>
 
-            <p:outputLabel value="Verildiği Dil"/>
+            <p:outputLabel value="Language"/>
             <p:inputText value="#{lectureView.lecture.language}"/>
 
-            <p:outputLabel value="Kredi Sayısı"/>
+            <p:outputLabel value="Credit"/>
             <p:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"
                          value="#{lectureView.lecture.credit}"/>
 
-            <p:outputLabel value="Verildiği Dönem"/>
+            <p:outputLabel value="Term"/>
             <p:inputText onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="1"
                          value="#{lectureView.lecture.term}"/>
         </h:panelGrid>
         <p:menubar>
-            <p:menuitem value="Kaydet" ajax="false" actionListener="#{lectureView.save}"
+            <p:menuitem value="SAVE" ajax="false" actionListener="#{lectureView.save}"
                         styleClass="ui-priority-primary" icon="ui-icon-close"/>
         </p:menubar>
         <p:dataTable var="lecture" value="#{lectureView.lectureList}"
@@ -39,28 +39,28 @@
                      paginatorPosition="bottom" lazy="true"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                      rowsPerPageTemplate="10,20,25" id="lectureDT">
-            <p:column headerText="Ders Kodu">
+            <p:column headerText="lecture ID">
                 <h:outputText value="#{lecture.code}"/>
             </p:column>
-            <p:column headerText="Ders Adı">
+            <p:column headerText="Lecture Name">
                 <h:outputText value="#{lecture.name} "/>
             </p:column>
-            <p:column headerText="Haftalık Ders Yükü">
+            <p:column headerText="Weekly Lecture Count">
                 <h:outputText value="#{lecture.weeklyLectureCount}"/>
             </p:column>
-            <p:column headerText="Verildiği Dil">
+            <p:column headerText="Language">
                 <h:outputText value="#{lecture.language}"/>
             </p:column>
 
-            <p:column headerText="Kredi Sayısı">
+            <p:column headerText="Credit">
                 <h:outputText value="#{lecture.credit}"/>
             </p:column>
 
             <p:column>
                 <p:commandButton actionListener="#{lectureView.update(lecture)}"
-                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
+                                 title="Edit" ajax="false" process="@this" icon="ui-icon-pencil"/>
 
-                <p:commandButton title="Sil" actionListener="#{lectureView.delete(lecture)}"
+                <p:commandButton title="Delete" actionListener="#{lectureView.delete(lecture)}"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
 
             </p:column>

@@ -11,26 +11,26 @@
 
         <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
 
-        <h:panelGrid columns="2" title="Ders Atama" id="assignLectureForm">
-            <p:outputLabel value="Dersin Adı:"/>
+        <h:panelGrid columns="2" title="Assign Lecture" id="assignLectureForm">
+            <p:outputLabel value="Lecture:"/>
             <p:selectOneMenu value="#{instructorLectureAssign.assign.lecture}" style="width: 190px;"
                              converter="entityConverter">
                 <f:selectItems value="#{instructorLectureAssign.prepareLectureSelectItemList()}"/>
             </p:selectOneMenu>
 
-            <p:outputLabel value="Eğitmen:"/>
+            <p:outputLabel value="Instructor:"/>
             <p:selectOneMenu value="#{instructorLectureAssign.assign.instructor}" style="width: 190px;"
                              converter="entityConverter">
                 <f:selectItems value="#{instructorLectureAssign.prepareInstructorSelectItemList()}"/>
             </p:selectOneMenu>
 
-            <p:outputLabel value="Ders Kodu:"/>
+            <p:outputLabel value="Lecture ID:"/>
             <p:inputText value="#{instructorLectureAssign.assign.name}"/>
 
         </h:panelGrid>
 
         <h:panelGrid>
-            <p:commandButton value="Dersi Ata" ajax="false" icon="ui-icon-disk" process="@this"
+            <p:commandButton value="ASSIGN" ajax="false" icon="ui-icon-disk" process="@this"
                              update="assignLectureId growl" actionListener="#{instructorLectureAssign.save}"/>
         </h:panelGrid>
 
@@ -49,9 +49,9 @@
 
             <p:column>
                 <p:commandButton actionListener="#{instructorLectureAssign.update(item)}" update="assignLectureForm"
-                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
+                                 title="Edit" ajax="false" process="@this" icon="ui-icon-pencil"/>
 
-                <p:commandButton title="Sil" actionListener="#{instructorLectureAssign.delete(item)}" update="assignLectureForm"
+                <p:commandButton title="Delete" actionListener="#{instructorLectureAssign.delete(item)}" update="assignLectureForm"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
 
             </p:column>

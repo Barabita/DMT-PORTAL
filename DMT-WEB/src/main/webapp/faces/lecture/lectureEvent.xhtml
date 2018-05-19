@@ -10,33 +10,36 @@
     <h:form>
         <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
 
-        <h:panelGrid columns="2" title="DERS İŞLENMESİ" id="lecEvent">
-            <p:outputLabel value="Sınıf Kodu:"/>
+        <h:panelGrid columns="2" title="Course Processing" id="lecEvent">
+            <p:outputLabel value="Place ID:"/>
             <p:inputText value=""/>
 
-            <p:outputLabel value="Öğretim Görevlisi Id :"/>
+            <p:outputLabel value="Instructor Id :"/>
             <p:inputText value=""/>
 
-            <p:outputLabel value="Sınıf Kodu:"/>
+            <p:outputLabel value="Instructor Name:"/>
             <p:inputText value=""/>
 
-            <p:outputLabel value="öğrenci grubu(ne olaki):"/>
+            <p:outputLabel value="Lecture ID:"/>
             <p:inputText value=""/>
 
-            <p:outputLabel value="Ders Başlama Zamanı"/>
+            <p:outputLabel value="Student Group:"/>
             <p:inputText value=""/>
 
-            <p:outputLabel value="Ders Bitiş Zamanı:"/>
+            <p:outputLabel value="Course Start Time: "/>
             <p:inputText value=""/>
 
-            <p:outputLabel value="Kaç Oturum:"/>
+            <p:outputLabel value="Course End Time:"/>
+            <p:inputText value=""/>
+
+            <p:outputLabel value="Session Count:"/>
             <p:inputText value=""/>
 
         </h:panelGrid>
 
 
         <h:panelGrid columns="10">
-            <p:commandButton value="Kaydet" ajax="false"
+            <p:commandButton value="SAVE" ajax="false"
                              icon="ui-icon-disk" process="@this"
                              style="width: 100px"/>
         </h:panelGrid>

@@ -58,10 +58,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<SelectItem> getEducationTypeList() {
         List<SelectItem> typeList = new ArrayList<>();
-        typeList.add(new SelectItem(EducationType.TR1, "Örgün Türkçe"));
-        typeList.add(new SelectItem(EducationType.TR2, "2. Öğretim Türkçe"));
-        typeList.add(new SelectItem(EducationType.ENG1, "Örgün Ingilizce"));
-        typeList.add(new SelectItem(EducationType.ENG2, "2. Öğretim Ingilizce"));
+        typeList.add(new SelectItem(EducationType.TR1, "Daytime Education TR"));
+        typeList.add(new SelectItem(EducationType.TR2, "Evening Education TR"));
+        typeList.add(new SelectItem(EducationType.ENG1, "Daytime Education ENG"));
+        typeList.add(new SelectItem(EducationType.ENG2, "Evening Education ENG"));
 
         return typeList;
     }

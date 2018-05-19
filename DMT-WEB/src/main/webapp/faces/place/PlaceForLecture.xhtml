@@ -7,44 +7,44 @@
     <h:form>
         <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
 
-        <p:panelGrid columns="2" title="Sınıf Tanımlama" id="sinifTanimlamaForm">
+        <p:panelGrid columns="2" title="Course Description" id="sinifTanimlamaForm">
 
-            <p:outputLabel value="Sınıf Kodu:"/>
+            <p:outputLabel value="Class ID:"/>
             <p:inputText value="#{placeView.place.id}"/>
 
-            <p:outputLabel value="Sınıf Adı:"/>
+            <p:outputLabel value="Class Name:"/>
             <p:inputText value="#{placeView.place.name}"/>
 
-            <p:outputLabel value="Sınıf Tipi:"/>
+            <p:outputLabel value="Class Type:"/>
             <p:selectOneMenu id="placeType" value="#{placeView.place.type}" converter="entityConverter">
                 <f:selectItems value="#{placeView.placeTypeList}"/>
             </p:selectOneMenu>
 
         </p:panelGrid>
         <p:panelGrid>
-            <p:commandButton ajax="false" value="TANIMLA"  actionListener="#{placeView.save}"
+            <p:commandButton ajax="false" value="CREATE"  actionListener="#{placeView.save}"
                          icon="ui-icon-disk" process="@this"
                              update="placeDT growl" />
         </p:panelGrid>
 
         <p:dataTable var="place" value="#{placeView.placeList}" id="placeDT" lazy="true">
-           <p:column headerText="Sınıf Kodu">
+           <p:column headerText="Class ID">
                <h:outputText value="#{place.id}"/>
            </p:column>
 
-            <p:column headerText="Sınıf Adı">
+            <p:column headerText="Class Name">
                 <h:outputText value="#{place.name}"/>
             </p:column>
 
-            <p:column headerText="Sınıf Tipi">
+            <p:column headerText="Class Type">
                 <h:outputText value="#{place.type}"/>
             </p:column>
 
             <p:column>
                 <p:commandButton
-                                 title="Düzenle" ajax="false" process="@this" icon="ui-icon-pencil"/>
+                                 title="Edit" ajax="false" process="@this" icon="ui-icon-pencil"/>
 
-                <p:commandButton title="Sil"
+                <p:commandButton title="Delete"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
 
             </p:column>

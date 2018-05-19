@@ -9,23 +9,23 @@
 <ui:composition>
     <h:form>
         <p:panel>
-            <h:panelGrid columns="2" title="Duyurular" id="duyuruForm">
+            <h:panelGrid columns="2" title="Notifications" id="duyuruForm">
 
-                <p:outputLabel value="Gönderen Kişi:"/>
+                <p:outputLabel value="Sender:"/>
                 <p:selectOneMenu id="sender">
                     <f:selectItems/>
                 </p:selectOneMenu>
 
-                <p:outputLabel value="Başlık:"/>
+                <p:outputLabel value="Title:"/>
                 <p:inputText/>
 
-                <p:outputLabel value="Gönderilecekler:"/>
+                <p:outputLabel value="Receiver:"/>
                 <p:selectOneMenu id="receiver">
                     <f:selectItems/>
                 </p:selectOneMenu>
 
 
-                <p:outputLabel for="button" value="Duyuru Bitiş Zamanı:"/>
+                <p:outputLabel for="button" value="Deadline:"/>
                 <p:calendar id="button" showOn="button"/>
 
                 <!--<p:outputLabel value="İçerik:"/>-->
