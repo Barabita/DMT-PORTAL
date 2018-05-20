@@ -68,26 +68,26 @@ public class StudentView implements Serializable {
     public void save() {
         if (saveKontrol()) {
             studentService.save(student);
-            FacesUtil.giveInfo("Ogrenci basarili bir sekilde kayit edildi.");
+            FacesUtil.giveInfo("The student was registered on a successfully.");
             student = new Student();
         }
     }
 
     private boolean saveKontrol() {
         if (student.getName() == null || student.getName().isEmpty()) {
-            FacesUtil.giveError("Ad bilgisi zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter a Name.");
             return false;
         }
         if (student.getSurname() == null || student.getSurname().isEmpty()) {
-            FacesUtil.giveError("Soyad bilgisi zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter a Surname");
             return false;
         }
         if (student.getGsmNo() == null) {
-            FacesUtil.giveError("Telefon bilgisi zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter a Phone Number");
             return false;
         }
         if (student.getEmail() == null || student.getEmail().isEmpty()) {
-            FacesUtil.giveError("E-mail bilgisi zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter an email");
             return false;
         } else
             return true;

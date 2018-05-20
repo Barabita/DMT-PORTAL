@@ -52,23 +52,23 @@ public class InstructorView implements Serializable {
 
     private boolean saveKontrol() {
         if (instructor.getName() == null || instructor.getName().isEmpty()) {
-            FacesUtil.giveError("Ad bilgisi zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter a Instructor Name.");
             return false;
         }
         if (instructor.getSurname() == null || instructor.getSurname().isEmpty()) {
-            FacesUtil.giveError("Soyad bilgisi zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter a Instructor Surname");
             return false;
         }
         if (String.valueOf(instructor.getGsmNo()).length() != 10) {
-            FacesUtil.giveError("Lütfen doğru telefon formatı giriniz.");
+            FacesUtil.giveError("Please enter the correct phone format.");
             return false;
         }
         if (String.valueOf(instructor.getNationalId()).length() != 11) {
-            FacesUtil.giveError("Girdiğiniz Kimlik numarası geçerli değildir.");
+            FacesUtil.giveError("The national ID is not valid");
             return false;
         }
         if (instructor.getEmail() == null || instructor.getEmail().isEmpty()) {
-            FacesUtil.giveError("E-mail bilgisi zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter an email");
             return false;
         } else
             return true;

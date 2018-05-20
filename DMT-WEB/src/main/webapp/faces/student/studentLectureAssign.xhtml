@@ -60,15 +60,15 @@
                      rendered="#{studentLectureAssign.isPageAssignedList}"
                      paginator="false" lazy="true">
 
-            <p:column headerText="Lecture Name">
+            <p:column headerText="Lecture Id">
                 <h:outputText value="#{item2.id}"/>
             </p:column>
 
             <p:column headerText="Hocası">
-                <h:outputText value="#{item2.instructorLectureAssign}"/>
+                <h:outputText value="#{item2.instructorLectureId}"/>
             </p:column>
             <p:column headerText="Öğrenci Sayısı">
-                <h:outputText value="#{item2.student}"/>
+                <h:outputText value="#{item2.studentId}"/>
             </p:column>
         </p:dataTable>
 
