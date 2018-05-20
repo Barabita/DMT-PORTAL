@@ -30,7 +30,8 @@
 
         </h:panelGrid>
         <h:panelGrid columns="2">
-            <p:commandButton value="ASSIGN" ajax="false" icon="ui-icon-disk" process="@this"
+            <p:commandButton value="Assign" rendered="#{studentLectureAssign.isPageNewAssign}" ajax="false"
+                             icon="ui-icon-disk" process="@this"
                              actionListener="#{studentLectureAssign.saveStudentLectureList}"/>
         </h:panelGrid>
 
@@ -61,17 +62,57 @@
                      paginator="false" lazy="true">
 
             <p:column headerText="Lecture Name">
-                <h:outputText value="#{item2.id}"/>
+                <h:outputText value="#{item2.instructorLectureAssign.lecture.name}"/>
             </p:column>
 
             <p:column headerText="Hocası">
-                <h:outputText value="#{item2.instructorLectureAssign}"/>
+                <h:outputText value="#{item2.instructorLectureAssign.instructor.name}"/>
             </p:column>
-            <p:column headerText="Öğrenci Sayısı">
-                <h:outputText value="#{item2.student}"/>
+
+            <p:column>
+                <p:commandButton value="Go Detail" ajax="false" icon="ui-icon-disk" process="@this"
+                                 actionListener="#{studentLectureAssign.goInstructorLectureDetail(item2.instructorLectureAssign)}"
+                                 update="@form">
+                </p:commandButton>
             </p:column>
         </p:dataTable>
 
+        <h:panelGrid columns="1" title="Instuctor Lecture Detail" id="assignDetail"
+                     rendered="#{studentLectureAssign.isPageAssignDetail}">
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Instructor Name:"/>
+                <p:outputLabel
+                        value="#{studentLectureAssign.detailAssign.instructor.name} #{studentLectureAssign.detailAssign.instructor.surname}"/>
+
+                <p:outputLabel value="Lecture:"/>
+                <p:outputLabel value="#{studentLectureAssign.detailAssign.lecture.name}"/>
+
+                <p:outputLabel value="Lecture Code:"/>
+                <p:outputLabel value="#{studentLectureAssign.detailAssign.lecture.code}"/>
+
+                <p:outputLabel value="Lecture Credit:"/>
+                <p:outputLabel value="#{studentLectureAssign.detailAssign.lecture.credit}"/>
+
+
+                <p:commandButton value="Back" ajax="false" icon="ui-icon-disk" process="@this"
+                                 actionListener="#{studentLectureAssign.goDetailPage}"
+                                 update="@form">
+                </p:commandButton>
+                <p:outputLabel value=""/>
+            </h:panelGrid>
+            <p:dataTable var="detail" value="#{studentLectureAssign.detailAssignList}"
+                         paginator="false" lazy="true">
+
+                <p:column headerText="Student Name">
+                    <h:outputText value="#{detail.student.name} #{detail.student.surname}"/>
+                </p:column>
+
+                <p:column headerText="Term">
+                    <h:outputText value="#{detail.student.term}"/>
+                </p:column>
+
+            </p:dataTable>
+        </h:panelGrid>
 
     </h:form>
 </ui:composition>

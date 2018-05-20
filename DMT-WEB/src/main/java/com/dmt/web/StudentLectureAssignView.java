@@ -50,12 +50,16 @@ public class StudentLectureAssignView implements Serializable {
     private List<InstructorLectureAssign> instructorLectureAssignList = new ArrayList<>();
     private Boolean isPageAssignedList;
     private Boolean isPageNewAssign;
+    private Boolean isPageAssignDetail;
+
+    private List<StudentLectureAssign> detailAssignList;
+    private InstructorLectureAssign detailAssign = new InstructorLectureAssign();
 
     @PostConstruct
     private void init() {
         isPageAssignedList = true;
         isPageNewAssign = false;
-
+        isPageAssignDetail = false;
         prepareStudentList();
         prepareAssignedList();
         prepareInstructorLectureAssignList();
@@ -66,7 +70,8 @@ public class StudentLectureAssignView implements Serializable {
     }
 
     private void prepareAssignedList() {
-        assignedList = this.studentLectureAssignService.findStudentLectureAssigns(new SearchStudentLectureAssign());
+        assignedList = this.studentLectureAssignService
+                .findStudentLectureAssigns(new SearchStudentLectureAssign());
     }
 
     private void prepareInstructorLectureAssignList() {
@@ -131,6 +136,22 @@ public class StudentLectureAssignView implements Serializable {
         init();
     }
 
+    public void goInstructorLectureDetail(InstructorLectureAssign assign) {
+        SearchStudentLectureAssign filter = new SearchStudentLectureAssign();
+        filter.setInstructorLectureId(assign.getId());
+        isPageAssignedList = false;
+        isPageNewAssign = false;
+        isPageAssignDetail = true;
+        this.detailAssign.setInstructor(assign.getInstructor());
+        this.detailAssign.setLecture(assign.getLecture());
+        this.detailAssignList = this.studentLectureAssignService.findStudentLectureAssigns(filter);
+    }
+
+    public void goDetailPage() {
+        isPageAssignedList = true;
+        isPageNewAssign = false;
+        isPageAssignDetail = false;
+    }
 
 
     public List<SelectItem> getLectureList() {
@@ -260,5 +281,37 @@ public class StudentLectureAssignView implements Serializable {
 
     public void setSelectedInstructor(Instructor selectedInstructor) {
         this.selectedInstructor = selectedInstructor;
+    }
+
+    public void setIsPageAssignDetail(Boolean pageAssignDetail) {
+        isPageAssignDetail = pageAssignDetail;
+    }
+
+    public InstructorLectureAssign getSelectedInstructorLecture() {
+        return selectedInstructorLecture;
+    }
+
+    public void setSelectedInstructorLecture(InstructorLectureAssign selectedInstructorLecture) {
+        this.selectedInstructorLecture = selectedInstructorLecture;
+    }
+
+    public Boolean getIsPageAssignDetail() {
+        return isPageAssignDetail;
+    }
+
+    public List<StudentLectureAssign> getDetailAssignList() {
+        return detailAssignList;
+    }
+
+    public void setDetailAssignList(List<StudentLectureAssign> detailAssignList) {
+        this.detailAssignList = detailAssignList;
+    }
+
+    public InstructorLectureAssign getDetailAssign() {
+        return detailAssign;
+    }
+
+    public void setDetailAssign(InstructorLectureAssign detailAssign) {
+        this.detailAssign = detailAssign;
     }
 }

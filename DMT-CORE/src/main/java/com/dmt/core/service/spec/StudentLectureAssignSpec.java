@@ -29,14 +29,6 @@ public class StudentLectureAssignSpec {
                 if (StringUtils.isNotEmpty(searchCriteria.getId())) {
                     predicates.add(cb.equal(root.get("id"), searchCriteria.getId()));
                 }
-
-                if (StringUtils.isNotEmpty(searchCriteria.getInstructorId())) {
-                    predicates.add(cb.equal(root.get("instructorId"), searchCriteria.getInstructorId()));
-                }
-
-                if (StringUtils.isNotEmpty(searchCriteria.getLectureId())) {
-                    predicates.add(cb.equal(root.get("lectureId"), searchCriteria.getLectureId()));
-                }
                 return cb.and(predicates.toArray(new Predicate[]{}));
             }
         };

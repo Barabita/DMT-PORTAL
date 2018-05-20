@@ -7,9 +7,8 @@ package com.dmt.core.service.Search;
 
 public class SearchStudentLectureAssign {
     private String id;
-    private String instructorId;
-    private String lectureId;
-    private String name;
+    private String instructorLectureId;
+    private String studentId;
 
     public String getId() {
         return id;
@@ -19,27 +18,19 @@ public class SearchStudentLectureAssign {
         this.id = id;
     }
 
-    public String getInstructorId() {
-        return instructorId;
+    public String getInstructorLectureId() {
+        return instructorLectureId;
     }
 
-    public void setInstructorId(String instructorId) {
-        this.instructorId = instructorId;
+    public void setInstructorLectureId(String instructorLectureId) {
+        this.instructorLectureId = instructorLectureId;
     }
 
-    public String getLectureId() {
-        return lectureId;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setLectureId(String lectureId) {
-        this.lectureId = lectureId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 }

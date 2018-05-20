@@ -5,5 +5,11 @@ package com.dmt.core.domain.enums;
  */
 
 public enum PlaceType {
-    SINIF, AMFI, LAB
+    SINIF("SINIF"), AMFI("AMFI"), LAB("LAB");
+
+    private  final String value;
+
+    PlaceType(String value){
+        this.value = value;
+    }
 }
