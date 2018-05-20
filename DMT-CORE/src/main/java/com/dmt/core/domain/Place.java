@@ -1,10 +1,8 @@
 package com.dmt.core.domain;
 
 import com.dmt.core.domain.enums.PlaceType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -20,6 +18,7 @@ public class Place extends BaseDomain implements Serializable {
     private String name;
 
     @Column(name = "TYPE", length = 5, nullable = false)
+    @Enumerated(EnumType.STRING)
     private PlaceType type;
 
     public String getId() {

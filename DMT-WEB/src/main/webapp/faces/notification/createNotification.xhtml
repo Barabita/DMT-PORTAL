@@ -9,27 +9,42 @@
 <ui:composition>
     <h:form>
         <p:panel>
+            <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
             <h:panelGrid columns="2" title="Notifications" id="duyuruForm">
 
-                <p:outputLabel value="Sender:"/>
-                <p:selectOneMenu id="sender">
-                    <f:selectItems/>
+                <p:outputLabel value="Receiver Type:"/>
+                <p:selectOneMenu style="width: 180px" value="#{notificationView.notification.receiverType}"
+                                 converter="entityConverter">
+                    <f:selectItems value="#{notificationView.prepareReceiverTypeList()}"/>
                 </p:selectOneMenu>
 
-                <p:outputLabel value="Title:"/>
-                <p:inputText/>
+                <p:outputLabel value="Sender:"/>
+                <p:selectOneMenu id="sender" value="#{notificationView.notification.sender}" style="width: 180px"
+                                 converter="entityConverter">
+                    <f:selectItem itemValue="" itemLabel=""/>
+                    <f:selectItems value="#{notificationView.prepareSenderList()}"/>
+                </p:selectOneMenu>
 
                 <p:outputLabel value="Receiver:"/>
-                <p:selectOneMenu id="receiver">
-                    <f:selectItems/>
+                <p:selectOneMenu id="receiver" style="width: 180px" value="#{notificationView.notification.receiver}"
+                                 converter="entityConverter">
+                    <f:selectItem itemValue="" itemLabel=""/>
+                    <f:selectItems value="#{notificationView.prepareReceiverList()}"/>
                 </p:selectOneMenu>
 
+                <p:outputLabel value="Message Validity Date:"/>
+                <p:calendar showOn="button" value="#{notificationView.notification.expiryDate}" beforeShowDay="false" />
 
-                <p:outputLabel for="button" value="Deadline:"/>
-                <p:calendar id="button" showOn="button"/>
+                <p:outputLabel value="Title:"/>
+                <p:inputText value="#{notificationView.notification.title}"/>
 
-                <!--<p:outputLabel value="İçerik:"/>-->
-                <!--<p:inputTextarea rows="5" cols="30" counter="display" maxlength="10" counterTemplate="{0} characters remaining." autoResize="false" />-->
+
+                <p:outputLabel value="Content:"/>
+                <p:inputTextarea rows="7" cols="60" maxlength="1000"
+                                 value="#{notificationView.notification.content}"
+                                 counterTemplate="{0} characters remaining." autoResize="true"/>
+
+                <p:commandButton value="SAVE" actionListener="#{notificationView.save}" ajax="false" process="@this"/>
 
             </h:panelGrid>
         </p:panel>

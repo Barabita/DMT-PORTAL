@@ -1,10 +1,9 @@
 package com.dmt.core.domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.dmt.core.domain.enums.ReceiverType;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,7 +13,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "NOTIFICATION_DEF")
-class Notification extends BaseDomain implements Serializable {
+public class Notification extends BaseDomain implements Serializable {
 
     @Id
     @Column(name = "ID", nullable = false, length = 20)
@@ -25,7 +24,6 @@ class Notification extends BaseDomain implements Serializable {
 
     @Column(name = "RECEIVER", nullable = false, length = 50)
     private String receiver;
-
 
     @Column(name = "TITLE", nullable = false, length = 50)
     private String title;
@@ -40,7 +38,8 @@ class Notification extends BaseDomain implements Serializable {
     private Date expiryDate;
 
     @Column(name = "RECEIVER_TYPE", nullable = false, length = 5)
-    private String receiverType;
+    @Enumerated(EnumType.STRING)
+    private ReceiverType receiverType;
 
     @Column(name = "TRS_DATE")
     private Date trsDate;
@@ -101,11 +100,11 @@ class Notification extends BaseDomain implements Serializable {
         this.expiryDate = expiryDate;
     }
 
-    public String getReceiverType() {
+    public ReceiverType getReceiverType() {
         return receiverType;
     }
 
-    public void setReceiverType(String receiverType) {
+    public void setReceiverType(ReceiverType receiverType) {
         this.receiverType = receiverType;
     }
 

@@ -10,8 +10,9 @@
         <class>com.dmt.core.domain.Place</class>
         <class>com.dmt.core.domain.InstructorLectureAssign</class>
         <class>com.dmt.core.domain.StudentLectureAssign</class>
+        <class>com.dmt.core.domain.Notification</class>
 
-         <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://dmt-portal.cbsj1s4eyvly.us-east-2.rds.amazonaws.com:3306/dmt_portal?useSSL=false"/>
