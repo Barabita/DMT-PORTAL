@@ -84,16 +84,16 @@ public class InstructorLectureAssignView implements Serializable {
 
     private boolean saveKontrol() {
         if (assign.getLecture().getId() == null || assign.getLecture().getId().equals("")) {
-            FacesUtil.giveError("Dersin adı zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter a Lecture Name");
             return false;
         }
         if (assign.getInstructor().getId() == null || assign.getInstructor().getId().equals("")) {
-            FacesUtil.giveError("Eğitmen seçimi zorunlu alandır.");
+            FacesUtil.giveError("Instructor selection is mandatory.");
             return false;
         }
 
         if (assign.getName() == null || assign.getName().equals("") || assign.getName().length() < 6) {
-            FacesUtil.giveError("Lütfen geçerli bir ders kodu giriniz.");
+            FacesUtil.giveError("Please enter a valid lecture code");
             return false;
         }
 

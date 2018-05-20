@@ -22,13 +22,6 @@
             <p:inputText onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="11"
                          value="#{instructorView.instructor.nationalId}"/>
 
-
-            <p:outputLabel value="Courses Given:"/>
-            <p:selectOneMenu id="verdigiDers">
-                <f:selectItems/>
-            </p:selectOneMenu>
-
-
             <p:outputLabel value="Office Information:"/>
             <p:inputText onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="4"
                          value="#{instructorView.instructor.roomNo}"/>

@@ -76,16 +76,16 @@ public class PlaceView implements Serializable {
 
     private Boolean SaveKontrol(){
         if (place.getId().isEmpty()){
-            FacesUtil.giveError("sınıf Kodu zorunludur");
+            FacesUtil.giveError("it is necessary to enter a Class Code");
             return false;
         }
         if (place.getName().isEmpty()){
-            FacesUtil.giveError("sınıf Adı zorunludur");
+            FacesUtil.giveError("it is necessary to enter a Class Name");
             return false;
 
         }
         if (place.getType() == null){
-            FacesUtil.giveError("sınıf tipi belirleyiniz");
+            FacesUtil.giveError("Please specify class type");
         }
 
         return true;
@@ -95,7 +95,7 @@ public class PlaceView implements Serializable {
     public void save() {
         if (SaveKontrol()) {
             placeService.save(place);
-            FacesUtil.giveInfo("sınıf kaydı başarılı bir şekilde oluşturuldu.");
+            FacesUtil.giveInfo("The class was registered on a successfully.");
             place = new Place();
         }
     }

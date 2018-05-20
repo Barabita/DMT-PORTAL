@@ -44,6 +44,49 @@
                              style="width: 100px"/>
         </h:panelGrid>
 
+        <p:dataTable var="event"  id="eventDT" lazy="true">
+            <p:column headerText="Place ID">
+                <h:outputText />
+            </p:column>
+
+            <p:column headerText="Instructor ID" lazy="true">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="Instructor Name" lazy="true">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="Lecture ID" lazy="true">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="Student Group" lazy="true">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="Course Start Time" lazy="true">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="Course End Time" lazy="true">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="Session Count" lazy="true">
+                <h:outputText/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton
+                        title="Edit" ajax="false" process="@this" icon="ui-icon-pencil"/>
+
+                <p:commandButton title="Delete"
+                                 icon="ui-icon-trash" process="@this" ajax="false"/>
+
+            </p:column>
+        </p:dataTable>
+
     </h:form>
 </ui:composition>
 </html>

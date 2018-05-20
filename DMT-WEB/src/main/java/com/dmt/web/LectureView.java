@@ -55,21 +55,21 @@ public class LectureView implements Serializable {
     public void save() {
         if (saveKontrol())
             lectureService.save(lecture);
-        FacesUtil.giveInfo("Ders kaydı başarılı bir şekilde oluşturuldu.");
+        FacesUtil.giveInfo("The Lecture was registered on a successfully.");
         lecture = new Lecture();
     }
 
     private Boolean saveKontrol() {
         if (lecture.getName().isEmpty()) {
-            FacesUtil.giveError("Ad bilgisi zorunlu alandır.");
+            FacesUtil.giveError("it is necessary to enter a Lecture Name.");
             return false;
         }
         if (lecture.getLanguage().isEmpty()) {
-            FacesUtil.giveError("Verildiği dil zorunlu alandır");
+            FacesUtil.giveError("Please enter a Lecture Language");
             return false;
         }
         if (lecture.getCode().isEmpty()) {
-            FacesUtil.giveError("Dersin Kodu zorunlu alandır");
+            FacesUtil.giveError("It is necessary to enter a Lecture Code");
             return false;
         }
         return true;

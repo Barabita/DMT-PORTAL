@@ -33,7 +33,7 @@ public class PlaceServiceImpl extends BaseDomain implements PlaceService{
     public List<SelectItem> getPlaceTypeList() {
         List<SelectItem> typeList = new ArrayList<>();
         typeList.add(new SelectItem(PlaceType.AMFI,"AMPHITHEATER"));
-        typeList.add(new SelectItem(PlaceType.SINIF,"CLASS"));
+        typeList.add(new SelectItem(PlaceType.SINIF,"CLASS "));
         typeList.add(new SelectItem(PlaceType.LAB,"LAB"));
         return typeList;
     }
