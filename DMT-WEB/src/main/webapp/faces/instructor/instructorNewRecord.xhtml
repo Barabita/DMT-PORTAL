@@ -46,6 +46,10 @@
         <h:panelGrid columns="2">
             <p:commandButton actionListener="#{instructorView.save}" ajax="false" value="SAVE"
                              process="@this" update="instructorDT growl"/>
+
+            <p:commandButton title="Print" actionListener="#{instructorView.print}" update="instructorDT growl" value="Print"
+                             icon="ui-icon-trash" process="@this" ajax="false"/>
+
         </h:panelGrid>
 
         <p:dataTable var="item" value="#{instructorView.instructorList}"
@@ -91,7 +95,6 @@
 
                 <p:commandButton title="Delete" actionListener="#{instructorView.delete(item)}" update="instructorDT growl"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
-
             </p:column>
 
         </p:dataTable>

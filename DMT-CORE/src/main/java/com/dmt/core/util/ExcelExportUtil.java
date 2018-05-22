@@ -13,7 +13,7 @@ import java.util.Random;
  * @since 3.05.2018.
  */
 
-class ExcelExportUtil {
+public class ExcelExportUtil {
 
 
     private XSSFWorkbook workbook;

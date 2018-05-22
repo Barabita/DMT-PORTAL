@@ -101,6 +101,10 @@ public class StudentView implements Serializable {
         studentService.delete(std);
     }
 
+    public void print() {
+
+    }
+
 
     /*----------------------------------------------------------------------------------------------------------------------*/
     public Student getStudent() {
