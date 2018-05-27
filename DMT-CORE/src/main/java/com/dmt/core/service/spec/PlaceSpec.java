@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author: yagmur.avsar
+ * @author mali.sahin
  **/
 public class PlaceSpec {
     public static Specification<Place> findByCriteria(final SearchPlace searchCriteria) {

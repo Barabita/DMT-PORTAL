@@ -2,11 +2,9 @@ package com.dmt.core.service;
 
 
 import com.dmt.core.domain.Place;
-import com.dmt.core.domain.general.Page;
 import com.dmt.core.service.Search.SearchPlace;
 
 import javax.faces.model.SelectItem;
-import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -22,6 +20,6 @@ public interface PlaceService {
 
 // public Page<Place> getPlaceList(SearchPlace filter, Pageable pageable);
 
- //public List<Place> getPlaceList(SearchPlace filter);
+ public List<Place> getPlaceList(SearchPlace filter);
 
 }

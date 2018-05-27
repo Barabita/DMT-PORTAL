@@ -7,7 +7,6 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author mali.sahin
@@ -24,7 +23,6 @@ public class InstructorLectureAssign extends BaseDomain implements Serializable 
 
     @Column(name = "NAME")
     private String name;
-
 
     @Column(name = "LECTURE_ID", updatable = false)
     private String lectureId;

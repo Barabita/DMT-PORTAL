@@ -11,29 +11,24 @@
         <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
 
         <h:panelGrid columns="2" title="Course Processing" id="lecEvent">
-            <p:outputLabel value="Place ID:"/>
-            <p:inputText value=""/>
+            <p:outputLabel value="Place"/>
+            <p:selectOneMenu value="#{eventView.event.placeID}" converter="entityConverter" style="width: 190px;">
+                <f:selectItems value="#{eventView.placeList}" var="item" itemLabel="#{item.name}"
+                               itemValue="#{item.id}"/>
+            </p:selectOneMenu>
 
-            <p:outputLabel value="Instructor Id :"/>
-            <p:inputText value=""/>
-
-            <p:outputLabel value="Instructor Name:"/>
-            <p:inputText value=""/>
-
-            <p:outputLabel value="Lecture ID:"/>
-            <p:inputText value=""/>
-
-            <p:outputLabel value="Student Group:"/>
-            <p:inputText value=""/>
+            <p:outputLabel value="Instructor:"/>
+            <p:selectOneMenu value="#{eventView.event.studentLectureId}" converter="entityConverter"
+                             style="width: 190px;">
+                <f:selectItems value="#{eventView.lectureList}" var="lec" itemValue="#{item.id}"
+                               itemLabel="#{lec.instructorLectureAssign.lecture.name} - #{lec.instructorLectureAssign.instructor.name}"/>
+            </p:selectOneMenu>
 
             <p:outputLabel value="Course Start Time: "/>
-            <p:inputText value=""/>
+            <p:calendar value="#{eventView.event.startDate}" pattern="dd/MM/yyyy HH"/>
 
-            <p:outputLabel value="Course End Time:"/>
-            <p:inputText value=""/>
-
-            <p:outputLabel value="Session Count:"/>
-            <p:inputText value=""/>
+            <p:outputLabel value="Hours:"/>
+            <p:inputNumber value="#{eventView.event.hours}"/>
 
         </h:panelGrid>
 
@@ -44,9 +39,9 @@
                              style="width: 100px"/>
         </h:panelGrid>
 
-        <p:dataTable var="event"  id="eventDT" lazy="true">
+        <p:dataTable var="event" id="eventDT" lazy="true">
             <p:column headerText="Place ID">
-                <h:outputText />
+                <h:outputText/>
             </p:column>
 
             <p:column headerText="Instructor ID" lazy="true">

@@ -1,9 +1,10 @@
 package com.dmt.core.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "EVENT_DEF")
-public class Event {
+public class Event extends BaseDomain implements Serializable {
 
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
@@ -33,6 +34,26 @@ public class Event {
 
     @Column(name = "SESSION")
     private int session;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn(name = "STUDENT_LECTURE_ID")
+    @Fetch(FetchMode.JOIN)
+    private StudentLectureAssign studentLectureAssign;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn(name = "PLACE_ID")
+    @Fetch(FetchMode.JOIN)
+    private  Place place;
+
+    private int hours;
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
 
     public String getId() {
         return id;
@@ -80,5 +101,21 @@ public class Event {
 
     public void setSession(int session) {
         this.session = session;
+    }
+
+    public StudentLectureAssign getStudentLectureAssign() {
+        return studentLectureAssign;
+    }
+
+    public void setStudentLectureAssign(StudentLectureAssign studentLectureAssign) {
+        this.studentLectureAssign = studentLectureAssign;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }

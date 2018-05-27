@@ -31,8 +31,6 @@
                             process="@this" ajax="false" icon="ui-icon-disk"/>
                 <p:menuitem value="Edit" actionListener="#{router.routeContentPage('ASSIGN_LECTURE')}"
                             process="@this" ajax="false" icon="ui-icon-pencil"/>
-                <p:menuitem value="Event" actionListener="#{router.routeContentPage('EVENT_DEF')}"
-                            process="@this" ajax="false" icon="ui-icon-person"/>
             </p:submenu>
 
             <p:separator/>
@@ -43,10 +41,17 @@
             </p:submenu>
 
             <p:separator/>
-            <p:submenu label="Class Create/Edit">
-                <p:menuitem value="Create Class" actionListener="#{router.routeContentPage('PLACE_DEF')}"
+            <p:submenu label="Place">
+                <p:menuitem value="New Place" actionListener="#{router.routeContentPage('PLACE_DEF')}"
                             process="@this" ajax="false" icon="ui-icon-close"/>
             </p:submenu>
+
+            <p:submenu label="Event">
+                <p:menuitem value="New Event" actionListener="#{router.routeContentPage('EVENT_DEF')}"
+                            process="@this" ajax="false" icon="ui-icon-person"/>
+            </p:submenu>
+
+            <p:separator/>
 
         </p:panelMenu>
     </h:form>

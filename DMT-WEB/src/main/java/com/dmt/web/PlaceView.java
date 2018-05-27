@@ -4,12 +4,6 @@ import com.dmt.core.domain.Place;
 import com.dmt.core.service.PlaceService;
 import com.dmt.core.service.Search.SearchPlace;
 import com.dmt.web.util.FacesUtil;
-import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +12,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author : yagmur.avsar
@@ -30,10 +23,10 @@ public class PlaceView implements Serializable {
     private Place place = new Place();
     private SearchPlace searchPlace = new SearchPlace();
     private String pageStatus = "LIST";
-    private LazyDataModel<Place> placeList;
+    private List<Place> placeList;
     private List<Place> places;
     private List<SelectItem> placeTypeList;
-    private  SelectItem selectedPlaceType;
+    private SelectItem selectedPlaceType;
 
     /**
      * TODO
@@ -44,7 +37,7 @@ public class PlaceView implements Serializable {
     @PostConstruct
     public void init() {
         fetchPlaceTypeList();
-     //   fetchPlaceList();
+        fetchPlaceList();
     }
 
     @ManagedProperty("#{placeServiceImpl}")
@@ -56,35 +49,22 @@ public class PlaceView implements Serializable {
 
 
     public void fetchPlaceList() {
-        placeList = new LazyDataModel<Place>() {
-//            @Override
-//            public List<Place> load(int first,
-//                                      int pageSize,
-//                                      String sortField,
-//                                      SortOrder sortOrder,
-//                                      Map<String, Object> filters) {
-//                PageRequest pageable = new PageRequest(first, pageSize);
-//                Page<Place> placePage = placeService.getPlaceList(searchPlace, pageable);
-//                placeList.setRowCount((int) placePage.getTotalElements());
-//                return placePage.getContent();
-//            }
-        };
+        placeList = placeService.getPlaceList(searchPlace);
 
-        placeList.setRowCount(1);
 
     }
 
-    private Boolean SaveKontrol(){
-        if (place.getId().isEmpty()){
+    private Boolean SaveKontrol() {
+        if (place.getId().isEmpty()) {
             FacesUtil.giveError("it is necessary to enter a Class Code");
             return false;
         }
-        if (place.getName().isEmpty()){
+        if (place.getName().isEmpty()) {
             FacesUtil.giveError("it is necessary to enter a Class Name");
             return false;
 
         }
-        if (place.getType() == null){
+        if (place.getType() == null) {
             FacesUtil.giveError("Please specify class type");
         }
 
@@ -99,7 +79,6 @@ public class PlaceView implements Serializable {
             place = new Place();
         }
     }
-
 
 
     /*----------------------------------------------------------------------------------------------------------------------*/
@@ -129,11 +108,11 @@ public class PlaceView implements Serializable {
         this.pageStatus = pageStatus;
     }
 
-    public LazyDataModel<Place> getPlaceList() {
+    public List<Place> getPlaceList() {
         return placeList;
     }
 
-    public void setPlaceList(LazyDataModel<Place> placeList) {
+    public void setPlaceList(List<Place> placeList) {
         this.placeList = placeList;
     }
 
