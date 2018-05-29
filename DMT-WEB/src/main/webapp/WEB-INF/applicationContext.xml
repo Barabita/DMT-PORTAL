@@ -9,6 +9,8 @@
 
     <context:annotation-config/>
 
+    <context:component-scan base-package="com.dmt.core.service"/>
+
     <context:component-scan base-package="com.dmt.core"/>
 
     <!--bean id="myEntityManagerFactory" name="myConventionalPU"

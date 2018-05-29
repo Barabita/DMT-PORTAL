@@ -18,24 +18,24 @@ import java.util.List;
 public class EventServiceImpl implements EventService {
 
     @Autowired
-    private EventRepository repository;
+    private EventRepository eventRepository;
 
     @Override
     @Transactional
     public Event save(Event event) {
         event.setCreDate(new Date());
         event.setId(String.valueOf(new Date().getTime()));
-        return this.repository.save(event);
+        return this.eventRepository.save(event);
     }
 
     @Override
     @Transactional
     public void delete(String eventId) {
-        this.repository.deleteById(eventId);
+        this.eventRepository.deleteById(eventId);
     }
 
     @Override
     public List<Event> findAll() {
-        return this.repository.findAll();
+        return this.eventRepository.findAll();
     }
 }

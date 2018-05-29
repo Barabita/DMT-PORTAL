@@ -10,16 +10,17 @@
         <class>com.dmt.core.domain.Place</class>
         <class>com.dmt.core.domain.InstructorLectureAssign</class>
         <class>com.dmt.core.domain.StudentLectureAssign</class>
-        <class>com.dmt.core.domain.Notification</class>
         <class>com.dmt.core.domain.Event</class>
+        <class>com.dmt.core.domain.Summary</class>
 
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://dmt-portal.cbsj1s4eyvly.us-east-2.rds.amazonaws.com:3306/dmt_portal?useSSL=false"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.password" value="Root1234"/>
+            <property name="eclipselink.logging.level" value="OFF"/>
         </properties>
     </persistence-unit>
 </persistence>

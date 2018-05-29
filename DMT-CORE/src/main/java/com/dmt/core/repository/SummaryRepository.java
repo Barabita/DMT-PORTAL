@@ -1,14 +1,11 @@
 package com.dmt.core.repository;
 
-import com.dmt.core.domain.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * @author mali.sahin
- * @since 27-May-18
+ * @since 29.05.2018.
  */
-
-
-public interface EventRepository extends JpaRepository<Event, String>, JpaSpecificationExecutor {
+public interface SummaryRepository extends JpaRepository<SummaryRepository, Long>, JpaSpecificationExecutor {
 }

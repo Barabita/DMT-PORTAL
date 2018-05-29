@@ -10,6 +10,8 @@
         <class>com.dmt.core.domain.Place</class>
         <class>com.dmt.core.domain.InstructorLectureAssign</class>
         <class>com.dmt.core.domain.StudentLectureAssign</class>
+        <class>com.dmt.core.domain.Event</class>
+        <class>com.dmt.core.domain.Summary</class>
 
          <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>

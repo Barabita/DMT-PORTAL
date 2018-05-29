@@ -1,13 +1,12 @@
 package com.dmt.core.service.Impl;
 
-import com.dmt.core.domain.enums.EducationType;
 import com.dmt.core.domain.Student;
+import com.dmt.core.domain.enums.EducationType;
 import com.dmt.core.repository.StudentRepository;
 import com.dmt.core.service.Search.SearchStudent;
 import com.dmt.core.service.StudentService;
 import com.dmt.core.service.spec.StudentSpec;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,13 +19,12 @@ import java.util.List;
 
 /**
  * @author mali.sahin
- * @date 24-Mar-18
+ * @since  24-Mar-18
  */
 @Service
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    @Qualifier("studentRepository")
     private StudentRepository studentRepository;
 
     @Override
@@ -64,5 +62,13 @@ public class StudentServiceImpl implements StudentService {
         typeList.add(new SelectItem(EducationType.ENG2, "Evening Education ENG"));
 
         return typeList;
+    }
+
+    public boolean login(String userName, String password) {
+        SearchStudent search = new SearchStudent();
+        search.setEmail(userName);
+        search.setPassword(password);
+        List<Student> studentList = getStudentList(search);
+        return studentList.size() > 0;
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
  * @author mali.sahin
  * @since 13-Mar-18
  */
+
 public interface StudentService {
 
     public Student save(Student student);
@@ -23,4 +24,6 @@ public interface StudentService {
     public void delete(Student student);
 
     public List<SelectItem> getEducationTypeList();
+
+    public boolean login(String userName, String password);
 }

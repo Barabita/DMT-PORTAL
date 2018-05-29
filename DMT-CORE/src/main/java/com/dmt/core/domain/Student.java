@@ -39,7 +39,7 @@ public class Student extends BaseDomain implements Serializable {
     private int creditWill;
 
     @Column(name = "PASSWORD", nullable = false)
-    private String password;
+    private String password = "adm123";
 
     @Column(name = "EMAIL", nullable = false)
     private String email;

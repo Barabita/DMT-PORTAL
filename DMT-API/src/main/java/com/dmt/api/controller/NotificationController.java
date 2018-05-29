@@ -1,9 +1,11 @@
 package com.dmt.api.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.dmt.core.service.Impl.StudentServiceImpl;
+import com.dmt.core.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 
@@ -12,13 +14,30 @@ import java.io.Serializable;
  * @since 16-May-18
  */
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/api")
 public class NotificationController implements Serializable {
 
-    @RequestMapping(value = "/run", method = RequestMethod.GET)
+
+    @Autowired
+    private StudentService studentService(){
+        return  new StudentServiceImpl();
+    }
+
+    @RequestMapping(value = "/login/{email}/{password}", method = RequestMethod.GET)
     public
     @ResponseBody
-    String isRun() {
-        return "APP_IS_RUNNING...";
+    ResponseEntity login(@PathVariable("email") String email, @PathVariable String password) {
+
+        HttpStatus status;
+
+        if (studentService().login(email, password)) {
+            status = HttpStatus.OK;
+        } else {
+            status = HttpStatus.FORBIDDEN;
+        }
+
+        return new ResponseEntity(status);
     }
+
+
 }
