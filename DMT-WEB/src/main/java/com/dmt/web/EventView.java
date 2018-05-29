@@ -3,16 +3,19 @@ package com.dmt.web;
 import com.dmt.core.domain.Event;
 import com.dmt.core.domain.Place;
 import com.dmt.core.domain.StudentLectureAssign;
+import com.dmt.core.domain.enums.DaysOfWeek;
 import com.dmt.core.service.EventService;
 import com.dmt.core.service.PlaceService;
 import com.dmt.core.service.Search.SearchPlace;
 import com.dmt.core.service.Search.SearchStudentLectureAssign;
 import com.dmt.core.service.StudentLectureAssignService;
+import com.dmt.web.util.FacesUtil;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +36,22 @@ public class EventView implements Serializable {
 
     @ManagedProperty("#{eventServiceImpl}")
     private EventService eventService;
+
     private Event event;
     private List<Place> placeList = new ArrayList<>();
     private List<StudentLectureAssign> lectureList = new ArrayList<>();
-
+    private List<Event> eventList = new ArrayList<>();
 
     @PostConstruct
     private void init() {
-
+        this.event = new Event();
         preparePlaceList();
         prepareLectureList();
+        prepareEventList();
+    }
+
+    private void prepareEventList() {
+        this.eventList = this.eventService.findAll();
     }
 
     private void preparePlaceList() {
@@ -55,21 +64,59 @@ public class EventView implements Serializable {
 
 
     public void save() {
-        this.eventService.save(this.event);
-
+        if (saveKontrol()) {
+            this.eventService.save(this.event);
+        }
+        prepareEventList();
     }
 
-    public void delete() {
-        this.eventService.delete(this.event.getId());
+    private boolean saveKontrol() {
+
+        if (this.event.getPlaceID() == null || this.event.getPlaceID().isEmpty()) {
+            FacesUtil.giveError("Place can not be null");
+            return false;
+        }
+        if (this.event.getStudentLectureId() == null || this.event.getStudentLectureId().equals("")) {
+            FacesUtil.giveError("Instructor Can not be null");
+            return false;
+        }
+
+        if (this.event.getStartTime() < 8 && this.event.getStartTime() > 18) {
+            FacesUtil.giveError("Course can be started between  8 and 18");
+            return false;
+        }
+
+        if (this.event.getDaysOfWeek() == null) {
+            FacesUtil.giveError("Course day can not be null");
+            return false;
+        }
+
+        return true;
     }
 
-    public void update() {
+    public void delete(Event event) {
+        this.eventService.delete(event.getId());
+    }
 
+    public void update(Event event) {
+        this.event = event;
     }
 
     public PlaceService getPlaceService() {
         return placeService;
     }
+
+    public List<SelectItem> dayList() {
+        List<SelectItem> list = new ArrayList<>();
+        list.add(new SelectItem(DaysOfWeek.MONDAY.getValue(), DaysOfWeek.MONDAY.getValue()));
+        list.add(new SelectItem(DaysOfWeek.TUESDAY.getValue(), DaysOfWeek.TUESDAY.getValue()));
+        list.add(new SelectItem(DaysOfWeek.WEDNESDAY.getValue(), DaysOfWeek.WEDNESDAY.getValue()));
+        list.add(new SelectItem(DaysOfWeek.THURSDAY.getValue(), DaysOfWeek.THURSDAY.getValue()));
+        list.add(new SelectItem(DaysOfWeek.FRIDAY.getValue(), DaysOfWeek.FRIDAY.getValue()));
+
+        return list;
+    }
+
 
     public void setPlaceService(PlaceService placeService) {
         this.placeService = placeService;
@@ -113,5 +160,13 @@ public class EventView implements Serializable {
 
     public void setEventService(EventService eventService) {
         this.eventService = eventService;
+    }
+
+    public List<Event> getEventList() {
+        return eventList;
+    }
+
+    public void setEventList(List<Event> eventList) {
+        this.eventList = eventList;
     }
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "EVENT_DEF")
-public class Event extends BaseDomain implements Serializable {
+public class Event implements Serializable {
 
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
@@ -23,11 +23,11 @@ public class Event extends BaseDomain implements Serializable {
     @Column(name = "PLACE_ID", length = 20)
     private String placeID;
 
-    @Column(name = "START_DATE")
-    private Date startDate;
+    @Column(name = "DAYS_OF_WEEK")
+    private String daysOfWeek;
 
-    @Column(name = "END_DATE")
-    private Date endDate;
+    @Column(name = "START_TIME")
+    private int startTime;
 
     @Column(name = "STUDENT_LECTURE_ID")
     private String studentLectureId;
@@ -43,9 +43,21 @@ public class Event extends BaseDomain implements Serializable {
     @OneToOne
     @PrimaryKeyJoinColumn(name = "PLACE_ID")
     @Fetch(FetchMode.JOIN)
-    private  Place place;
+    private Place place;
 
-    private int hours;
+    @Column(name = "HOURS")
+    private int hours = 1;
+
+    @Column(name = "CRE_DATE")
+    private Date creDate;
+
+    public Date getCreDate() {
+        return creDate;
+    }
+
+    public void setCreDate(Date creDate) {
+        this.creDate = creDate;
+    }
 
     public int getHours() {
         return hours;
@@ -69,22 +81,6 @@ public class Event extends BaseDomain implements Serializable {
 
     public void setPlaceID(String placeID) {
         this.placeID = placeID;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 
     public String getStudentLectureId() {
@@ -118,4 +114,22 @@ public class Event extends BaseDomain implements Serializable {
     public void setPlace(Place place) {
         this.place = place;
     }
+
+    public String getDaysOfWeek() {
+        return daysOfWeek;
+    }
+
+    public void setDaysOfWeek(String daysOfWeek) {
+        this.daysOfWeek = daysOfWeek;
+    }
+
+    public int getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
+    }
+
+
 }

@@ -13,6 +13,7 @@
         <h:panelGrid columns="2" title="Course Processing" id="lecEvent">
             <p:outputLabel value="Place"/>
             <p:selectOneMenu value="#{eventView.event.placeID}" converter="entityConverter" style="width: 190px;">
+                <f:selectItem itemLabel="" itemValue=""/>
                 <f:selectItems value="#{eventView.placeList}" var="item" itemLabel="#{item.name}"
                                itemValue="#{item.id}"/>
             </p:selectOneMenu>
@@ -20,63 +21,63 @@
             <p:outputLabel value="Instructor:"/>
             <p:selectOneMenu value="#{eventView.event.studentLectureId}" converter="entityConverter"
                              style="width: 190px;">
-                <f:selectItems value="#{eventView.lectureList}" var="lec" itemValue="#{item.id}"
+                <f:selectItem itemLabel="" itemValue=""/>
+                <f:selectItems value="#{eventView.lectureList}" var="lec" itemValue="#{lec.id}"
                                itemLabel="#{lec.instructorLectureAssign.lecture.name} - #{lec.instructorLectureAssign.instructor.name}"/>
             </p:selectOneMenu>
 
+            <p:outputLabel value="Days of week"/>
+            <p:selectOneRadio id="city" value="#{eventView.event.daysOfWeek}" layout="grid" columns="5"
+                              converter="entityConverter">
+                <f:selectItems value="#{eventView.dayList()}"/>
+            </p:selectOneRadio>
+
             <p:outputLabel value="Course Start Time: "/>
-            <p:calendar value="#{eventView.event.startDate}" pattern="dd/MM/yyyy HH"/>
+            <h:panelGrid columns="1" style="margin-bottom: 10px">
+                <p:inputText id="time" value="#{eventView.event.startTime}"/>
+                <p:slider for="time" minValue="08" maxValue="18" step="1"/>
+            </h:panelGrid>
+
 
             <p:outputLabel value="Hours:"/>
-            <p:inputNumber value="#{eventView.event.hours}"/>
+            <p:inputText onkeypress="if(event.which &lt; 49 || event.which &gt; 56) return false;" maxlength="1"
+                         value="#{eventView.event.hours}"/>
 
         </h:panelGrid>
 
 
         <h:panelGrid columns="10">
-            <p:commandButton value="SAVE" ajax="false"
-                             icon="ui-icon-disk" process="@this"
-                             style="width: 100px"/>
+            <p:commandButton value="SAVE" ajax="false" actionListener="#{eventView.save}"
+                             icon="ui-icon-disk" process="@this" style="width: 100px"/>
         </h:panelGrid>
 
-        <p:dataTable var="event" id="eventDT" lazy="true">
+        <p:dataTable var="event" id="eventDT" value="#{eventView.eventList}" lazy="true">
             <p:column headerText="Place ID">
-                <h:outputText/>
+                <h:outputText value="#{event.place.name}"/>
             </p:column>
 
-            <p:column headerText="Instructor ID" lazy="true">
-                <h:outputText/>
+            <p:column headerText="Lecture" lazy="true">
+                <h:outputText value="#{event.studentLectureAssign.instructorLectureAssign.lecture.name}"/>
             </p:column>
 
-            <p:column headerText="Instructor Name" lazy="true">
-                <h:outputText/>
+            <p:column headerText="Day" lazy="true">
+                <h:outputText value="#{event.daysOfWeek}"/>
             </p:column>
 
-            <p:column headerText="Lecture ID" lazy="true">
-                <h:outputText/>
+            <p:column headerText="Time" lazy="true">
+                <h:outputText value="#{event.startTime}:00"/>
             </p:column>
 
-            <p:column headerText="Student Group" lazy="true">
-                <h:outputText/>
-            </p:column>
-
-            <p:column headerText="Course Start Time" lazy="true">
-                <h:outputText/>
-            </p:column>
-
-            <p:column headerText="Course End Time" lazy="true">
-                <h:outputText/>
-            </p:column>
-
-            <p:column headerText="Session Count" lazy="true">
-                <h:outputText/>
+            <p:column headerText="Hours" lazy="true">
+                <h:outputText value="#{event.hours}"/>
             </p:column>
 
             <p:column>
                 <p:commandButton
-                        title="Edit" ajax="false" process="@this" icon="ui-icon-pencil"/>
+                        title="Edit" ajax="false" process="@this" icon="ui-icon-pencil"
+                        actionListener="#{eventView.update(event)}"/>
 
-                <p:commandButton title="Delete"
+                <p:commandButton title="Delete" actionListener="#{eventView.delete(event)}"
                                  icon="ui-icon-trash" process="@this" ajax="false"/>
 
             </p:column>

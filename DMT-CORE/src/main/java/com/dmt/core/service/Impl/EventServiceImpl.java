@@ -5,6 +5,7 @@ import com.dmt.core.repository.EventRepository;
 import com.dmt.core.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ public class EventServiceImpl implements EventService {
     private EventRepository repository;
 
     @Override
+    @Transactional
     public Event save(Event event) {
         event.setCreDate(new Date());
         event.setId(String.valueOf(new Date().getTime()));
@@ -27,6 +29,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public void delete(String eventId) {
         this.repository.deleteById(eventId);
     }
