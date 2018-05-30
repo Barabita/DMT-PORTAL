@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author mali.sahin
@@ -29,5 +30,9 @@ public class NotificationServiceImpl implements NotificationService {
         notification.setId(String.valueOf(new Date().getTime()));
         notification.setCreUser("SYSTEM");
         return notificationRepository.save(notification);
+    }
+
+    public List<Notification> getNotificationListByReceiver(String receiver) {
+        return notificationRepository.findByReceiver(receiver);
     }
 }

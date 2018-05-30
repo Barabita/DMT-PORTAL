@@ -1,5 +1,7 @@
 package com.dmt.core.domain;
 
+import com.dmt.core.domain.general.SummaryPk;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,10 +15,7 @@ public class Summary implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-
-    @Column(name = "INSTRUCTOR_ID")
-    private String instructorId;
+    private SummaryPk id;
 
     @Column(name = "INSTRUCTOR_NAME")
     private String instructorName;
@@ -42,32 +41,30 @@ public class Summary implements Serializable {
     @Column(name = "LECTURE_CODE")
     private String lectureCode;
 
-    @Column(name = "START_TIME")
-    private String eventStartTime;
-
     @Column(name = "HOURS")
     private int eventHours;
 
-    @Column(name = "DAYS_OF_WEEK")
-    private int daysOfWeek;
+
 
     @Column(name = "PLACE_NAME")
     private String placeName;
+    @Column(name = "EMAIL")
+    private String email;
 
-    public Long getId() {
+    public SummaryPk getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(SummaryPk id) {
         this.id = id;
     }
 
-    public String getInstructorId() {
-        return instructorId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setInstructorId(String instructorId) {
-        this.instructorId = instructorId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getInstructorName() {
@@ -134,28 +131,12 @@ public class Summary implements Serializable {
         this.lectureCode = lectureCode;
     }
 
-    public String getEventStartTime() {
-        return eventStartTime;
-    }
-
-    public void setEventStartTime(String eventStartTime) {
-        this.eventStartTime = eventStartTime;
-    }
-
     public int getEventHours() {
         return eventHours;
     }
 
     public void setEventHours(int eventHours) {
         this.eventHours = eventHours;
-    }
-
-    public int getDaysOfWeek() {
-        return daysOfWeek;
-    }
-
-    public void setDaysOfWeek(int daysOfWeek) {
-        this.daysOfWeek = daysOfWeek;
     }
 
     public String getPlaceName() {

@@ -34,9 +34,6 @@ public class Notification extends BaseDomain implements Serializable {
     @Column(name = "TRS_FLAG", length = 5)
     private String trsFlag;
 
-    @Column(name = "EXPIRY_DATE", nullable = false)
-    private Date expiryDate;
-
     @Column(name = "RECEIVER_TYPE", nullable = false, length = 5)
     @Enumerated(EnumType.STRING)
     private ReceiverType receiverType;
@@ -90,14 +87,6 @@ public class Notification extends BaseDomain implements Serializable {
 
     public void setTrsFlag(String trsFlag) {
         this.trsFlag = trsFlag;
-    }
-
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
     }
 
     public ReceiverType getReceiverType() {

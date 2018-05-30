@@ -59,7 +59,7 @@ public class NotificationView implements Serializable {
         List<SelectItem> receiverList = new ArrayList<>();
         List<Student> studentList = this.studentService.getStudentList(new SearchStudent());
         for (Student student : studentList) {
-            receiverList.add(new SelectItem(student.getId(), student.getName() + " " + student.getSurname()));
+            receiverList.add(new SelectItem(student.getEmail(), student.getName() + " " + student.getSurname()));
         }
         return receiverList;
     }

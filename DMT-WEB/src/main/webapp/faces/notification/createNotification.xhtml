@@ -32,9 +32,6 @@
                     <f:selectItems value="#{notificationView.prepareReceiverList()}"/>
                 </p:selectOneMenu>
 
-                <p:outputLabel value="Message Validity Date:"/>
-                <p:calendar showOn="button" value="#{notificationView.notification.expiryDate}" beforeShowDay="false" />
-
                 <p:outputLabel value="Title:"/>
                 <p:inputText value="#{notificationView.notification.title}"/>
 
