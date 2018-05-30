@@ -4,6 +4,7 @@ import com.dmt.core.domain.Student;
 import com.dmt.core.service.Search.SearchStudent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import javax.faces.model.SelectItem;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * @since 13-Mar-18
  */
 
+@Service
 public interface StudentService {
 
     public Student save(Student student);
