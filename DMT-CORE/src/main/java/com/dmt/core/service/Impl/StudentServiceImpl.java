@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * @author mali.sahin
- * @since  24-Mar-18
+ * @since 24-Mar-18
  */
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -64,11 +64,11 @@ public class StudentServiceImpl implements StudentService {
         return typeList;
     }
 
-    public boolean login(String userName, String password) {
+    public List<Student> login(String userName, String password) {
         SearchStudent search = new SearchStudent();
         search.setEmail(userName);
         search.setPassword(password);
-        List<Student> studentList = getStudentList(search);
-        return studentList.size() > 0;
+        return getStudentList(search);
+
     }
 }

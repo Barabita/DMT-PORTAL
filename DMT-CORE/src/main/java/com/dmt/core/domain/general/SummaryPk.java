@@ -20,6 +20,30 @@ public class SummaryPk implements Serializable {
     @Column(name = "DAYS_OF_WEEK")
     private String daysOfWeek;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SummaryPk)) return false;
+
+        SummaryPk summaryPk = (SummaryPk) o;
+
+        if (instructorId != null ? !instructorId.equals(summaryPk.instructorId) : summaryPk.instructorId != null)
+            return false;
+        if (eventStartTime != null ? !eventStartTime.equals(summaryPk.eventStartTime) : summaryPk.eventStartTime != null)
+            return false;
+        return daysOfWeek != null ? daysOfWeek.equals(summaryPk.daysOfWeek) : summaryPk.daysOfWeek == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = instructorId != null ? instructorId.hashCode() : 0;
+        result = 31 * result + (eventStartTime != null ? eventStartTime.hashCode() : 0);
+        result = 31 * result + (daysOfWeek != null ? daysOfWeek.hashCode() : 0);
+        return result;
+    }
+
     public String getInstructorId() {
         return instructorId;
     }
