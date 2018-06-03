@@ -25,11 +25,6 @@ public class ExamNotesController {
     @ResponseBody
     public ResponseEntity<List<ExamNoteDto>> getExamNotes(@PathVariable String id) {
 
-        List<ExamNoteDto> list = new ArrayList<ExamNoteDto>();
-        list.add(new ExamNoteDto("Helen Rosentu", "Introduction to Finance Mathematics", 60, -1, -1, 4));
-        list.add(new ExamNoteDto("Freya Dumas", "Linear Programming Theory", 72, 80, -1, 4));
-        list.add(new ExamNoteDto("Birsen Gulden Ozdemir", "Computer Science", 80, 88, -1, 6));
-
-        return new ResponseEntity<List<ExamNoteDto>>(list, HttpStatus.OK);
+        return new ResponseEntity<List<ExamNoteDto>>(studentLectureAssignService.getExamNoteList(id), HttpStatus.OK);
     }
 }
