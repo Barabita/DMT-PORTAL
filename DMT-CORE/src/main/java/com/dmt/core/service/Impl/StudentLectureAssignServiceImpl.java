@@ -1,6 +1,7 @@
 package com.dmt.core.service.Impl;
 
 import com.dmt.core.domain.StudentLectureAssign;
+import com.dmt.core.domain.dto.ExamNoteDto;
 import com.dmt.core.repository.StudentLectureAssignRepository;
 import com.dmt.core.service.Search.SearchStudentLectureAssign;
 import com.dmt.core.service.StudentLectureAssignService;
@@ -69,7 +70,23 @@ public class StudentLectureAssignServiceImpl implements StudentLectureAssignServ
     }
 
     @Override
+    public List<StudentLectureAssign> findStudentLectureAssigns() {
+        return studentLectureAssignRepository.findAll();
+    }
+
+    @Override
     public Page<StudentLectureAssign> findStudentLectureAssigns(SearchStudentLectureAssign filter, Pageable pageable) {
         return studentLectureAssignRepository.findAll(StudentLectureAssignSpec.findByCriteria(filter), pageable);
+    }
+
+    @Override
+    public List<ExamNoteDto> getExamNoteList(String id) {
+        SearchStudentLectureAssign filter = new SearchStudentLectureAssign();
+        filter.setStudentId(id);
+        List<StudentLectureAssign> list = findStudentLectureAssigns(filter);
+        list.forEach(item -> {
+            /**/
+        });
+        return null;
     }
 }

@@ -34,6 +34,41 @@ public class StudentLectureAssign extends BaseDomain implements Serializable {
     @Fetch(FetchMode.JOIN)
     private InstructorLectureAssign instructorLectureAssign;
 
+    @Column(name = "VISA1")
+    private int visa1;
+
+
+    @Column(name = "VISA2")
+    private int visa2;
+
+
+    @Column(name = "FINAL")
+    private int finalResult;
+
+    public int getVisa1() {
+        return visa1;
+    }
+
+    public void setVisa1(int visa1) {
+        this.visa1 = visa1;
+    }
+
+    public int getVisa2() {
+        return visa2;
+    }
+
+    public void setVisa2(int visa2) {
+        this.visa2 = visa2;
+    }
+
+    public int getFinalResult() {
+        return finalResult;
+    }
+
+    public void setFinalResult(int finalResult) {
+        this.finalResult = finalResult;
+    }
+
     public String getId() {
         return id;
     }

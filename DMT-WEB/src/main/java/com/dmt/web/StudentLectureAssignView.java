@@ -2,7 +2,6 @@ package com.dmt.web;
 
 import com.dmt.core.domain.*;
 import com.dmt.core.service.InstructorLectureAssignService;
-import com.dmt.core.service.Search.SearchInstuctorLectureAssign;
 import com.dmt.core.service.Search.SearchStudent;
 import com.dmt.core.service.Search.SearchStudentLectureAssign;
 import com.dmt.core.service.StudentLectureAssignService;
@@ -11,7 +10,7 @@ import com.dmt.core.service.StudentService;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ import java.util.List;
  * @author mali.sahin
  * @since 07-May-18
  */
-@ViewScoped
+@RequestScoped
 @ManagedBean(name = "studentLectureAssign")
 public class StudentLectureAssignView implements Serializable {
 
@@ -75,7 +74,7 @@ public class StudentLectureAssignView implements Serializable {
     }
 
     private void prepareInstructorLectureAssignList() {
-        instructorLectureAssignList = this.instructorLectureAssignService.findInstructorLectureAssigns(new SearchInstuctorLectureAssign());
+        instructorLectureAssignList = this.instructorLectureAssignService.findInstructorLectureAssigns();
     }
 
     public List<SelectItem> prepareLectureList() {
@@ -94,7 +93,7 @@ public class StudentLectureAssignView implements Serializable {
         instructorList.clear();
         instructorList.add(new SelectItem("", ""));
         for (InstructorLectureAssign assign : instructorLectureAssignList) {
-            boolean isLectureSelected = selectedLecture.getId() != null;
+            boolean isLectureSelected = selectedLecture != null && selectedLecture.getId() != null;
             if (isLectureSelected && selectedLecture.getId().equals(assign.getLectureId())) {
                 instructorList.add(new SelectItem(assign.getInstructor(), assign.getInstructor().getName()));
             }

@@ -1,6 +1,7 @@
 package com.dmt.core.service;
 
 import com.dmt.core.domain.StudentLectureAssign;
+import com.dmt.core.domain.dto.ExamNoteDto;
 import com.dmt.core.service.Search.SearchStudentLectureAssign;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,5 +26,9 @@ public interface StudentLectureAssignService {
 
     List<StudentLectureAssign> findStudentLectureAssigns(SearchStudentLectureAssign filter);
 
+    public List<StudentLectureAssign> findStudentLectureAssigns();
+
     Page<StudentLectureAssign> findStudentLectureAssigns(SearchStudentLectureAssign filter, Pageable pageable);
+
+    List<ExamNoteDto> getExamNoteList(String id);
 }

@@ -23,6 +23,8 @@ public interface InstructorLectureAssignService {
 
     List<InstructorLectureAssign> findInstructorLectureAssigns(SearchInstuctorLectureAssign filter);
 
+    public List<InstructorLectureAssign> findInstructorLectureAssigns();
+
     Page<InstructorLectureAssign> findInstructorLectureAssigns(SearchInstuctorLectureAssign filter, Pageable pageable);
 
     void save(InstructorLectureAssign assign);

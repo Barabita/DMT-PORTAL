@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition>
+    <h:form id="frm">
+
+        <p:growl id="growl" showDetail="true" sticky="true" life="3000"/>
+
+        <h:panelGrid columns="2" title="Assign Lecture" id="dersAtamaForm">
+
+            <p:outputLabel value="Instructor:"/>
+            <p:selectOneMenu id="instructor" converter="entityConverter"
+                             value="#{examNotesView.selectedInstructor}" style="width: 240px;">
+                <f:selectItem itemValue="" itemLabel=""/>
+                <f:selectItems value="#{examNotesView.prepareInstructorList()}" var="inst" itemValue="#{inst}"
+                               itemLabel="#{inst.name} #{inst.surname}"/>
+                <p:ajax update="lecture studentDT"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel value="Lecture Name:"/>
+            <p:selectOneMenu value="#{examNotesView.selectedLecture}" converter="entityConverter" id="lecture"
+                             style="width: 240px;">
+                <f:selectItem itemValue="" itemLabel=""/>
+                <f:selectItems value="#{examNotesView.prepareLectureList()}" var="lect" itemValue="#{lect}"
+                               itemLabel="#{lect.code} #{lect.name}"/>
+                <p:ajax update="studentDT"/>
+            </p:selectOneMenu>
+
+
+        </h:panelGrid>
+
+        <p:dataTable var="item" value="#{examNotesView.prepareAssigList()}"
+                     paginator="false" lazy="true"
+                     rowKey="#{item.id}"
+                     id="studentDT">
+
+
+            <p:column headerText="Id">
+                <h:outputText value="#{item.student.id}"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{item.student.name} - #{item.student.surname}"/>
+            </p:column>
+
+            <p:column headerText="Visa 1">
+                <h:inputText value="#{item.visa1}"/>
+            </p:column>
+
+
+            <p:column headerText="Visa 2">
+                <h:inputText value="#{item.visa2}"/>
+            </p:column>
+
+
+            <p:column headerText="Final">
+                <h:inputText value="#{item.finalResult}"/>
+            </p:column>
+
+            <p:column headerText="Term">
+                <p:commandButton value="Kaydet" actionListener="#{examNotesView.update(item)}" update="frm:growl"/>
+            </p:column>
+        </p:dataTable>
+
+    </h:form>
+</ui:composition>
+</html>

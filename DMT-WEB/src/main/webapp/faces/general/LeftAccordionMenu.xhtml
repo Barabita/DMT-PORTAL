@@ -17,6 +17,9 @@
                 <p:menuitem value="Assign Lecture"  process="@this" ajax="false"
                             actionListener="#{router.routeContentPage('STUDENT_LECTURE_ASSIGN')}"
                             icon="ui-icon-pencil"/>
+                <p:menuitem value="Exam Notes"  process="@this" ajax="false"
+                            actionListener="#{router.routeContentPage('EXAM_NOTES')}"
+                            icon="ui-icon-pencil"/>
             </p:submenu>
             <p:submenu label="Instructor">
                 <p:menuitem value="New Record" actionListener="#{router.routeContentPage('INSTRUCTOR_NEW_RECORD')}"

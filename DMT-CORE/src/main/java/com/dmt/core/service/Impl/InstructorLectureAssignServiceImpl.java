@@ -66,6 +66,10 @@ public class InstructorLectureAssignServiceImpl implements InstructorLectureAssi
         return lectureAssignRepository.findAll(InstructorLectureAssignSpec.findByCriteria(filter));
     }
 
+    public List<InstructorLectureAssign> findInstructorLectureAssigns() {
+        return lectureAssignRepository.findAll();
+    }
+
     @Override
     public Page<InstructorLectureAssign> findInstructorLectureAssigns(SearchInstuctorLectureAssign filter, Pageable pageable) {
         return lectureAssignRepository.findAll(InstructorLectureAssignSpec.findByCriteria(filter), pageable);

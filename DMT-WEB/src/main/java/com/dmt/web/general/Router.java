@@ -14,7 +14,7 @@ import java.io.Serializable;
 @SessionScoped
 @ManagedBean(name = "router")
 public class Router implements Serializable {
-    private String contentPage = "";
+    private String contentPage = "/faces/general/dashboard.xhtml";
     private String title = "";
 
     @ManagedProperty("#{pageServiceImpl}")

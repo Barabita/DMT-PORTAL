@@ -31,9 +31,8 @@ public class LoginController {
 
         List<Student> studentList = studentService.login(email, password);
 
-        HttpStatus status = studentList.size() > 0 ? HttpStatus.OK : HttpStatus.FORBIDDEN;
 
-        return new ResponseEntity(studentList, status);
+        return new ResponseEntity(studentList, HttpStatus.OK);
 
     }
 
