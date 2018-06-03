@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -81,12 +82,24 @@ public class StudentLectureAssignServiceImpl implements StudentLectureAssignServ
 
     @Override
     public List<ExamNoteDto> getExamNoteList(String id) {
-        SearchStudentLectureAssign filter = new SearchStudentLectureAssign();
-        filter.setStudentId(id);
-        List<StudentLectureAssign> list = findStudentLectureAssigns(filter);
+        List<ExamNoteDto> dtoList = new ArrayList<>();
+        List<StudentLectureAssign> list = findStudentLectureAssigns();
         list.forEach(item -> {
-            /**/
+            if (item.getStudentId().equals(id)) {
+                ExamNoteDto dto = new ExamNoteDto();
+
+                dto.setInstructor(item.getInstructorLectureAssign().getInstructor().getName() + " " +
+                        item.getInstructorLectureAssign().getInstructor().getSurname());
+
+                dto.setLecture(item.getInstructorLectureAssign().getLectureId() + " " +
+                        item.getInstructorLectureAssign().getLecture().getName());
+
+                dto.setVisa1(item.getVisa1());
+                dto.setVisa2(item.getVisa2());
+                dto.setFinalResult(item.getFinalResult());
+                dtoList.add(dto);
+            }
         });
-        return null;
+        return dtoList;
     }
 }
